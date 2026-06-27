@@ -1,0 +1,19 @@
+{
+    "name": "Horários de Aulas",
+    "short_name": "Horários",
+    "description": "Consulta acessível de horários de aulas por turno",
+    "start_url": "/acessivel",
+    "scope": "/acessivel",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#ffffff",
+    "theme_color": "#1a3a6b",
+    "lang": "pt-BR",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "any",
+            "type": "image/x-icon"
+        }
+    ]
+}

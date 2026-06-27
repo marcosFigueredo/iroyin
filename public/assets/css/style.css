@@ -401,6 +401,28 @@ body {
   text-transform: uppercase;
 }
 
+/* QR Code de acessibilidade — canto inferior esquerdo, sempre visível */
+.acessivel-qr-corner {
+  position: fixed;
+  bottom: 14px;
+  left: 14px;
+  z-index: 500;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 6px;
+  text-align: center;
+  width: 90px;
+}
+
+.acessivel-qr-label {
+  color: #333333;
+  font-size: 9px;
+  font-weight: 700;
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 /* Barra de progresso no fundo */
 .news-progress-track {
   height: 5px;

@@ -114,6 +114,14 @@ window._configReady = fetch('/api/config?_=' + Date.now())
 
         _applyTema(cfg.tema || 'azul');
 
+        // QR code fixo de acessibilidade
+        if (cfg.url_acessivel) {
+            var qrEl = document.getElementById('acessivel-qr');
+            if (qrEl) {
+                new QRCode(qrEl, { text: cfg.url_acessivel, width: 78, height: 78 });
+            }
+        }
+
         return cfg;
     })
     .catch(function () {

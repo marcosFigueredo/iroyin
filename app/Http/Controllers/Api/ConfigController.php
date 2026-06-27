@@ -29,6 +29,9 @@ class ConfigController extends Controller
 
             // tema visual
             'tema' => $cfg->tema,
+
+            // URL do PWA acessível (usado pelo kiosk para gerar o QR code)
+            'url_acessivel' => url('/acessivel'),
         ]);
     }
 }

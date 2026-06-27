@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\InstituicaoController;
 use App\Http\Controllers\Admin\NoticiaController;
 use App\Http\Controllers\Admin\SemestreController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\AcessivelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SetupController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return response()->file(public_path('index.html'));
 });
+
+Route::get('/acessivel', [AcessivelController::class, 'index'])->name('acessivel');
 
 // Wizard de primeira configuração — acessível somente sem usuários cadastrados
 Route::get('/setup',  [SetupController::class, 'index'])->name('setup.index');
