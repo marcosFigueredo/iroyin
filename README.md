@@ -1,5 +1,8 @@
 # IROYIN — Institutional Information Display System
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20970621.svg)](https://doi.org/10.5281/zenodo.20970621)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 **IROYIN** is an open-source web application for institutions (universities, departments, research centers) to display real-time information on public screens — class schedules, news from RSS feeds, open research calls, and weather — managed through a browser-based admin panel.
 
 > *Iroyin* means "news" in Yoruba, reflecting the system's core purpose: keeping communities informed.
@@ -140,7 +143,9 @@ MIT — see [LICENSE](LICENSE).
 
 If you use IROYIN in academic work, please cite:
 
-> Figueredo, M. (2026). IROYIN: An open-source institutional information display system for universities and research departments. *SoftwareX*.
+> Figueredo, M. (2026). IROYIN: An open-source institutional information display system for universities and research departments. *SoftwareX*. [https://doi.org/10.5281/zenodo.20970621](https://doi.org/10.5281/zenodo.20970621)
+
+Or use the Zenodo metadata directly: [https://doi.org/10.5281/zenodo.20970621](https://doi.org/10.5281/zenodo.20970621)
 
 ---
 
