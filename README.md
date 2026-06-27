@@ -70,6 +70,17 @@ The system was originally developed for a Brazilian graduate department and gene
 
 ## Installation
 
+Choose **one** of the two methods below — do not use both simultaneously.
+
+| Method | Requirements | URL |
+| --- | --- | --- |
+| **Script** (local) | PHP, Composer, Node.js, MySQL on host | `http://localhost:8000` |
+| **Docker** | Docker Desktop only | `http://localhost:8080` |
+
+---
+
+### Option A — Setup script (local install)
+
 ### 1. Clone and install dependencies
 
 ```bash
@@ -127,6 +138,39 @@ Make sure `mod_rewrite` is enabled and `AllowOverride All` is set.
 ### 5. First run
 
 Open `APP_URL` in a browser. The system redirects to `/setup` where you create the first administrator account. After setup you are taken directly to the institution configuration page.
+
+The setup scripts (`setup.sh` / `setup.ps1`) automate all steps above and also seed demo data and run the test suite:
+
+```bash
+# Linux / macOS
+chmod +x setup.sh && ./setup.sh
+
+# Windows (PowerShell)
+.\setup.ps1
+```
+
+---
+
+### Option B — Docker (one-command demo)
+
+Requires [Docker Desktop](https://www.docker.com/products/docker-desktop/). No PHP, Composer, or MySQL needed on the host.
+
+```bash
+git clone https://github.com/marcosFigueredo/iroyin.git
+cd iroyin
+docker compose up --build
+```
+
+On first run (~2 min): builds the image, runs migrations, and seeds demo data automatically. Open `http://localhost:8080`.
+
+**Demo credentials (Docker and setup script):**
+
+| Field | Value |
+| --- | --- |
+| Email | `admin@iroyin.demo` |
+| Password | `demo@2026` |
+
+Demo data includes: fictional institution (ITI — Instituto de Tecnologia e Inovação), 14 subjects across all weekdays, 5 news items, 4 funding agencies, and 3 sample open calls.
 
 ---
 
