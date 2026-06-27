@@ -4,9 +4,11 @@
 .env.backup
 .env.production
 
-# Imagens enviadas por usuários (conteúdo gerado em runtime)
+# Imagens enviadas por usuários e logos de instâncias (conteúdo gerado em runtime)
 /storage/app/public/noticias/
 /public/storage/noticias/
+/public/noticias/
+/public/images/
 .phpactor.json
 .phpunit.result.cache
 /.fleet
