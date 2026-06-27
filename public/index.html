@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IROYIN</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body onload="startAutoRefresh()">
+
+  <!-- CABEÇALHO -->
+  <div class="news-container">
+    <p id="tipoInformacao"></p>
+    <span id="turnoIndicador" style="display:none;"></span>
+  </div>
+
+  <!-- QUADRO DE HORÁRIOS -->
+  <div id="horarios" class="container-horario">
+    <div class="scroll-table">
+      <table id="schedule-table">
+        <thead>
+          <tr>
+            <td>Disciplina</td>
+            <td>Professor(a)</td>
+            <td>Curso</td>
+            <td class="col-inicio">Início</td>
+            <td class="col-fim">Fim</td>
+            <td class="col-sala">Sala</td>
+          </tr>
+        </thead>
+        <tbody id="table-horario">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- BOA NOITE -->
+  <div id="boa-noite" class="boa-noite-section" style="display:none;">
+    <div class="boa-noite-content">
+      <div class="boa-noite-icon">🌙</div>
+      <h1 class="boa-noite-titulo">BOA NOITE</h1>
+      <p class="boa-noite-sub">Por favor, desligue a tela</p>
+      <p class="boa-noite-info">As atividades retornam na próxima aula</p>
+    </div>
+  </div>
+
+  <!-- QUADRO DE NOTÍCIAS -->
+  <div id="news-section" class="news-section" style="display:none;">
+    <div class="news-card">
+      <div class="news-card-img-wrap" id="news-img-wrap">
+        <img id="news-img" src="" alt="" />
+        <div class="news-no-img" id="news-no-img" style="display:none;">📰</div>
+      </div>
+      <div class="news-card-body">
+        <span class="news-badge" id="news-fonte"></span>
+        <h2 id="news-titulo"></h2>
+        <p class="news-data" id="news-data"></p>
+        <div id="news-qr-wrap" style="display:none;">
+          <div id="news-qr"></div>
+          <p class="news-qr-label">Leia para saber mais</p>
+        </div>
+      </div>
+    </div>
+    <div class="news-progress-track">
+      <div class="news-progress-fill" id="news-progress-fill"></div>
+    </div>
+  </div>
+
+  <!-- PAINEL DE EDITAIS ABERTOS -->
+  <div id="editais-section" class="editais-section" style="display:none;">
+    <div class="editais-header">
+      <span class="editais-header-label" id="editais-agencia-sigla"></span>
+      <span class="editais-header-agencia" id="editais-agencia-nome"></span>
+    </div>
+    <div class="editais-body">
+      <div class="editais-main">
+        <div class="editais-titulo-wrap">
+          <div class="editais-label">CHAMADA ABERTA</div>
+          <h2 class="editais-titulo" id="editais-titulo"></h2>
+        </div>
+        <div class="editais-objetivo-wrap">
+          <div class="editais-label">OBJETIVO</div>
+          <p class="editais-objetivo" id="editais-objetivo"></p>
+        </div>
+        <div class="editais-meta">
+          <div class="editais-meta-item" id="editais-prazo-wrap">
+            <div class="editais-label">PRAZO</div>
+            <div class="editais-meta-value" id="editais-prazo"></div>
+          </div>
+          <div class="editais-meta-item" id="editais-dias-wrap">
+            <div class="editais-label">FALTAM</div>
+            <div class="editais-meta-value editais-dias" id="editais-dias"></div>
+          </div>
+        </div>
+      </div>
+      <div class="editais-qr-col">
+        <div class="editais-label">ACESSE O EDITAL</div>
+        <div id="editais-qr"></div>
+        <p class="editais-qr-label">Leia o QR Code</p>
+      </div>
+    </div>
+    <div class="news-progress-track">
+      <div class="news-progress-fill" id="editais-progress-fill"></div>
+    </div>
+  </div>
+
+  <!-- BANNER DE TRANSIÇÃO PARA NOTÍCIAS -->
+  <div id="news-banner" class="news-banner" style="display:none;">
+    <div class="banner">
+      <h1 class="muted-text"></h1>
+      <h1 class="visible-text"></h1>
+    </div>
+  </div>
+
+  <!-- OVERLAY SEM INTERNET -->
+  <div id="offline-overlay" class="offlineOvervalyStyle">
+    <div class="blinking" style="font-size:120px;">&#x1F4F5;</div>
+    <div id="headingone">Estamos sem conexão</div>
+    <p style="margin-top:10px;">Assim que retornar o painel retomará suas funções</p>
+    <p style="margin-top:20px;">Agradecemos a compreensão!</p>
+  </div>
+
+  <!-- RODAPÉ -->
+  <footer class="info-footer">
+    <div class="info-weather">
+      <img id="weather-icon" alt="Ícone do clima" />
+      <div class="info-temp">
+        <div id="weather-temp"></div>
+        <div id="weather-city"></div>
+      </div>
+      <div class="info-geral">
+        <div><img class="wheterLogo" src="assets/image/humidy.png" alt="Umidade" /></div>
+        <div id="weather-humidity"></div>
+        <div><img class="wheterLogo" src="assets/image/wind.png" alt="Vento" /></div>
+        <div id="weather-wind"></div>
+      </div>
+    </div>
+
+    <div class="info-time">
+      <div class="hora" id="time"></div>
+      <div class="data" id="date"></div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/internetCheck.js"></script>
+  <script src="assets/js/dataHora.js"></script>
+  <script src="assets/js/weather.js"></script>
+  <script src="assets/js/classTime.js"></script>
+  <script src="assets/js/newsBanner.js"></script>
+  <script src="assets/js/newsDisplay.js"></script>
+  <script src="assets/js/editais.js"></script>
+  <script src="assets/js/kiosk.js"></script>
+  <script src="assets/js/refresh.js"></script>
+</body>
+</html>

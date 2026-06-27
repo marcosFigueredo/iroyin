@@ -1,0 +1,27 @@
+{
+  "gerado": "2026-06-25T12:00:00",
+  "total": 3,
+  "noticias": [
+    {
+      "titulo": "UNEB abre inscrições para novos cursos de pós-graduação em 2026",
+      "fonte": "UNEB",
+      "link": "https://uneb.br",
+      "data": "2026-06-25T10:00:00",
+      "imagem": ""
+    },
+    {
+      "titulo": "CAPES anuncia novas bolsas de pesquisa e produtividade para área de Ciências Exatas",
+      "fonte": "CAPES",
+      "link": "https://capes.gov.br",
+      "data": "2026-06-24T14:30:00",
+      "imagem": ""
+    },
+    {
+      "titulo": "CNPq divulga resultado do edital de iniciação científica 2026",
+      "fonte": "CNPq",
+      "link": "https://cnpq.br",
+      "data": "2026-06-23T09:00:00",
+      "imagem": ""
+    }
+  ]
+}

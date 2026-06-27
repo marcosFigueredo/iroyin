@@ -1,0 +1,676 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================
+   CABEÇALHO
+   height      → altura total do header
+   font-size em #tipoInformacao → título principal
+   font-size em #turnoIndicador → linha de turno abaixo
+   ============================================================ */
+.news-container {
+  height: 65px;                 /* altura do header — ajuste aqui */
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: #1a2f4e;
+  color: white;
+  padding: 6px 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  z-index: 1000;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.news-container #tipoInformacao {
+  font-size: 24px;              /* título "DEPARTAMENTO..." — ajuste aqui */
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.news-container #turnoIndicador {
+  font-size: 13px;              /* linha "Turno — Manhã" — ajuste aqui */
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.85;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   RODAPÉ
+   height            → altura do rodapé
+   #weather-temp     → temperatura (em relação ao font-size base)
+   .hora             → relógio
+   .data             → data por extenso
+   #weather-humidity / #weather-wind → umidade e vento
+   ============================================================ */
+.info-footer {
+  height: 60px;                 /* altura do rodapé — ajuste aqui */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 13px;              /* tamanho base do rodapé — ajuste aqui */
+  font-weight: 500;
+  background: #1a2f4e;
+  color: #fff;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.35);
+  border-right: 10px solid #4d7fa8;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.info-footer .info-temp {
+  padding-left: 16px;
+}
+
+.info-footer .info-temp #weather-temp {
+  color: #7eb8d4;
+  font-size: 1.6em;             /* temperatura — múltiplo do font-size base */
+}
+
+#weather-icon {
+  width: 60px;                  /* ícone do clima — ajuste aqui */
+  height: 60px;
+  margin: 0;
+}
+
+.wheterLogo {
+  width: 40px;                  /* ícones de umidade/vento — ajuste aqui */
+  height: auto;
+  margin: 0;
+  padding-left: 14px;
+}
+
+.info-footer .info-time {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  text-align: right;
+  position: relative;
+  right: 10px;
+  min-width: 380px;
+}
+
+.info-footer .info-time .hora {
+  font-size: 1.7em;             /* relógio — ajuste aqui */
+  color: #7eb8d4;
+}
+
+.info-footer .info-time .data {
+  font-size: 1.1em;             /* data — ajuste aqui */
+  padding-bottom: 6px;
+}
+
+.info-weather {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.info-weather .info-geral {
+  display: flex;
+  align-items: center;
+}
+
+.info-weather .info-geral #weather-humidity {
+  font-size: 1.6em;             /* umidade — ajuste aqui */
+  padding: 0 5px;
+}
+
+.info-weather .info-geral #weather-wind {
+  font-size: 1.6em;             /* vento — ajuste aqui */
+  padding: 0 16px;
+}
+
+/* ============================================================
+   TABELA DE HORÁRIOS
+   padding-top  → deve ser igual à height do header
+   padding-bottom → deve ser igual à height do rodapé
+   ============================================================ */
+.container-horario {
+  padding-top: 65px;            /* igual à height do .news-container */
+  padding-bottom: 60px;         /* igual à height do .info-footer */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 125px);  /* 65 + 60 */
+  overflow: hidden;
+}
+
+.scroll-table {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  flex: 1;
+}
+
+#schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-family: "Roboto";
+}
+
+/* ============================================================
+   CABEÇALHO DA TABELA (linha disciplina / professor / curso…)
+   font-size → tamanho dos rótulos da tabela
+   ============================================================ */
+#schedule-table thead {
+  position: sticky;
+  top: 0;
+  background-color: #d1dce8;
+  color: #1a2f4e;
+  z-index: 10;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#schedule-table tbody tr:nth-child(odd) {
+  background-color: #ebebeb;   /* cinza claro — ajuste aqui */
+}
+
+#schedule-table tbody tr:nth-child(even) {
+  background-color: #d8d8d8;   /* cinza escuro — ajuste aqui */
+}
+
+#schedule-table td {
+  padding: 8px 10px;
+  text-align: left;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  color: #2c3e50;
+}
+
+#schedule-table td,
+#schedule-table th {
+  border-left: none;
+  border-right: none;
+}
+
+#schedule-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.scroll-table::-webkit-scrollbar { display: none; }
+.scroll-table { scrollbar-width: none; }
+
+#schedule-table tbody { overflow-y: auto; }
+
+/* ============================================================
+   LARGURAS DAS COLUNAS FIXAS
+   Ajuste width se precisar de mais/menos espaço
+   ============================================================ */
+#schedule-table td.col-inicio,
+#schedule-table thead td.col-inicio {
+  width: 110px;
+  min-width: 110px;
+  max-width: 110px;
+}
+
+#schedule-table td.col-fim,
+#schedule-table thead td.col-fim {
+  width: 110px;
+  min-width: 110px;
+  max-width: 110px;
+}
+
+#schedule-table td.col-sala,
+#schedule-table thead td.col-sala {
+  width: 160px;
+  min-width: 160px;
+  max-width: 160px;
+}
+
+/* ============================================================
+   TAMANHO DA FONTE DAS CÉLULAS DA TABELA
+   Esta regra sobrepõe todas as outras — é a principal a ajustar
+   ============================================================ */
+#schedule-table td,
+#schedule-table thead td {
+  font-size: 22px;              /* ← FONTE PRINCIPAL DA TABELA — ajuste aqui */
+}
+
+/* ============================================================
+   DESTAQUE — AULAS EM ANDAMENTO
+   As cores são aplicadas via JavaScript (classTime.js → CORES_ANDAMENTO).
+   Cada linha em andamento recebe uma cor diferente da paleta.
+   Para alterar as cores, edite o array CORES_ANDAMENTO no JS.
+   ============================================================ */
+
+/* ============================================================
+   OVERLAY SEM INTERNET
+   ============================================================ */
+.offlineOvervalyStyle {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #221a24;
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+}
+
+#headingone {
+  font-size: 28px;
+  margin-top: 20px;
+}
+
+.blinking {
+  animation: blink 1s infinite ease-in-out;
+  font-size: 160px;
+  color: white;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* ============================================================
+   QUADRO DE NOTÍCIAS
+   Ocupa a mesma área entre header e footer que o quadro de horários.
+   news-card: layout esquerda (imagem) + direita (texto)
+   news-progress-track: barra de progresso no fundo
+   ============================================================ */
+.news-section {
+  position: fixed;
+  top: 65px;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  z-index: 400;
+  background: #0f1e30;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-card {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.news-card-img-wrap {
+  width: 55%;                     /* largura da imagem — ajuste aqui */
+  background: #0a1520;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.news-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.news-no-img {
+  font-size: 8rem;
+  opacity: 0.15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.news-card-body {
+  width: 45%;
+  padding: 3rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  background: #1a2f4e;
+}
+
+.news-badge {
+  display: inline-block;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  align-self: flex-start;
+}
+
+#news-titulo {
+  font-size: 2rem;               /* tamanho do título da notícia — ajuste aqui */
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.news-data {
+  font-size: 1rem;
+  color: #7eb8d4;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* QR Code */
+#news-qr-wrap {
+  margin-top: 1.5rem;
+}
+
+#news-qr img,
+#news-qr canvas {
+  border-radius: 8px;
+  border: 3px solid rgba(255,255,255,0.2);
+}
+
+.news-qr-label {
+  font-size: 0.75rem;
+  color: #7eb8d4;
+  margin-top: 0.4rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Barra de progresso no fundo */
+.news-progress-track {
+  height: 5px;
+  background: rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+
+.news-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #4d7fa8;
+}
+
+/* ============================================================
+   BANNER DE TRANSIÇÃO PARA NOTÍCIAS
+   Ocupa a área entre header e footer quando ativo.
+   A animação é controlada por assets/js/newsBanner.js (anime.js)
+   ============================================================ */
+.news-banner {
+  position: fixed;
+  top: 65px;           /* igual à height do header */
+  left: 0;
+  right: 0;
+  bottom: 60px;        /* igual à height do footer */
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a2f4e;
+}
+
+.banner {
+  background-color: #FF1744;  /* vermelho — ajuste aqui */
+  color: #ffffff;
+  padding: 2rem 4rem;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  transform-origin: left top;
+}
+
+.banner h1 {
+  font-weight: 700;
+  font-size: 5rem;            /* tamanho do texto do banner — ajuste aqui */
+  letter-spacing: 0.2rem;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+}
+
+.muted-text {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.visible-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+.visible-text > span {
+  opacity: 0;
+  display: inline-block;
+}
+
+/* ============================================================
+   TELA BOA NOITE
+   Exibida fora do horário de aulas (antes das 6h50 ou após 22h31)
+   ============================================================ */
+.boa-noite-section {
+  position: fixed;
+  top: 65px;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  z-index: 300;
+  background: #080f18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boa-noite-content {
+  text-align: center;
+  color: #fff;
+}
+
+.boa-noite-icon {
+  font-size: 6rem;
+  display: block;
+  animation: moonPulse 4s ease-in-out infinite;
+}
+
+.boa-noite-titulo {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #7eb8d4;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin: 1rem 0 0.5rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.boa-noite-sub {
+  font-size: 1.6rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+.boa-noite-info {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@keyframes moonPulse {
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  50%       { opacity: 0.6; transform: scale(1.08); }
+}
+
+.sem-aulas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #1a2f4e;
+  font-size: 1.5em;
+  opacity: 0.5;
+}
+
+/* ============================================================
+   PAINEL DE EDITAIS ABERTOS
+   Layout tipográfico — sem imagens.
+   Cor de destaque da agência é injetada inline por editais.js
+   ============================================================ */
+.editais-section {
+  position: fixed;
+  top: 65px;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  z-index: 400;
+  background: #080f18;
+  display: flex;
+  flex-direction: column;
+}
+
+.editais-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 3rem;
+  background: rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  flex-shrink: 0;
+}
+
+.editais-header-label {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 4px;
+  color: #fff;
+  /* background is set inline by editais.js (agency color) */
+}
+
+.editais-header-agencia {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.editais-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  gap: 0;
+}
+
+.editais-main {
+  flex: 1;
+  padding: 2.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow: hidden;
+}
+
+.editais-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 0.4rem;
+}
+
+.editais-titulo {
+  font-size: 2rem;              /* tamanho do título do edital — ajuste aqui */
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.editais-objetivo {
+  font-size: 1.2rem;            /* tamanho do objetivo — ajuste aqui */
+  color: rgba(255,255,255,0.75);
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.editais-meta {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+.editais-meta-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #7eb8d4;
+}
+
+.editais-dias {
+  font-size: 3rem;              /* contador de dias — destaque */
+  line-height: 1;
+  /* color overridden inline when urgent (≤7 days) */
+}
+
+.editais-qr-col {
+  width: 240px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  border-left: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.02);
+}
+
+.editais-qr-col .editais-label {
+  text-align: center;
+}
+
+#editais-qr img,
+#editais-qr canvas {
+  border-radius: 8px;
+  border: 3px solid rgba(255,255,255,0.15);
+}
+
+.editais-qr-label {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+}

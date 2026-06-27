@@ -1,0 +1,736 @@
+﻿dia,disciplina,professor,curso,inicio,fim,sala
+segunda,Elaboração de Trabalhos Acadêmicos,Carlos Eduardo Pinheiro,ENGENHARIA DE SOFTWARE,07:30,08:20,SALA 11
+segunda,Elaboração de Trabalhos Acadêmicos,Carlos Eduardo Pinheiro,ENGENHARIA DE SOFTWARE,08:20,09:10,SALA 11
+segunda,Elaboração de Trabalhos Acadêmicos,Carlos Eduardo Pinheiro,ENGENHARIA DE SOFTWARE,09:10,10:00,SALA 11
+segunda,Elaboração de Trabalhos Acadêmicos,Carlos Eduardo Pinheiro,ENGENHARIA DE SOFTWARE,10:00,10:50,SALA 11
+segunda,Aplicações Orientada a Objetos,Roberto Monteiro,ENGENHARIA DE SOFTWARE,07:30,08:20,SALA 04
+segunda,Aplicações Orientada a Objetos,Roberto Monteiro,ENGENHARIA DE SOFTWARE,08:20,09:10,SALA 04
+segunda,Aplicações Orientada a Objetos,Roberto Monteiro,ENGENHARIA DE SOFTWARE,09:10,10:00,SALA 04
+segunda,Aplicações Orientada a Objetos,Roberto Monteiro,ENGENHARIA DE SOFTWARE,10:00,10:50,SALA 04
+segunda,Aprendizado de Máquina em IA,Marcos Figueredo,ENGENHARIA DE SOFTWARE,13:30,14:20,LINF 03
+segunda,Aprendizado de Máquina em IA,Marcos Figueredo,ENGENHARIA DE SOFTWARE,14:20,15:10,LINF 03
+segunda,Aprendizado de Máquina em IA,Marcos Figueredo,ENGENHARIA DE SOFTWARE,15:10,16:00,LINF 03
+segunda,Aprendizado de Máquina em IA,Marcos Figueredo,ENGENHARIA DE SOFTWARE,16:00,16:50,LINF 03
+segunda,Estrutura de Dados,Cleide Santos,SISTEMA DE INFORMAÇÃO,07:30,08:20,SALA 02
+segunda,Estrutura de Dados,Cleide Santos,SISTEMA DE INFORMAÇÃO,08:20,09:10,SALA 02
+segunda,Estrutura de Dados,Cleide Santos,SISTEMA DE INFORMAÇÃO,09:10,10:00,SALA 02
+segunda,Estrutura de Dados,Cleide Santos,SISTEMA DE INFORMAÇÃO,10:00,10:50,SALA 02
+segunda,Auditoria e Segurança de Sistemas,Carlos Eduardo Pinheiro,SISTEMA DE INFORMAÇÃO,10:50,11:40,SALA 02
+segunda,Auditoria e Segurança de Sistemas,Carlos Eduardo Pinheiro,SISTEMA DE INFORMAÇÃO,11:40,12:30,SALA 02
+segunda,Auditoria e Segurança de Sistemas,Carlos Eduardo Pinheiro,SISTEMA DE INFORMAÇÃO,13:30,14:20,0
+segunda,Auditoria e Segurança de Sistemas,Carlos Eduardo Pinheiro,SISTEMA DE INFORMAÇÃO,14:20,15:10,0
+segunda,Trabalho de Conclusão de Curso,Fabrício Faro,SISTEMA DE INFORMAÇÃO,07:30,08:20,SALA 01
+segunda,Trabalho de Conclusão de Curso,Fabrício Faro,SISTEMA DE INFORMAÇÃO,08:20,09:10,SALA 01
+segunda,Trabalho de Conclusão de Curso,Fabrício Faro,SISTEMA DE INFORMAÇÃO,15:10,16:00,SALA 01
+segunda,Trabalho de Conclusão de Curso,Fabrício Faro,SISTEMA DE INFORMAÇÃO,16:00,16:50,SALA 01
+segunda,Cálculo IV,Ariane Dantas,Matemática,10:00,10:50,-
+segunda,Cálculo IV,Ariane Dantas,Matemática,10:50,11:40,-
+segunda,Cálculo IV,Ariane Dantas,Matemática,11:40,12:30,-
+segunda,Lógica Matemática,Ariane Dantas,Matemática,13:20,14:10,-
+segunda,Lógica Matemática,Ariane Dantas,Matemática,14:10,15:00,-
+segunda,Lógica Matemática,Ariane Dantas,Matemática,15:00,15:50,-
+segunda,Lógica Matemática,Ariane Dantas,Matemática,15:50,16:40,-
+segunda,Políticas Educacionais,Paulo Henrique Pessoa,Matemática,15:00,15:50,-
+segunda,Políticas Educacionais,Paulo Henrique Pessoa,Matemática,15:50,16:40,-
+segunda,Políticas Educacionais,Paulo Henrique Pessoa,Matemática,16:40,17:30,-
+segunda,Geometria Analítica,Joalisson Bahia,Matemática,07:30,08:20,-
+segunda,Geometria Analítica,Joalisson Bahia,Matemática,08:20,09:10,-
+segunda,Geometria Analítica,Joalisson Bahia,Matemática,09:10,10:00,-
+segunda,Leitura e Produção Textual II,Erivelton Santana,Matemática,10:00,10:50,-
+segunda,Leitura e Produção Textual II,Erivelton Santana,Matemática,10:50,11:40,-
+segunda,Leitura e Produção Textual II,Erivelton Santana,Matemática,11:40,12:30,-
+segunda,Geometria Espacial,Jaibis Freitas,Matemática,13:30,14:10,-
+segunda,Geometria Espacial,Jaibis Freitas,Matemática,14:10,15:00,-
+segunda,Geometria Espacial,Jaibis Freitas,Matemática,15:00,15:50,-
+segunda,Geometria Espacial,Jaibis Freitas,Matemática,15:50,16:40,-
+segunda,Estrutura Algébrica I,Maridete Ferreira,Matemática,07:30,08:20,-
+segunda,Estrutura Algébrica I,Maridete Ferreira,Matemática,08:20,09:10,-
+segunda,Estrutura Algébrica I,Maridete Ferreira,Matemática,09:10,10:00,-
+segunda,Prática em Geometria Espacial,Maridete Ferreira,Matemática,10:00,10:50,-
+segunda,Prática em Geometria Espacial,Maridete Ferreira,Matemática,10:50,11:40,-
+segunda,Prática em Geometria Espacial,Maridete Ferreira,Matemática,11:40,12:30,-
+segunda,Física III,Paulo Henrique Pessoa,Matemática,08:20,09:10,-
+segunda,Física III,Paulo Henrique Pessoa,Matemática,09:10,10:00,-
+segunda,Prática Pedagógica em Biologia,Maria José Sales,Ciências Biológicas,07:30,08:20,SALA 07
+segunda,Prática Pedagógica em Biologia,Maria José Sales,Ciências Biológicas,08:20,09:10,SALA 07
+segunda,Prática Pedagógica em Biologia,Maria José Sales,Ciências Biológicas,09:10,10:00,SALA 07
+segunda,Prática Pedagógica em Biologia,Maria José Sales,Ciências Biológicas,10:00,10:50,SALA 07
+segunda,Prática Pedagógica em Biologia,Maria José Sales,Ciências Biológicas,10:50,11:40,SALA 07
+segunda,Prática Pedagógica em Biologia,Maria José Sales,Ciências Biológicas,11:40,12:30,SALA 07
+segunda,Prática Pedag. em Espaços não Escolares,A definir,Ciências Biológicas,07:30,08:20,-
+segunda,Prática Pedag. em Espaços não Escolares,A definir,Ciências Biológicas,08:20,09:10,-
+segunda,Prática Pedag. em Espaços não Escolares,A definir,Ciências Biológicas,09:10,10:00,-
+segunda,Estágio Supervisionado em Ciências,Magnolia Silva,Ciências Biológicas,14:00,14:50,Lab. 02
+segunda,Prática Pedag. em Espaços não Escolares,A definir,Ciências Biológicas,10:00,10:50,-
+segunda,Prática Pedag. em Espaços não Escolares,A definir,Ciências Biológicas,10:50,11:40,-
+segunda,Prática Pedag. em Espaços não Escolares,A definir,Ciências Biológicas,11:40,12:30,-
+segunda,Prática Pedag. em Espaços não Escolares,A definir,Ciências Biológicas,14:00,14:50,-
+segunda,Currículo e Avaliação,Genério dos Santos,Ciências Biológicas,09:10,10:00,Sala 13
+segunda,Currículo e Avaliação,Genério dos Santos,Ciências Biológicas,10:00,10:50,Sala 13
+segunda,Currículo e Avaliação,Genério dos Santos,Ciências Biológicas,10:50,11:40,Sala 13
+segunda,Currículo e Avaliação,Genério dos Santos,Ciências Biológicas,11:40,12:30,Sala 13
+segunda,Educação Ambiental,Maria Dolores Orge,Ciências Biológicas,10:00,10:50,LANAT
+segunda,Educação Ambiental,Maria Dolores Orge,Ciências Biológicas,10:50,11:40,LANAT
+segunda,Educação Ambiental,Maria Dolores Orge,Ciências Biológicas,11:40,12:30,LANAT
+segunda,Projeto de Pesquisa,Luiz Enrique Figueroa,Ciências Biológicas,07:30,08:20,LAB 01
+segunda,Projeto de Pesquisa,Luiz Enrique Figueroa,Ciências Biológicas,08:20,09:10,LAB 01
+segunda,Projeto de Pesquisa,Luiz Enrique Figueroa,Ciências Biológicas,09:10,10:00,LAB 01
+segunda,Cálculo I,Jaibis Souza,Engenharia Sanitária e Ambiental,18:30,19:20,LAB 02
+segunda,Cálculo I,Jaibis Souza,Engenharia Sanitária e Ambiental,19:20,20:10,LAB 02
+segunda,Cálculo I,Jaibis Souza,Engenharia Sanitária e Ambiental,20:10,21:00,LAB 02
+segunda,Cálculo I,Jaibis Souza,Engenharia Sanitária e Ambiental,21:00,21:50,LAB 02
+segunda,Cálculo I,Jaibis Souza,Engenharia Sanitária e Ambiental,21:50,22:40,LAB 02
+segunda,Cálculo II,Roger Luiz Almeida,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 05
+segunda,Cálculo II,Roger Luiz Almeida,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 05
+segunda,Cálculo II,Roger Luiz Almeida,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 05
+segunda,Cálculo II,Roger Luiz Almeida,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 05
+segunda,Cálculo II,Roger Luiz Almeida,Engenharia Sanitária e Ambiental,21:50,22:40,SALA 05
+segunda,Tópicos Soc. e Antropológicos,Alarcon Oliveira,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 06
+segunda,Tópicos Soc. e Antropológicos,Alarcon Oliveira,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 06
+segunda,Tópicos Soc. e Antropológicos,Alarcon Oliveira,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 06
+segunda,Tópicos Soc. e Antropológicos,Alarcon Oliveira,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 06
+segunda,Análise Ambiental,Elaine Garrido,Engenharia Sanitária e Ambiental,18:30,19:20,LAB 01
+segunda,Análise Ambiental,Elaine Garrido,Engenharia Sanitária e Ambiental,19:20,20:10,LAB 01
+segunda,Análise Ambiental,Elaine Garrido,Engenharia Sanitária e Ambiental,20:10,21:00,LAB 01
+segunda,Análise Ambiental,Elaine Garrido,Engenharia Sanitária e Ambiental,21:00,21:50,LAB 01
+segunda,Fenômenos de Transporte,Paulo Henrique Pessoa,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 11
+segunda,Fenômenos de Transporte,Paulo Henrique Pessoa,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 11
+segunda,Fenômenos de Transporte,Paulo Henrique Pessoa,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 11
+segunda,Fenômenos de Transporte,Paulo Henrique Pessoa,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 11
+segunda,Estágio Supervisionado II,Janiara Batista / Luisa Araújo,Engenharia Sanitária e Ambiental,16:50,17:40,0
+segunda,Estágio Supervisionado II,Janiara Batista / Luisa Araújo,Engenharia Sanitária e Ambiental,17:20,18:30,0
+segunda,Saneamento Ambiental,Janiara Batista,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 09
+segunda,Saneamento Ambiental,Janiara Batista,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 09
+segunda,Saneamento Ambiental,Janiara Batista,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 09
+segunda,Saneamento Ambiental,Janiara Batista,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 09
+segunda,Submissão de Artigo,Erivelton Santana,PPGMSB,13:30,14:20,SALA 09
+segunda,Submissão de Artigo,Erivelton Santana,PPGMSB,14:20,15:10,SALA 09
+segunda,Submissão de Artigo,Erivelton Santana,PPGMSB,15:10,16:00,SALA 09
+segunda,Submissão de Artigo,Erivelton Santana,PPGMSB,16:00,16:50,SALA 09
+segunda,Submissão de Artigo,Erivelton Santana,PPGMSB,16:50,17:40,SALA 09
+segunda,Tópicos Esp. em Ecologia e Conservação,Maria Dolores Orge,PPGMSB,07:30,08:20,Pós
+segunda,Tópicos Esp. em Ecologia e Conservação,Maria Dolores Orge,PPGMSB,08:20,09:10,Pós
+segunda,Tópicos Esp. em Ecologia e Conservação,Maria Dolores Orge,PPGMSB,09:10,10:00,Pós
+segunda,Tópicos Esp. em Ecologia e Conservação,Maria Dolores Orge,PPGMSB,12:30,13:20,Pós
+segunda,Processamento Est. De Biossistemas,Marcos Antônio Silva,PPGMSB,07:30,08:20,SALA 09
+segunda,Processamento Est. De Biossistemas,Marcos Antônio Silva,PPGMSB,08:20,09:10,SALA 09
+segunda,Processamento Est. De Biossistemas,Marcos Antônio Silva,PPGMSB,09:10,10:00,SALA 09
+segunda,Processamento Est. De Biossistemas,Marcos Antônio Silva,PPGMSB,10:00,10:50,SALA 09
+terca,Algoritmos e Lógica de Programação,Ricardo Luiz Peres,ENGENHARIA DE SOFTWARE,13:30,14:20,LINF3
+terca,Algoritmos e Lógica de Programação,Ricardo Luiz Peres,ENGENHARIA DE SOFTWARE,14:20,15:10,LINF3
+terca,Algoritmos e Lógica de Programação,Ricardo Luiz Peres,ENGENHARIA DE SOFTWARE,15:10,16:00,LINF3
+terca,Arquitetura de Computadores,Marcones Dourado,ENGENHARIA DE SOFTWARE,09:10,10:00,SALA 11
+terca,Arquitetura de Computadores,Marcones Dourado,ENGENHARIA DE SOFTWARE,10:00,10:50,SALA 11
+terca,Cálculo I,João Luciano Gomes,ENGENHARIA DE SOFTWARE,10:50,11:40,SALA 11
+terca,Cálculo I,João Luciano Gomes,ENGENHARIA DE SOFTWARE,11:40,12:30,SALA 11
+terca,Sistemas Operacionais,Marcones Dourado,ENGENHARIA DE SOFTWARE,07:30,08:20,SALA 11
+terca,Sistemas Operacionais,Marcones Dourado,ENGENHARIA DE SOFTWARE,08:20,09:10,SALA 11
+terca,Aplicações de Estatística à Computação,João Luciano Gomes,ENGENHARIA DE SOFTWARE,09:10,10:00,SALA 04
+terca,Aplicações de Estatística à Computação,João Luciano Gomes,ENGENHARIA DE SOFTWARE,10:00,10:50,SALA 04
+terca,Banco de Dados,José Roberto Fontoura,ENGENHARIA DE SOFTWARE,10:50,11:40,SALA 04
+terca,Banco de Dados,José Roberto Fontoura,ENGENHARIA DE SOFTWARE,11:40,12:30,SALA 04
+terca,Álgebra Linear,João Luciano Gomes,ENGENHARIA DE SOFTWARE,07:30,08:20,SALA 04
+terca,Álgebra Linear,João Luciano Gomes,ENGENHARIA DE SOFTWARE,08:20,09:10,SALA 08
+terca,Redes de Computadores,Ricardo Luiz Peres,ENGENHARIA DE SOFTWARE,09:10,10:00,SALA 08
+terca,Redes de Computadores,Ricardo Luiz Peres,ENGENHARIA DE SOFTWARE,10:00,10:50,SALA 08
+terca,Algoritmos,Ricardo Luiz Peres,SISTEMA DE INFORMAÇÃO,13:30,14:20,LINF3
+terca,Algoritmos,Ricardo Luiz Peres,SISTEMA DE INFORMAÇÃO,14:20,15:10,LINF3
+terca,Algoritmos,Ricardo Luiz Peres,SISTEMA DE INFORMAÇÃO,15:10,16:00,LINF3
+terca,Cálculo II,José Roberto Fontoura,SISTEMA DE INFORMAÇÃO,07:30,08:20,SALA 02
+terca,Cálculo II,José Roberto Fontoura,SISTEMA DE INFORMAÇÃO,08:20,09:10,SALA 02
+terca,Cálculo II,José Roberto Fontoura,SISTEMA DE INFORMAÇÃO,09:10,10:00,SALA 02
+terca,Cálculo II,José Roberto Fontoura,SISTEMA DE INFORMAÇÃO,10:00,10:50,SALA 02
+terca,Redes de Computadores,Ricardo Luiz Peres,SISTEMA DE INFORMAÇÃO,09:10,10:00,SALA 08
+terca,Redes de Computadores,Ricardo Luiz Peres,SISTEMA DE INFORMAÇÃO,10:00,10:50,SALA 08
+terca,Banco de Dados,José Roberto Fontoura,SISTEMA DE INFORMAÇÃO,10:50,11:40,SALA 04
+terca,Banco de Dados,José Roberto Fontoura,SISTEMA DE INFORMAÇÃO,11:40,12:30,SALA 04
+terca,Ambiente de Negócios e Marketing,Manoel Oliveira,SISTEMA DE INFORMAÇÃO,13:30,14:20,
+terca,Ambiente de Negócios e Marketing,Manoel Oliveira,SISTEMA DE INFORMAÇÃO,14:20,15:10,
+terca,Ambiente de Negócios e Marketing,Manoel Oliveira,SISTEMA DE INFORMAÇÃO,15:10,16:00,
+terca,Ambiente de Negócios e Marketing,Manoel Oliveira,SISTEMA DE INFORMAÇÃO,16:00,16:50,
+terca,Cálculo IV,Ariane Dantas,MATEMÁTICA,10:50,11:40,-
+terca,Cálculo IV,Ariane Dantas,MATEMÁTICA,11:40,12:30,-
+terca,Trabalho de Conclusão de Curso III,Danton Freitas,MATEMÁTICA,13:20,14:10,-
+terca,Trabalho de Conclusão de Curso III,Danton Freitas,MATEMÁTICA,14:10,15:00,-
+terca,Matemática I,Grace Baqueiro / Maria de Fátima,MATEMÁTICA,15:00,15:50,-
+terca,Matemática I,Grace Baqueiro / Maria de Fátima,MATEMÁTICA,15:50,16:40,-
+terca,Matemática I,Grace Baqueiro / Maria de Fátima,MATEMÁTICA,16:40,17:30,-
+terca,Matemática II,Maria de Fátima Leal,MATEMÁTICA,07:30,08:20,-
+terca,Matemática II,Maria de Fátima Leal,MATEMÁTICA,08:20,09:10,-
+terca,Geometria Plana,Maridete Ferreira,MATEMÁTICA,09:10,10:00,-
+terca,Geometria Plana,Maridete Ferreira,MATEMÁTICA,10:00,10:50,-
+terca,Geometria Plana,Maridete Ferreira,MATEMÁTICA,10:50,11:40,-
+terca,Geometria Plana,Maridete Ferreira,MATEMÁTICA,11:40,12:30,-
+terca,Cálculo I,Grace Baqueiro,MATEMÁTICA,13:20,14:10,-
+terca,Cálculo I,Grace Baqueiro,MATEMÁTICA,14:10,15:00,-
+terca,Cálculo II,Grace Baqueiro,MATEMÁTICA,09:10,10:00,-
+terca,Cálculo II,Grace Baqueiro,MATEMÁTICA,10:00,10:50,-
+terca,Álgebra Linear I,Maria Eliana Silva,MATEMÁTICA,10:50,11:40,-
+terca,Álgebra Linear I,Maria Eliana Silva,MATEMÁTICA,11:40,12:30,-
+terca,Software Matemático,Danton Freitas,MATEMÁTICA,07:30,08:20,-
+terca,Cálculo III,Ariane Dantas,MATEMÁTICA,13:20,14:10,-
+terca,Cálculo III,Ariane Dantas,MATEMÁTICA,14:10,15:00,-
+terca,Cálculo III,Ariane Dantas,MATEMÁTICA,15:00,15:50,-
+terca,Cálculo III,Ariane Dantas,MATEMÁTICA,15:50,16:40,-
+terca,Cálculo III,Ariane Dantas,MATEMÁTICA,16:40,17:30,-
+terca,Álgebra Linear II,Maria Eliana Silva,MATEMÁTICA,13:20,14:10,-
+terca,Álgebra Linear II,Maria Eliana Silva,MATEMÁTICA,14:10,15:00,-
+terca,Álgebra Linear II,Maria Eliana Silva,MATEMÁTICA,15:00,15:50,-
+terca,Cálculo IV,Ariane Dantas,MATEMÁTICA,10:50,11:40,-
+terca,Cálculo IV,Ariane Dantas,MATEMÁTICA,11:40,12:30,-
+terca,Prática em Matemática Financeira,Maria Eliana Silva,MATEMÁTICA,08:20,09:10,-
+terca,Prática em Matemática Financeira,Maria Eliana Silva,MATEMÁTICA,09:10,10:00,-
+terca,Prática em Matemática Financeira,Maria Eliana Silva,MATEMÁTICA,10:00,10:50,-
+terca,Física III,Paulo Henrique Pessoa,MATEMÁTICA,07:30,08:20,-
+terca,Física III,Paulo Henrique Pessoa,MATEMÁTICA,08:20,09:10,-
+terca,História da Matemática,Gustavo Nascimento,MATEMÁTICA,07:30,08:20,-
+terca,História da Matemática,Gustavo Nascimento,MATEMÁTICA,08:20,09:10,-
+terca,Trabalho de Conclusão de Curso II,Gustavo Nascimento,MATEMÁTICA,13:20,14:10,-
+terca,Trabalho de Conclusão de Curso II,Gustavo Nascimento,MATEMÁTICA,14:10,15:00,-
+terca,Trabalho de Conclusão de Curso II,Gustavo Nascimento,MATEMÁTICA,15:00,15:50,-
+terca,Trabalho de Conclusão de Curso II,Danton Freitas,MATEMÁTICA,09:10,10:00,-
+terca,Trabalho de Conclusão de Curso II,Danton Freitas,MATEMÁTICA,10:00,10:50,-
+terca,Trabalho de Conclusão de Curso II,Danton Freitas,MATEMÁTICA,10:50,11:40,-
+terca,Anatomia Vegetal,Alexa Paes Coelho,CIÊNCIAS BIOLÓGICAS,07:30,08:20,LAB 03
+terca,Anatomia Vegetal,Alexa Paes Coelho,CIÊNCIAS BIOLÓGICAS,08:20,09:10,LAB 03
+terca,Anatomia Vegetal,Alexa Paes Coelho,CIÊNCIAS BIOLÓGICAS,09:10,10:00,LAB 03
+terca,Biologia Evolutiva,Emanuel Santana,CIÊNCIAS BIOLÓGICAS,07:30,08:20,LANAT
+terca,Biologia Evolutiva,Emanuel Santana,CIÊNCIAS BIOLÓGICAS,08:20,09:10,LANAT
+terca,Biologia Evolutiva,Emanuel Santana,CIÊNCIAS BIOLÓGICAS,09:10,10:00,LANAT
+terca,Biologia Evolutiva,Emanuel Santana,CIÊNCIAS BIOLÓGICAS,10:00,10:50,LANAT
+terca,Bioestatística,Gustavo Nascimento,CIÊNCIAS BIOLÓGICAS,10:00,10:50,SALA 07
+terca,Bioestatística,Gustavo Nascimento,CIÊNCIAS BIOLÓGICAS,10:50,11:40,SALA 07
+terca,Bioestatística,Gustavo Nascimento,CIÊNCIAS BIOLÓGICAS,11:40,12:30,SALA 07
+terca,"Biologia, Fil. e Sistemática de Fanerógamas",Alexa Paes Coelho,CIÊNCIAS BIOLÓGICAS,10:50,11:40,LAB 03
+terca,"Biologia, Fil. e Sistemática de Fanerógamas",Alexa Paes Coelho,CIÊNCIAS BIOLÓGICAS,11:40,12:30,LAB 03
+terca,"Biologia, Fil. e Sistemática de Fanerógamas",Gracineide Almeida,CIÊNCIAS BIOLÓGICAS,16:30,17:20,LAB 02
+terca,"Biologia, Fil. e Sistemática de Fanerógamas",Gracineide Almeida,CIÊNCIAS BIOLÓGICAS,17:20,18:10,LAB 02
+terca,Estágio Super. em Gestão Educ. e Escolar,A Definir,CIÊNCIAS BIOLÓGICAS,09:10,10:00,-
+terca,Estágio Super. em Gestão Educ. e Escolar,A Definir,CIÊNCIAS BIOLÓGICAS,10:00,10:50,-
+terca,Estágio Super. em Gestão Educ. e Escolar,A Definir,CIÊNCIAS BIOLÓGICAS,10:50,11:40,-
+terca,Estágio Super. em Gestão Educ. e Escolar,A Definir,CIÊNCIAS BIOLÓGICAS,11:40,12:30,-
+terca,Estágio Supervisionado em Ciências,A Definir,CIÊNCIAS BIOLÓGICAS,10:00,10:50,-
+terca,Estágio Supervisionado em Ciências,A Definir,CIÊNCIAS BIOLÓGICAS,10:50,11:40,-
+terca,Estágio Supervisionado em Ciências,A Definir,CIÊNCIAS BIOLÓGICAS,11:40,12:30,-
+terca,Estágio Supervisionado em Ciências,A Definir,CIÊNCIAS BIOLÓGICAS,07:30,08:20,-
+terca,Estágio Supervisionado em Ciências,A Definir,CIÊNCIAS BIOLÓGICAS,08:20,09:10,-
+terca,Estágio Supervisionado em Ciências,A Definir,CIÊNCIAS BIOLÓGICAS,09:10,10:00,-
+terca,Trabalho de Conclusão de Curso,Márcia Lima,CIÊNCIAS BIOLÓGICAS,07:30,08:20,SALA 07
+terca,Trabalho de Conclusão de Curso,Márcia Lima,CIÊNCIAS BIOLÓGICAS,08:20,09:10,SALA 07
+terca,Trabalho de Conclusão de Curso,Márcia Lima,CIÊNCIAS BIOLÓGICAS,09:10,10:00,SALA 07
+terca,Geometria Analítica,Jaibis Freitas,Engenharia Sanitária e Ambiental,18:30,19:20,LAB 02
+terca,Geometria Analítica,Jaibis Freitas,Engenharia Sanitária e Ambiental,19:20,20:10,LAB 02
+terca,Geometria Analítica,Jaibis Freitas,Engenharia Sanitária e Ambiental,20:10,21:00,LAB 02
+terca,Geometria Analítica,Jaibis Freitas,Engenharia Sanitária e Ambiental,21:00,21:50,LAB 02
+terca,Geometria Descritiva,Jefferson Conceição,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 05
+terca,Geometria Descritiva,Jefferson Conceição,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 05
+terca,Geometria Descritiva,Jefferson Conceição,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 05
+terca,Geometria Descritiva,Jefferson Conceição,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 05
+terca,Poluição e Impacto Ambiental,Elaine Garrido,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 06
+terca,Poluição e Impacto Ambiental,Elaine Garrido,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 06
+terca,Poluição e Impacto Ambiental,Elaine Garrido,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 06
+terca,Poluição e Impacto Ambiental,Elaine Garrido,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 06
+terca,Climatologia,Alarcon Oliveira,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 11
+terca,Climatologia,Alarcon Oliveira,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 11
+terca,Climatologia,Alarcon Oliveira,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 11
+terca,Climatologia,Alarcon Oliveira,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 11
+terca,Orientação de TCC,Genilson Cunha,Engenharia Sanitária e Ambiental,18:30,19:20,LAB 01
+terca,Orientação de TCC,Genilson Cunha,Engenharia Sanitária e Ambiental,19:20,20:10,LAB 01
+terca,Orientação de TCC,Genilson Cunha,Engenharia Sanitária e Ambiental,20:10,21:00,LAB 01
+terca,Orientação de TCC,Genilson Cunha,Engenharia Sanitária e Ambiental,21:00,21:50,LAB 01
+terca,Recursos Naturais e Manejo,Janiara Batista,Engenharia Sanitária e Ambiental,18:30,19:20,0
+terca,Recursos Naturais e Manejo,Janiara Batista,Engenharia Sanitária e Ambiental,19:20,20:10,0
+terca,Recursos Naturais e Manejo,Janiara Batista,Engenharia Sanitária e Ambiental,20:10,21:00,0
+terca,Sistema de Esgotamento Sanitário,Luísa Araújo,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 09
+terca,Sistema de Esgotamento Sanitário,Luísa Araújo,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 09
+terca,Sistema de Esgotamento Sanitário,Luísa Araújo,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 09
+terca,Sistema de Esgotamento Sanitário,Luísa Araújo,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 09
+terca,Dissertação,Antonio Cardoso,PPGMSB,13:30,14:20,LIIII
+terca,Dissertação,Antonio Cardoso,PPGMSB,14:20,15:10,LIIII
+terca,Dissertação,Antonio Cardoso,PPGMSB,15:10,16:00,LIIII
+terca,Dissertação,Antonio Cardoso,PPGMSB,16:00,16:50,LIIII
+terca,Dissertação,Antonio Cardoso,PPGMSB,16:50,17:40,LIIII
+terca,Dissertação,Antonio Cardoso,PPGMSB,17:40,18:30,LIIII
+terca,Seminario de Modelagem e Simulação B,Marcos Figueredo,PPGMSB,13:30,14:20,PoS
+terca,Seminario de Modelagem e Simulação B,Marcos Figueredo,PPGMSB,14:20,15:10,PoS
+terca,Seminario de Modelagem e Simulação B,Marcos Figueredo,PPGMSB,15:10,16:00,PoS
+terca,Seminario de Modelagem e Simulação B,Marcos Figueredo,PPGMSB,16:00,16:50,PoS
+terca,Seminario de Modelagem e Simulação B,Gracineide Almeida,PPGMSB,13:30,14:20,SALA 09
+terca,Seminario de Modelagem e Simulação B,Gracineide Almeida,PPGMSB,14:20,15:10,SALA 09
+terca,Seminario de Modelagem e Simulação B,Gracineide Almeida,PPGMSB,15:10,16:00,SALA 09
+terca,Seminario de Modelagem e Simulação B,Gracineide Almeida,PPGMSB,16:00,16:50,SALA 09
+quarta,Arquitetura de Computadores,Marcones Dourado,ENGENHARIA DE SOFTWARE,09:10,10:00,SALA 11
+quarta,Arquitetura de Computadores,Marcones Dourado,ENGENHARIA DE SOFTWARE,10:00,10:50,SALA 11
+quarta,Programação Estruturada,Artur Kronbauer,ENGENHARIA DE SOFTWARE,07:30,08:20,SALA 11
+quarta,Programação Estruturada,Artur Kronbauer,ENGENHARIA DE SOFTWARE,08:20,09:10,SALA 11
+quarta,Sistemas Operacionais,Marcones Dourado,ENGENHARIA DE SOFTWARE,10:50,11:40,SALA 11
+quarta,Sistemas Operacionais,Marcones Dourado,ENGENHARIA DE SOFTWARE,11:40,12:30,SALA 11
+quarta,Desenvolvimento Web II Back-End,Peterson Lobato,ENGENHARIA DE SOFTWARE,10:50,11:40,SALA 04
+quarta,Desenvolvimento Web II Back-End,Peterson Lobato,ENGENHARIA DE SOFTWARE,11:40,12:30,SALA 04
+quarta,Desenvolvimento Web II Back-End,Peterson Lobato,ENGENHARIA DE SOFTWARE,13:30,14:20,LINF 1
+quarta,Desenvolvimento Web II Back-End,Peterson Lobato,ENGENHARIA DE SOFTWARE,14:20,15:10,LINF 1
+quarta,Desenvolvimento Web II Back-End,Peterson Lobato,ENGENHARIA DE SOFTWARE,15:10,16:00,LINF 1
+quarta,Desenvolvimento Web II Back-End,Peterson Lobato,ENGENHARIA DE SOFTWARE,16:00,16:50,LINF 1
+quarta,Banco de Dados,José Roberto Fontoura,ENGENHARIA DE SOFTWARE,07:30,08:20,SALA 04
+quarta,Banco de Dados,José Roberto Fontoura,ENGENHARIA DE SOFTWARE,08:20,09:10,SALA 04
+quarta,Estrutura de Dados e Org. de Arquivos,Artur Kronbauer,ENGENHARIA DE SOFTWARE,09:10,10:00,SALA 04
+quarta,Estrutura de Dados e Org. de Arquivos,Artur Kronbauer,ENGENHARIA DE SOFTWARE,10:00,10:50,SALA 04
+quarta,Rede de Computadores,Ricardo Peres,ENGENHARIA DE SOFTWARE,10:50,11:40,SALA 08
+quarta,Rede de Computadores,Ricardo Peres,ENGENHARIA DE SOFTWARE,11:40,12:30,SALA 08
+quarta,Projeto de Extensão I,Peterson Lobato,ENGENHARIA DE SOFTWARE,09:10,10:00,SALA 08
+quarta,Projeto de Extensão I,Peterson Lobato,ENGENHARIA DE SOFTWARE,10:00,10:50,SALA 08
+quarta,Economia Financeira,Manoel Oliveira,ENGENHARIA DE SOFTWARE,13:30,14:20,LINF3
+quarta,Economia Financeira,Manoel Oliveira,ENGENHARIA DE SOFTWARE,14:20,15:10,LINF3
+quarta,Economia Financeira,Manoel Oliveira,ENGENHARIA DE SOFTWARE,15:10,16:00,LINF3
+quarta,Economia Financeira,Manoel Oliveira,ENGENHARIA DE SOFTWARE,16:00,16:50,LINF3
+quarta,Probabilidade e Estatística,José Roberto Fontoura,Sistema de Informação,09:10,10:00,SALA 02
+quarta,Probabilidade e Estatística,José Roberto Fontoura,Sistema de Informação,10:00,10:50,SALA 02
+quarta,Probabilidade e Estatística,José Roberto Fontoura,Sistema de Informação,10:50,11:40,SALA 02
+quarta,Probabilidade e Estatística,José Roberto Fontoura,Sistema de Informação,11:40,12:30,SALA 02
+quarta,Rede de Computadores,Ricardo Peres,Sistema de Informação,10:50,11:40,SALA 08
+quarta,Rede de Computadores,Ricardo Peres,Sistema de Informação,11:40,12:30,SALA 08
+quarta,Banco de Dados,José Roberto Fontoura,Sistema de Informação,07:30,08:20,SALA 04
+quarta,Banco de Dados,José Roberto Fontoura,Sistema de Informação,08:20,09:10,SALA 04
+quarta,Gestão de Conhecimentos,Manoel Oliveira,Sistema de Informação,09:10,10:00,SALA 01
+quarta,Gestão de Conhecimentos,Manoel Oliveira,Sistema de Informação,10:00,10:50,SALA 01
+quarta,Gestão de Conhecimentos,Manoel Oliveira,Sistema de Informação,10:50,11:40,SALA 01
+quarta,Gestão de Conhecimentos,Manoel Oliveira,Sistema de Informação,11:40,12:30,SALA 01
+quarta,Análise Real,Luis Roque Jesus,Matemática,13:20,14:10,-
+quarta,Análise Real,Luis Roque Jesus,Matemática,14:10,15:00,-
+quarta,Análise Real,Luis Roque Jesus,Matemática,15:00,15:50,-
+quarta,Matemática I,Grace Baqueiro / Maria de Fátima Leal,Matemática,16:40,17:30,-
+quarta,Matemática I,Grace Baqueiro / Maria de Fátima Leal,Matemática,17:30,18:25,-
+quarta,Matemática II,Maria de Fátima Leal,Matemática,10:00,10:50,-
+quarta,Matemática II,Maria de Fátima Leal,Matemática,10:50,11:40,-
+quarta,Matemática II,Maria de Fátima Leal,Matemática,11:40,12:30,-
+quarta,Geometria Analítica,Joalisson Santana,Matemática,07:30,08:20,-
+quarta,Geometria Analítica,Joalisson Santana,Matemática,08:20,09:10,-
+quarta,Geometria Analítica,Joalisson Santana,Matemática,09:10,10:00,-
+quarta,Cálculo I,Grace Baqueiro,Matemática,13:20,14:10,-
+quarta,Cálculo I,Grace Baqueiro,Matemática,14:10,15:00,-
+quarta,Cálculo I,Grace Baqueiro,Matemática,15:00,15:50,-
+quarta,Cálculo II,Grace Baqueiro,Matemática,07:30,08:20,-
+quarta,Cálculo II,Grace Baqueiro,Matemática,08:20,09:10,-
+quarta,Cálculo II,Grace Baqueiro,Matemática,09:10,10:00,-
+quarta,Álgebra Linear I,Maria Eliana Silva,Matemática,10:00,10:50,-
+quarta,Álgebra Linear I,Maria Eliana Silva,Matemática,10:50,11:40,-
+quarta,Álgebra Linear I,Maria Eliana Silva,Matemática,11:40,12:30,-
+quarta,Álgebra Linear II,Maria Eliana Silva,Matemática,13:20,14:10,-
+quarta,Álgebra Linear II,Maria Eliana Silva,Matemática,14:10,15:00,-
+quarta,Estrutura Algébrica II,Luis Roque Jesus,Matemática,09:10,10:00,-
+quarta,Estrutura Algébrica II,Luis Roque Jesus,Matemática,10:00,10:50,-
+quarta,Estrutura Algébrica II,Luis Roque Jesus,Matemática,10:50,11:40,-
+quarta,Estrutura Algébrica II,Luis Roque Jesus,Matemática,11:40,12:30,-
+quarta,Prática em Mat. Financeira,Maria Eliana Silva,Matemática,07:30,08:20,-
+quarta,Estágio II,Daniela Santos,Matemática,08:20,09:10,-
+quarta,Estágio II,Daniela Santos,Matemática,09:10,10:00,-
+quarta,Estágio II,Daniela Santos,Matemática,10:00,10:50,-
+quarta,Estágio II,Daniela Santos,Matemática,10:50,11:40,-
+quarta,Estágio II,Daniela Santos,Matemática,11:40,12:30,-
+quarta,Estágio II,Daniela Santos,Matemática,12:30,13:20,-
+quarta,Análise Real I,Luis Roque Jesus,Matemática,13:20,14:10,-
+quarta,Análise Real I,Luis Roque Jesus,Matemática,14:10,15:00,-
+quarta,Análise Real I,Luis Roque Jesus,Matemática,15:00,15:50,-
+quarta,Prática em EJA,Joalisson Santana,Matemática,10:00,10:50,-
+quarta,Prática em EJA,Joalisson Santana,Matemática,10:50,11:40,-
+quarta,História da Matemática,Gustavo Nascimento,Matemática,10:00,10:50,-
+quarta,História da Matemática,Gustavo Nascimento,Matemática,10:50,11:40,-
+quarta,Pré-Cálculo,Maria de Fátima Leal,Matemática,13:20,14:10,-
+quarta,Pré-Cálculo,Maria de Fátima Leal,Matemática,14:10,15:00,-
+quarta,Pré-Cálculo,Maria de Fátima Leal,Matemática,15:00,15:50,-
+quarta,Pré-Cálculo,Maria de Fátima Leal,Matemática,15:50,16:40,-
+quarta,História e Filosofia da Educação,Docente a Definir,Ciências Biológicas,07:30,08:20,-
+quarta,História e Filosofia da Educação,Docente a Definir,Ciências Biológicas,08:20,09:10,-
+quarta,História e Filosofia da Educação,Docente a Definir,Ciências Biológicas,09:10,10:00,-
+quarta,Sistemática Filogenética,Iramaia de Santana,Ciências Biológicas,10:00,10:50,-
+quarta,Sistemática Filogenética,Iramaia de Santana,Ciências Biológicas,10:50,11:40,-
+quarta,"Biologia, Filogenia e Sist. de Fanerógamas",Alexa Paes Coelho,Ciências Biológicas,07:30,08:20,LAB 02
+quarta,"Biologia, Filogenia e Sist. de Fanerógamas",Alexa Paes Coelho,Ciências Biológicas,08:20,09:10,LAB 02
+quarta,"Biologia, Filogenia e Sist. de Fanerógamas",Gracineide Almeida,Ciências Biológicas,07:30,08:20,-
+quarta,"Biologia, Filogenia e Sist. de Fanerógamas",Gracineide Almeida,Ciências Biológicas,08:20,09:10,-
+quarta,Prática Pedagógica em G. Educacional,Antonio Sá Barreto,Ciências Biológicas,09:10,10:00,SALA 07
+quarta,Prática Pedagógica em G. Educacional,Antonio Sá Barreto,Ciências Biológicas,10:00,10:50,SALA 07
+quarta,Prática Pedagógica em G. Educacional,Antonio Sá Barreto,Ciências Biológicas,10:50,11:40,SALA 07
+quarta,Prática Pedagógica em G. Educacional,Antonio Sá Barreto,Ciências Biológicas,11:40,12:30,SALA 07
+quarta,Biologia e Filogenia dos Fungos,Alexa Paes Coelho,Ciências Biológicas,10:00,10:50,LAB 03
+quarta,Biologia e Filogenia dos Fungos,Alexa Paes Coelho,Ciências Biológicas,10:50,11:40,LAB 03
+quarta,Biologia e Filogenia dos Fungos,Alexa Paes Coelho,Ciências Biológicas,11:40,12:30,LAB 03
+quarta,Educação Inclusiva,Docente a Definir,Ciências Biológicas,10:00,10:50,-
+quarta,Educação Inclusiva,Docente a Definir,Ciências Biológicas,10:50,11:40,-
+quarta,Educação Inclusiva,Docente a Definir,Ciências Biológicas,11:40,12:30,-
+quarta,Estágio Supervisionado em Ciências,Docente a Definir,Ciências Biológicas,07:30,08:20,-
+quarta,Estágio Supervisionado em Ciências,Docente a Definir,Ciências Biológicas,08:20,09:10,-
+quarta,Estágio Supervisionado em Ciências,Docente a Definir,Ciências Biológicas,09:10,10:00,-
+quarta,Prática P. e Estágio Supervisionado I,Neila Gonçalvez,Ciências Biológicas,07:30,08:20,-
+quarta,Prática P. e Estágio Supervisionado I,Neila Gonçalvez,Ciências Biológicas,08:20,09:10,-
+quarta,Prática P. e Estágio Supervisionado I,Neila Gonçalvez,Ciências Biológicas,09:10,10:00,-
+quarta,Prática P. e Estágio Supervisionado I,Neila Gonçalvez,Ciências Biológicas,10:00,10:50,-
+quarta,Prática P. e Estágio Supervisionado I,Neila Gonçalvez,Ciências Biológicas,10:50,11:40,-
+quarta,Prática P. e Estágio Supervisionado I,Neila Gonçalvez,Ciências Biológicas,11:40,12:30,-
+quarta,Estágio Supervisionado I,Adilva Conceição,Ciências Biológicas,09:10,10:00,SALA 13
+quarta,Estágio Supervisionado I,Adilva Conceição,Ciências Biológicas,10:00,10:50,SALA 13
+quarta,Estágio Supervisionado I,Adilva Conceição,Ciências Biológicas,10:50,11:40,SALA 13
+quarta,Estágio Supervisionado I,Adilva Conceição,Ciências Biológicas,11:40,12:30,SALA 13
+quarta,Estágio Supervisionado I,Adilva Conceição,Ciências Biológicas,14:00,15:40,LAB 01
+quarta,Estágio Supervisionado I,Adilva Conceição,Ciências Biológicas,15:40,16:30,LAB 01
+quarta,Estágio Supervisionado I,Adilva Conceição,Ciências Biológicas,16:00,16:50,LAB 01
+quarta,Geologia e Solos,Alarcon Oliveira,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 05
+quarta,Geologia e Solos,Alarcon Oliveira,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 05
+quarta,Geologia e Solos,Alarcon Oliveira,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 05
+quarta,Geologia e Solos,Alarcon Oliveira,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 05
+quarta,Controle de Poluição das Águas,Elaine Garrido,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 09
+quarta,Controle de Poluição das Águas,Elaine Garrido,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 09
+quarta,Controle de Poluição das Águas,Elaine Garrido,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 09
+quarta,Sistema de Abast. e Tratamento de Água,Luísa Magalhães,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 11
+quarta,Sistema de Abast. e Tratamento de Água,Luísa Magalhães,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 11
+quarta,Sistema de Abast. e Tratamento de Água,Luísa Magalhães,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 11
+quarta,Sistema de Abast. e Tratamento de Água,Luísa Magalhães,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 11
+quarta,Controle e Recup. de Áreas Degradadas,Janiara Batista,Engenharia Sanitária e Ambiental,18:30,19:20,0
+quarta,Controle e Recup. de Áreas Degradadas,Janiara Batista,Engenharia Sanitária e Ambiental,19:20,20:10,0
+quarta,Controle e Recup. de Áreas Degradadas,Janiara Batista,Engenharia Sanitária e Ambiental,20:10,21:00,0
+quarta,Controle e Recup. de Áreas Degradadas,Janiara Batista,Engenharia Sanitária e Ambiental,21:00,21:50,0
+quarta,Estágio Supervisionado II,Janiara Batista / Luísa Araújo,Engenharia Sanitária e Ambiental,16:50,17:40,0
+quarta,Estágio Supervisionado II,Janiara Batista / Luísa Araújo,Engenharia Sanitária e Ambiental,17:40,18:30,0
+quarta,Projeto de Dissertação,Erivelton Santana,PPGMSB,07:30,08:20,SALA 9
+quarta,Projeto de Dissertação,Erivelton Santana,PPGMSB,08:20,09:10,SALA 9
+quarta,Projeto de Dissertação,Erivelton Santana,PPGMSB,09:10,10:00,SALA 9
+quarta,Projeto de Dissertação,Erivelton Santana,PPGMSB,10:00,10:50,SALA 9
+quarta,Ciência de Redes,Marcos Figueiredo,PPGMSB,13:30,14:20,Pós
+quarta,Ciência de Redes,Marcos Figueiredo,PPGMSB,14:20,15:10,Pós
+quarta,Ciência de Redes,Marcos Figueiredo,PPGMSB,15:10,16:00,Pós
+quarta,Ciência de Redes,Marcos Figueiredo,PPGMSB,16:00,16:50,Pós
+quarta,Introdução ao DNA e Proteínas,Emanuel Santana,PPGMSB,07:30,08:20,Pós
+quarta,Introdução ao DNA e Proteínas,Emanuel Santana,PPGMSB,08:20,09:10,Pós
+quarta,Introdução ao DNA e Proteínas,Emanuel Santana,PPGMSB,09:10,10:00,Pós
+quarta,Introdução ao DNA e Proteínas,Emanuel Santana,PPGMSB,10:00,10:50,Pós
+quarta,Dinâmica e Modelagem da Paisagem,Mara Rojane Matos,PPGMSB,16:50,17:40,Pós
+quarta,Dinâmica e Modelagem da Paisagem,Mara Rojane Matos,PPGMSB,17:40,18:30,Pós
+quarta,Dinâmica e Modelagem da Paisagem,Mara Rojane Matos,PPGMSB,18:30,19:20,Pós
+quarta,Dinâmica e Modelagem da Paisagem,Mara Rojane Matos,PPGMSB,19:20,20:10,Pós
+quinta,Algoritmos e Lógica de Programação,Ricardo Luis,ENGENHARIA DE SOFTWARE,13:30,14:20,LINF3
+quinta,Algoritmos e Lógica de Programação,Ricardo Luis,ENGENHARIA DE SOFTWARE,14:20,15:10,LINF3
+quinta,Algoritmos e Lógica de Programação,Ricardo Luis,ENGENHARIA DE SOFTWARE,15:10,16:00,LINF3
+quinta,Cálculo I,João Luciano,ENGENHARIA DE SOFTWARE,07:30,08:20,SALA 11
+quinta,Cálculo I,João Luciano,ENGENHARIA DE SOFTWARE,08:20,09:10,SALA 11
+quinta,Desenv. WEB I,Peterson Lobato,ENGENHARIA DE SOFTWARE,09:10,10:00,SALA 11
+quinta,Desenv. WEB I,Peterson Lobato,ENGENHARIA DE SOFTWARE,10:00,10:50,SALA 11
+quinta,Desenv. WEB I,Peterson Lobato,ENGENHARIA DE SOFTWARE,10:50,11:40,SALA 11
+quinta,Desenv. WEB I,Peterson Lobato,ENGENHARIA DE SOFTWARE,11:40,12:30,SALA 11
+quinta,Desenv. WEB I,Peterson Lobato,ENGENHARIA DE SOFTWARE,13:30,14:20,LINF1
+quinta,Desenv. WEB I,Peterson Lobato,ENGENHARIA DE SOFTWARE,14:20,15:10,LINF1
+quinta,Aplicações da Estatística à Computação,João Luciano,ENGENHARIA DE SOFTWARE,10:50,11:40,SALA 04
+quinta,Aplicações da Estatística à Computação,João Luciano,ENGENHARIA DE SOFTWARE,11:40,12:30,SALA 04
+quinta,Arquitetura de Software e Pad. de Projetos,Larissa Bastos,ENGENHARIA DE SOFTWARE,09:10,10:00,SALA 04
+quinta,Arquitetura de Software e Pad. de Projetos,Larissa Bastos,ENGENHARIA DE SOFTWARE,10:00,10:50,SALA 04
+quinta,Álgebra Linear,João Luciano,ENGENHARIA DE SOFTWARE,09:10,10:00,SALA 08
+quinta,Álgebra Linear,João Luciano,ENGENHARIA DE SOFTWARE,10:00,10:50,SALA 08
+quinta,Gerência de Projetos e Metodologias,Cleide Bastos,ENGENHARIA DE SOFTWARE,10:50,11:40,SALA 08
+quinta,Gerência de Projetos e Metodologias,Cleide Bastos,ENGENHARIA DE SOFTWARE,11:40,12:30,SALA 08
+quinta,Projeto de Extensão I,Peterson Lobato,ENGENHARIA DE SOFTWARE,07:30,08:20,SALA 08
+quinta,Projeto de Extensão I,Peterson Lobato,ENGENHARIA DE SOFTWARE,08:20,09:10,SALA 08
+quinta,Análise Real,Luis Roque,Matemática,15:50,16:40,_
+quinta,Análise Real,Luis Roque,Matemática,16:40,17:30,_
+quinta,História e Cultura Afro-brasileira Indígena,Maria Anunciação,Matemática,07:30,08:20,_
+quinta,História e Cultura Afro-brasileira Indígena,Maria Anunciação,Matemática,08:20,09:10,_
+quinta,Didática,Maria Anunciação,Matemática,10:50,11:40,_
+quinta,Didática,Maria Anunciação,Matemática,11:40,12:30,_
+quinta,Geometria Descritiva,Jefferson Correia,Matemática,09:10,10:00,_
+quinta,Geometria Descritiva,Jefferson Correia,Matemática,10:00,10:50,_
+quinta,Tendências em Ed. Matemática,Danton Freitas,Matemática,09:10,10:00,_
+quinta,Tendências em Ed. Matemática,Danton Freitas,Matemática,10:00,10:50,_
+quinta,Tendências em Ed. Matemática,Danton Freitas,Matemática,10:50,11:40,_
+quinta,Tendências em Ed. Matemática,Danton Freitas,Matemática,11:40,12:30,_
+quinta,Estatística I,Hercules Souza,Matemática,09:10,10:00,_
+quinta,Estatística I,Hercules Souza,Matemática,10:00,10:50,_
+quinta,Estatística I,Hercules Souza,Matemática,10:50,11:40,_
+quinta,Estatística I,Hercules Souza,Matemática,11:40,12:30,_
+quinta,Software Matemático,Danton Freitas,Matemática,07:30,08:20,_
+quinta,Software Matemático,Danton Freitas,Matemática,08:20,09:10,_
+quinta,Física I,Edielma Mendonça,Matemática,13:20,14:10,_
+quinta,Física I,Edielma Mendonça,Matemática,14:10,15:00,_
+quinta,Física I,Edielma Mendonça,Matemática,15:00,15:50,_
+quinta,Física I,Edielma Mendonça,Matemática,15:50,16:40,_
+quinta,Física II,Edielma Mendonça,Matemática,10:50,11:40,_
+quinta,Física II,Edielma Mendonça,Matemática,11:40,12:30,_
+quinta,Metodologia da Pesquisa,Maria da Anunciação,Matemática,09:10,10:00,_
+quinta,Metodologia da Pesquisa,Maria da Anunciação,Matemática,10:00,10:50,_
+quinta,Estrutura Algébrica III,Luis Roque,Matemática,07:30,08:20,_
+quinta,Estrutura Algébrica III,Luis Roque,Matemática,08:20,09:10,_
+quinta,Estágio II,Daniela Batista,Matemática,12:30,13:20,_
+quinta,Análise Real I,Luiz Roque,Matemática,15:50,16:40,_
+quinta,Análise Real I,Luiz Roque,Matemática,16:40,17:30,_
+quinta,Prática em EJA,Joalisson Santana,Matemática,09:10,10:00,_
+quinta,Prática em EJA,Joalisson Santana,Matemática,10:00,10:50,_
+quinta,Estágio III,Viviane Mendonça,Matemática,10:50,11:40,_
+quinta,Estágio III,Viviane Mendonça,Matemática,11:40,12:30,_
+quinta,Estágio III,Viviane Mendonça,Matemática,12:30,13:20,_
+quinta,Estágio III,Viviane Mendonça,Matemática,13:20,14:10,_
+quinta,Estágio III,Viviane Mendonça,Matemática,14:10,15:00,_
+quinta,Estágio III,Viviane Mendonça,Matemática,15:00,15:50,_
+quinta,Geometria Descritiva II,Jefferson Correia,Matemática,07:30,08:20,_
+quinta,Geometria Descritiva II,Jefferson Correia,Matemática,08:20,09:10,_
+quinta,Bioestatística,Gustavo Nascimento,Ciências Biológicas,14:00,14:50,_
+quinta,Bioestatística,Gustavo Nascimento,Ciências Biológicas,14:50,15:40,_
+quinta,Bioestatística,Gustavo Nascimento,Ciências Biológicas,15:40,16:30,_
+quinta,Bioestatística,Gustavo Nascimento,Ciências Biológicas,16:30,17:20,_
+quinta,Biologia Protoctistas Autótrofos,Gracineide Almeida,Ciências Biológicas,10:50,11:40,LAB03
+quinta,Biologia Protoctistas Autótrofos,Gracineide Almeida,Ciências Biológicas,11:40,12:30,LAB03
+quinta,Biologia e Filogenia de Briófitas e Pteridófitas,Gracineide Almeida,Ciências Biológicas,07:30,08:20,LAB03
+quinta,Biologia e Filogenia de Briófitas e Pteridófitas,Gracineide Almeida,Ciências Biológicas,08:20,09:10,LAB03
+quinta,Biologia e Filogenia de Briófitas e Pteridófitas,Gracineide Almeida,Ciências Biológicas,10:00,10:50,LAB03
+quinta,Psicologia da Educação,Docente a definir,Ciências Biológicas,07:30,08:20,SALA 13
+quinta,Psicologia da Educação,Docente a definir,Ciências Biológicas,08:20,09:10,SALA 13
+quinta,Psicologia da Educação,Docente a definir,Ciências Biológicas,09:10,10:00,SALA 13
+quinta,Psicologia da Educação,Docente a definir,Ciências Biológicas,10:00,10:50,SALA 13
+quinta,Planejamento Educacional,Genivaldo Santos,Ciências Biológicas,07:30,08:20,_
+quinta,Planejamento Educacional,Genivaldo Santos,Ciências Biológicas,08:20,09:10,_
+quinta,Planejamento Educacional,Genivaldo Santos,Ciências Biológicas,09:10,10:00,_
+quinta,Planejamento Educacional,Genivaldo Santos,Ciências Biológicas,10:00,10:50,_
+quinta,Invertebrados II,Eltamara Conceição,Ciências Biológicas,10:50,11:40,LAB 04
+quinta,Invertebrados II,Eltamara Conceição,Ciências Biológicas,11:40,12:30,LAB 04
+quinta,Invertebrados II,Eltamara Conceição,Ciências Biológicas,12:30,13:20,LAB 04
+quinta,Bioética e Legislação,Evandro Rego,Ciências Biológicas,10:00,10:50,LAB 01
+quinta,Bioética e Legislação,Evandro Rego,Ciências Biológicas,10:50,11:40,LAB 01
+quinta,Bioética e Legislação,Evandro Rego,Ciências Biológicas,11:40,12:30,LAB 01
+quinta,Ecologia Geral,Mara Rojane,Ciências Biológicas,09:10,10:00,LAB 02
+quinta,Ecologia Geral,Mara Rojane,Ciências Biológicas,10:00,10:50,LAB 02
+quinta,Ecologia Geral,Mara Rojane,Ciências Biológicas,10:50,11:40,LAB 02
+quinta,Ecologia Geral,Mara Rojane,Ciências Biológicas,11:40,12:30,LAB 02
+quinta,Oficina Interdisciplinar II,Luis Figueroa,Ciências Biológicas,07:30,08:20,LAB 01
+quinta,Oficina Interdisciplinar II,Luis Figueroa,Ciências Biológicas,08:20,09:10,LAB 01
+quinta,Fisiologia Animal Comparada,Edson Braz,Ciências Biológicas,14:00,14:50,LAB 04
+quinta,Fisiologia Animal Comparada,Edson Braz,Ciências Biológicas,14:50,15:40,LAB 04
+quinta,Fisiologia Animal Comparada,Edson Braz,Ciências Biológicas,15:40,16:30,LAB 04
+quinta,Fisiologia Animal Comparada,Edson Braz,Ciências Biológicas,16:30,17:20,LAB 04
+quinta,Estágio Supervisionado em Biologia,Maria Sales,Ciências Biológicas,07:30,08:20,SALA 07
+quinta,Estágio Supervisionado em Biologia,Maria Sales,Ciências Biológicas,08:20,09:10,SALA 07
+quinta,Estágio Supervisionado em Biologia,Maria Sales,Ciências Biológicas,09:10,10:00,SALA 07
+quinta,Estágio Supervisionado em Biologia,Maria Sales,Ciências Biológicas,10:00,10:50,SALA 07
+quinta,Estágio Supervisionado em Biologia,Maria Sales,Ciências Biológicas,10:50,11:40,SALA 07
+quinta,Estágio Supervisionado em Biologia,Maria Sales,Ciências Biológicas,11:40,12:30,SALA 07
+quinta,Trabalho de Conclusão de Curso,Márcia Lima,Ciências Biológicas,14:00,14:50,LANAT
+quinta,Trabalho de Conclusão de Curso,Márcia Lima,Ciências Biológicas,14:50,15:40,LANAT
+quinta,Trabalho de Conclusão de Curso,Márcia Lima,Ciências Biológicas,15:40,16:30,LANAT
+quinta,Prática Pedagógica e Estágio Supervisionado I,Nélia Bispo,Ciências Biológicas,10:50,11:40,_
+quinta,Prática Pedagógica e Estágio Supervisionado I,Nélia Bispo,Ciências Biológicas,11:40,12:30,_
+quinta,Prática Pedagógica e Estágio Supervisionado II,Maria Rosileide,Ciências Biológicas,07:30,08:20,LANAT
+quinta,Prática Pedagógica e Estágio Supervisionado II,Maria Rosileide,Ciências Biológicas,08:20,09:10,LANAT
+quinta,Prática Pedagógica e Estágio Supervisionado II,Maria Rosileide,Ciências Biológicas,09:10,10:00,LANAT
+quinta,Prática Pedagógica e Estágio Supervisionado II,Maria Rosileide,Ciências Biológicas,10:00,10:50,LANAT
+quinta,Álgebra Linear,Joalisson Santana,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 05
+quinta,Álgebra Linear,Joalisson Santana,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 05
+quinta,Álgebra Linear,Joalisson Santana,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 05
+quinta,Álgebra Linear,Joalisson Santana,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 05
+quinta,Álgebra Linear,Joalisson Santana,Engenharia Sanitária e Ambiental,21:50,22:40,SALA 05
+quinta,Física II,Edielma Mendonça,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 06
+quinta,Física II,Edielma Mendonça,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 06
+quinta,Física II,Edielma Mendonça,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 06
+quinta,Física II,Edielma Mendonça,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 06
+quinta,Física II,Edielma Mendonça,Engenharia Sanitária e Ambiental,21:50,22:40,SALA 06
+quinta,Física Ambiental,Hercules Souza,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 11
+quinta,Física Ambiental,Hercules Souza,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 11
+quinta,Física Ambiental,Hercules Souza,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 11
+quinta,Física Ambiental,Hercules Souza,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 11
+quinta,Economia e Meio Ambiente,Manuel Oliveira,Engenharia Sanitária e Ambiental,18:30,19:20,LAB 02
+quinta,Economia e Meio Ambiente,Manuel Oliveira,Engenharia Sanitária e Ambiental,19:20,20:10,LAB 02
+quinta,Economia e Meio Ambiente,Manuel Oliveira,Engenharia Sanitária e Ambiental,20:10,21:00,LAB 02
+quinta,Trabalho de Conclusão de Curso,Luísa Araújo,Engenharia Sanitária e Ambiental,18:30,19:20,0
+quinta,Trabalho de Conclusão de Curso,Luísa Araújo,Engenharia Sanitária e Ambiental,19:20,20:10,0
+quinta,Biotecnologia e Meio Ambiente,Crisliane Santos,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 09
+quinta,Biotecnologia e Meio Ambiente,Crisliane Santos,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 09
+quinta,Biotecnologia e Meio Ambiente,Crisliane Santos,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 09
+quinta,Biotecnologia e Meio Ambiente,Crisliane Santos,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 09
+quinta,Algoritmos,Ricardo Luis,Sistema de Informação,13:30,14:20,LINF 03
+quinta,Algoritmos,Ricardo Luis,Sistema de Informação,14:20,15:10,LINF 03
+quinta,Algoritmos,Ricardo Luis,Sistema de Informação,15:10,16:00,LINF 03
+quinta,Metodologia de Desenvolvimento de Sistema I,Cleide Santos,Sistema de Informação,07:30,08:20,SALA 02
+quinta,Metodologia de Desenvolvimento de Sistema I,José Roberto,Sistema de Informação,08:20,09:10,SALA 02
+quinta,Metodologia de Desenvolvimento de Sistema I,José Roberto,Sistema de Informação,09:10,10:00,SALA 02
+quinta,Metodologia de Desenvolvimento de Sistema I,José Roberto,Sistema de Informação,10:00,10:50,SALA 02
+quinta,Empreendedorismo,Dilson Ferreira,Sistema de Informação,07:30,08:20,SALA 01
+quinta,Empreendedorismo,Dilson Ferreira,Sistema de Informação,08:20,09:10,SALA 01
+quinta,Empreendedorismo,Dilson Ferreira,Sistema de Informação,09:10,10:00,SALA 01
+quinta,Empreendedorismo,Dilson Ferreira,Sistema de Informação,10:00,10:50,SALA 01
+quinta,Topicos Especiais de Eng. de Software,Larissa Bastos,Sistema de Informação,10:50,11:40,SALA 01
+quinta,Topicos Especiais de Eng. De Software,Larissa Bastos,Sistema de Informação,11:40,12:30,SALA 01
+quinta,"Gestao, Inovação e Desenvolvimento Sustentavel",Jose Souza,PPGMSB,13:30,14:20,SALA 09
+quinta,"Gestao, Inovação e Desenvolvimento Sustentavel",Jose Souza,PPGMSB,14:20,15:10,SALA 09
+quinta,"Gestao, Inovação e Desenvolvimento Sustentavel",Jose Souza,PPGMSB,15:10,16:00,SALA 09
+quinta,"Gestao, Inovação e Desenvolvimento Sustentavel",Jose Souza,PPGMSB,16:00,16:50,SALA 09
+sexta,Leitura e Produção de Texto,Iramayre Reis,Engenharia de Software,07:30,08:20,SALA 08
+sexta,Leitura e Produção de Texto,Iramayre Reis,Engenharia de Software,08:20,09:10,SALA 08
+sexta,Leitura e Produção de Texto,Iramayre Reis,Engenharia de Software,09:10,10:00,SALA 08
+sexta,Leitura e Produção de Texto,Iramayre Reis,Engenharia de Software,10:00,10:50,SALA 08
+sexta,Programação Estruturada,Artur Kronbauer,Engenharia de Software,09:10,10:00,SALA 11
+sexta,Programação Estruturada,Artur Kronbauer,Engenharia de Software,10:00,10:50,SALA 11
+sexta,Arquitetura de Software e Princípios de Projeto,Larissa Bastos,Engenharia de Software,09:10,10:00,SALA 04
+sexta,Arquitetura de Software e Princípios de Projeto,Larissa Bastos,Engenharia de Software,10:00,10:50,SALA 04
+sexta,Estruturas de Dados e Organização de Arquivos,Artur Kronbauer,Engenharia de Software,07:30,08:20,SALA 04
+sexta,Estruturas de Dados e Organização de Arquivos,Artur Kronbauer,Engenharia de Software,08:20,09:10,SALA 04
+sexta,Gerência de Projetos e Metodologias Ágeis,Cleide Santos,Engenharia de Software,10:50,11:40,SALA 08
+sexta,Gerência de Projetos e Metodologias Ágeis,Cleide Santos,Engenharia de Software,11:40,12:30,SALA 08
+sexta,Estrutura de Dados,Cleide Santos,Sistemas de Informação,07:30,08:20,SALA 02
+sexta,Estrutura de Dados,Cleide Santos,Sistemas de Informação,08:20,09:10,SALA 02
+sexta,Estrutura de Dados,Cleide Santos,Sistemas de Informação,09:10,10:00,SALA 02
+sexta,Estrutura de Dados,Cleide Santos,Sistemas de Informação,10:00,10:50,SALA 02
+sexta,Tópicos Especiais em Engenharia de Software,Larissa Bastos,Sistemas de Informação,10:50,11:40,SALA 01
+sexta,Tópicos Especiais em Engenharia de Software,Larissa Bastos,Sistemas de Informação,11:40,12:30,SALA 01
+sexta,Gestão de Pessoas,Dilson Ferreira,Sistemas de Informação,13:30,14:20,0
+sexta,Gestão de Pessoas,Dilson Ferreira,Sistemas de Informação,14:20,15:10,0
+sexta,Gestão de Pessoas,Dilson Ferreira,Sistemas de Informação,15:10,16:00,0
+sexta,Gestão de Pessoas,Dilson Ferreira,Sistemas de Informação,16:00,16:50,0
+sexta,História e Cultura Afro-Brasileira e Indígena,Maria Anunciação Silva,Matemática,07:30,08:20,-
+sexta,História e Cultura Afro-Brasileira e Indígena,Maria Anunciação Silva,Matemática,08:20,09:10,-
+sexta,Geometria Descritiva,Jefferson Conceição,Matemática,09:10,10:00,-
+sexta,Geometria Descritiva,Jefferson Conceição,Matemática,10:00,10:50,-
+sexta,Geometria Descritiva II,Jefferson Conceição,Matemática,07:30,08:20,-
+sexta,Geometria Descritiva II,Jefferson Conceição,Matemática,08:20,09:10,-
+sexta,Estatística I,Hercules de Souza,Matemática,08:20,09:10,-
+sexta,Didática da Matemática,Daniela Santos,Matemática,08:20,09:10,-
+sexta,Didática da Matemática,Daniela Santos,Matemática,09:10,10:00,-
+sexta,Didática da Matemática,Daniela Santos,Matemática,10:00,10:50,-
+sexta,Didática da Matemática,Daniela Santos,Matemática,10:50,11:40,-
+sexta,Didática da Matemática,Daniela Santos,Matemática,11:40,12:30,-
+sexta,Física II,Edielma Mendonça,Matemática,10:50,11:40,-
+sexta,Física II,Edielma Mendonça,Matemática,11:40,12:30,-
+sexta,Metodologia de Pesquisa,Maria Anunciação Silva,Matemática,09:10,10:00,-
+sexta,Metodologia de Pesquisa,Maria Anunciação Silva,Matemática,10:00,10:50,-
+sexta,Estrutura Algébrica III,Luiz Roque Jesus,Matemática,07:30,08:20,-
+sexta,Estrutura Algébrica III,Luiz Roque Jesus,Matemática,08:20,09:10,-
+sexta,Estágio II,Daniela Santos,Matemática,12:30,13:20,-
+sexta,Estágio IV,Viviane Santos,Matemática,14:00,14:50,-
+sexta,Estágio IV,Viviane Santos,Matemática,14:50,15:40,-
+sexta,Estágio IV,Viviane Santos,Matemática,15:40,16:30,-
+sexta,Estágio IV,Viviane Santos,Matemática,07:30,08:20,-
+sexta,Estágio IV,Viviane Santos,Matemática,08:20,09:10,-
+sexta,Estágio IV,Viviane Santos,Matemática,09:10,10:00,-
+sexta,Estágio IV,Viviane Santos,Matemática,10:00,10:50,-
+sexta,Estágio IV,Viviane Santos,Matemática,10:50,11:40,-
+sexta,Fisiologia Vegetal,Luiz Carlos Queirez,Ciências Biológicas,10:50,11:40,LAB 01
+sexta,Fisiologia Vegetal,Luiz Carlos Queirez,Ciências Biológicas,11:40,12:30,LAB 01
+sexta,Bioquímica,Fabiana Castro,Ciências Biológicas,09:10,10:00,SALA 07
+sexta,Bioquímica,Fabiana Castro,Ciências Biológicas,10:00,10:50,SALA 07
+sexta,Bioquímica,Fabiana Castro,Ciências Biológicas,10:50,11:40,SALA 07
+sexta,Bioquímica,Fabiana Castro,Ciências Biológicas,11:40,12:30,SALA 07
+sexta,Genética,Evandro José Rego,Ciências Biológicas,07:30,08:20,LAB 02
+sexta,Genética,Evandro José Rego,Ciências Biológicas,08:20,09:10,LAB 02
+sexta,Genética,Evandro José Rego,Ciências Biológicas,09:10,10:00,LAB 02
+sexta,Genética,Evandro José Rego,Ciências Biológicas,10:00,10:50,LAB 02
+sexta,Anatomia e Fisiologia Humana,Edson Santana,Ciências Biológicas,07:30,08:20,LAB 04
+sexta,Anatomia e Fisiologia Humana,Edson Santana,Ciências Biológicas,08:20,09:10,LAB 04
+sexta,Anatomia e Fisiologia Humana,Edson Santana,Ciências Biológicas,09:10,10:00,LAB 04
+sexta,Anatomia e Fisiologia Humana,Edson Santana,Ciências Biológicas,10:00,10:50,LAB 04
+sexta,Tópicos Especiais em Biologia,Evandro José Rego,Ciências Biológicas,10:50,11:40,LAB 02
+sexta,Tópicos Especiais em Biologia,Evandro José Rego,Ciências Biológicas,11:40,12:30,LAB 02
+sexta,Tópicos Especiais em Biologia,Adilva Conceição,Ciências Biológicas,10:50,11:40,LAB 03
+sexta,Tópicos Especiais em Biologia,Adilva Conceição,Ciências Biológicas,11:40,12:30,LAB 03
+sexta,Fisiologia Vegetal,Luiz Carlos Queirez,Ciências Biológicas,07:30,08:20,LAB 01
+sexta,Fisiologia Vegetal,Luiz Carlos Queirez,Ciências Biológicas,08:20,09:10,LAB 01
+sexta,Fisiologia Vegetal,Luiz Carlos Queirez,Ciências Biológicas,09:10,10:00,LAB 01
+sexta,Fisiologia Vegetal,Luiz Carlos Queirez,Ciências Biológicas,10:00,10:50,LAB 01
+sexta,Didática em Ciências Naturais,Genivaldo Santos,Ciências Biológicas,07:30,08:20,-
+sexta,Didática em Ciências Naturais,Genivaldo Santos,Ciências Biológicas,08:20,09:10,-
+sexta,Didática em Ciências Naturais,Genivaldo Santos,Ciências Biológicas,09:10,10:00,-
+sexta,Didática em Ciências Naturais,Genivaldo Santos,Ciências Biológicas,10:00,10:50,-
+sexta,Tecnologia do Ensino em Ciências Naturais,Edson Santana,Ciências Biológicas,10:50,11:40,LAB 04
+sexta,Tecnologia do Ensino em Ciências Naturais,Edson Santana,Ciências Biológicas,11:40,12:30,LAB 04
+sexta,Tecnologia do Ensino em Ciências Naturais,Edson Santana,Ciências Biológicas,07:30,08:20,LAB 04
+sexta,Prática Pedagógica e Estágio Supervisionado II,Maria Rosileide Carvalho,Ciências Biológicas,07:30,08:20,LANAT
+sexta,Prática Pedagógica e Estágio Supervisionado II,Maria Rosileide Carvalho,Ciências Biológicas,08:20,09:10,LANAT
+sexta,Prática Pedagógica e Estágio Supervisionado II,Maria Rosileide Carvalho,Ciências Biológicas,09:10,10:00,LANAT
+sexta,Prática Pedagógica e Estágio Supervisionado II,Maria Rosileide Carvalho,Ciências Biológicas,10:00,10:50,LANAT
+sexta,Química Orgânica,Fabiana Castro,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 05
+sexta,Química Orgânica,Fabiana Castro,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 05
+sexta,Química Orgânica,Fabiana Castro,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 05
+sexta,Química Orgânica,Fabiana Castro,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 05
+sexta,Mecânica dos Solos,Fabrício Garcia,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 06
+sexta,Mecânica dos Solos,Fabrício Garcia,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 06
+sexta,Mecânica dos Solos,Fabrício Garcia,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 06
+sexta,Mecânica dos Solos,Fabrício Garcia,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 06
+sexta,Microbiologia Ambiental,Crisliane Aparecida Santos,Engenharia Sanitária e Ambiental,18:30,19:20,LAB 01
+sexta,Microbiologia Ambiental,Crisliane Aparecida Santos,Engenharia Sanitária e Ambiental,19:20,20:10,LAB 01
+sexta,Microbiologia Ambiental,Crisliane Aparecida Santos,Engenharia Sanitária e Ambiental,20:10,21:00,LAB 01
+sexta,Microbiologia Ambiental,Crisliane Aparecida Santos,Engenharia Sanitária e Ambiental,21:00,21:50,LAB 01
+sexta,Microbiologia Ambiental,Crisliane Aparecida Santos,Engenharia Sanitária e Ambiental,21:50,22:40,LAB 01
+sexta,Materiais e Técnicas de Construção,Jéssica Arruda,Engenharia Sanitária e Ambiental,18:30,19:20,SALA 11
+sexta,Materiais e Técnicas de Construção,Jéssica Arruda,Engenharia Sanitária e Ambiental,19:20,20:10,SALA 11
+sexta,Materiais e Técnicas de Construção,Jéssica Arruda,Engenharia Sanitária e Ambiental,20:10,21:00,SALA 11
+sexta,Materiais e Técnicas de Construção,Jéssica Arruda,Engenharia Sanitária e Ambiental,21:00,21:50,SALA 11
+sexta,Materiais e Técnicas de Construção,Jéssica Arruda,Engenharia Sanitária e Ambiental,21:50,22:40,SALA 11
+sexta,Estágio Supervisionado II,Janiara Batista / Luísa Araújo,Engenharia Sanitária e Ambiental,16:50,17:40,0
+sexta,Estágio Supervisionado II,Janiara Batista / Luísa Araújo,Engenharia Sanitária e Ambiental,17:40,18:30,0
+sexta,Ética e Cidadania,Luiz Enrique Figueroa,Engenharia Sanitária e Ambiental,18:30,19:20,0
+sexta,Ética e Cidadania,Luiz Enrique Figueroa,Engenharia Sanitária e Ambiental,19:20,20:10,0
+sexta,Ética e Cidadania,Luiz Enrique Figueroa,Engenharia Sanitária e Ambiental,20:10,21:00,0
+sexta,Atividades Interlinhas,Roberto Luiz Monteiro,PPGMSB,13:30,14:20,SALA 09
+sexta,Atividades Interlinhas,Roberto Luiz Monteiro,PPGMSB,14:20,15:10,SALA 09
+sexta,Atividades Interlinhas,Roberto Luiz Monteiro,PPGMSB,15:10,16:00,SALA 09
+sexta,Atividades Interlinhas,Roberto Luiz Monteiro,PPGMSB,16:00,16:50,SALA 09
+sexta,Atividades Interlinhas,Roberto Luiz Monteiro,PPGMSB,16:50,17:40,SALA 09
+sexta,Atividades Interlinhas,Roberto Luiz Monteiro,PPGMSB,17:40,18:30,SALA 09
+sabado,Biologia Sanitária e Ambiental,Crisliane Aparecida Santos,Engenharia Sanitária e Ambiental,10:50,11:40,SALA 05
+sabado,Biologia Sanitária e Ambiental,Crisliane Aparecida Santos,Engenharia Sanitária e Ambiental,11:40,12:30,SALA 05
+sabado,Biologia Sanitária e Ambiental,Crisliane Aparecida Santos,Engenharia Sanitária e Ambiental,13:30,14:20,SALA 05
+sabado,Cálculo III,Roger Luiz Almeida,Engenharia Sanitária e Ambiental,10:50,11:40,SALA 06
+sabado,Cálculo III,Roger Luiz Almeida,Engenharia Sanitária e Ambiental,11:40,12:30,SALA 06
+sabado,Cálculo III,Roger Luiz Almeida,Engenharia Sanitária e Ambiental,13:30,14:20,SALA 06
+sabado,Cálculo III,Roger Luiz Almeida,Engenharia Sanitária e Ambiental,14:20,15:10,SALA 06
+sabado,Cálculo III,Roger Luiz Almeida,Engenharia Sanitária e Ambiental,15:10,16:00,SALA 06
+sabado,Bioquímica,Fabiana Castro,Engenharia Sanitária e Ambiental,07:30,08:20,SALA 11
+sabado,Bioquímica,Fabiana Castro,Engenharia Sanitária e Ambiental,08:20,09:10,SALA 11
+sabado,Bioquímica,Fabiana Castro,Engenharia Sanitária e Ambiental,09:10,10:00,SALA 11
+sabado,Bioquímica,Fabiana Castro,Engenharia Sanitária e Ambiental,10:00,10:50,SALA 11
+sabado,Métodos Numéricos Computacionais,Roger Luiz Almeida,Engenharia Sanitária e Ambiental,07:30,08:20,SALA 06
+sabado,Métodos Numéricos Computacionais,Roger Luiz Almeida,Engenharia Sanitária e Ambiental,08:20,09:10,SALA 06
+sabado,Métodos Numéricos Computacionais,Roger Luiz Almeida,Engenharia Sanitária e Ambiental,09:10,10:00,SALA 06
+sabado,Métodos Numéricos Computacionais,Roger Luiz Almeida,Engenharia Sanitária e Ambiental,10:00,10:50,SALA 06
+sabado,Resistência dos Materiais,Jéssica Arruda,Engenharia Sanitária e Ambiental,10:50,11:40,SALA 11
+sabado,Resistência dos Materiais,Jéssica Arruda,Engenharia Sanitária e Ambiental,11:40,12:30,SALA 11
+sabado,Resistência dos Materiais,Jéssica Arruda,Engenharia Sanitária e Ambiental,13:30,14:20,SALA 11
+sabado,Resistência dos Materiais,Jéssica Arruda,Engenharia Sanitária e Ambiental,14:20,15:10,SALA 11
+sabado,Hidráulica II,Fabrício Ribeiro,Engenharia Sanitária e Ambiental,10:50,11:40,0
+sabado,Hidráulica II,Fabrício Ribeiro,Engenharia Sanitária e Ambiental,11:40,12:30,0
+sabado,Hidráulica II,Fabrício Ribeiro,Engenharia Sanitária e Ambiental,13:30,14:20,0
+sabado,Hidráulica II,Fabrício Ribeiro,Engenharia Sanitária e Ambiental,14:20,15:10,0
+sabado,Obras Hidráulicas,Fabrício Ribeiro,Engenharia Sanitária e Ambiental,07:30,08:20,0
+sabado,Obras Hidráulicas,Fabrício Ribeiro,Engenharia Sanitária e Ambiental,08:20,09:10,0
+sabado,Obras Hidráulicas,Fabrício Ribeiro,Engenharia Sanitária e Ambiental,09:10,10:00,0
+sabado,Obras Hidráulicas,Fabrício Ribeiro,Engenharia Sanitária e Ambiental,10:00,10:50,0
+sabado,Drenagem e Controle de Enchente,Jéssica Arruda,Engenharia Sanitária e Ambiental,08:20,09:10,SALA 09
+sabado,Drenagem e Controle de Enchente,Jéssica Arruda,Engenharia Sanitária e Ambiental,09:10,10:00,SALA 09
+sabado,Drenagem e Controle de Enchente,Jéssica Arruda,Engenharia Sanitária e Ambiental,10:00,10:50,SALA 09
+sabado,Controle e Poluição Atmosférica,Fabiana Castro,Engenharia Sanitária e Ambiental,08:20,09:10,LAB 01
+sabado,Controle e Poluição Atmosférica,Fabiana Castro,Engenharia Sanitária e Ambiental,09:10,10:00,LAB 01
+sabado,Controle e Poluição Atmosférica,Fabiana Castro,Engenharia Sanitária e Ambiental,10:00,10:50,LAB 01
+sabado,Toxicologia Ambiental,Elaine Garrido,Engenharia Sanitária e Ambiental,08:20,09:10,AUDIT
+sabado,Toxicologia Ambiental,Elaine Garrido,Engenharia Sanitária e Ambiental,09:10,10:00,AUDIT
+sabado,Toxicologia Ambiental,Elaine Garrido,Engenharia Sanitária e Ambiental,10:00,10:50,AUDIT
+sabado,Ecologia Geral,Crisliane Aparecida Santos,Engenharia Sanitária e Ambiental,07:30,08:20,SALA 05
+sabado,Ecologia Geral,Crisliane Aparecida Santos,Engenharia Sanitária e Ambiental,08:20,09:10,SALA 05
+sabado,Ecologia Geral,Crisliane Aparecida Santos,Engenharia Sanitária e Ambiental,09:10,10:00,SALA 05
+sabado,Ecologia Geral,Crisliane Aparecida Santos,Engenharia Sanitária e Ambiental,10:00,10:50,SALA 05
+sabado,Fisiologia Vegetal,Luiz Carlos Queirez,Biologia,08:20,09:10,LAB 01
+sabado,Fisiologia Vegetal,Luiz Carlos Queirez,Biologia,09:10,10:00,LAB 01
+sabado,Parasitologia,Edson Santana,Biologia,09:10,10:00,LAB 04
+sabado,Parasitologia,Edson Santana,Biologia,10:00,10:50,LAB 04
+sabado,Parasitologia,Edson Santana,Biologia,10:50,11:40,LAB 04
+sabado,Prática Pedagógica em Gestão Educacional,Antonio Barreto,Biologia,07:30,08:20,LAB 03
+sabado,Prática Pedagógica em Gestão Educacional,Antonio Barreto,Biologia,08:20,09:10,LAB 03
+sabado,Estágio Supervisionado I,Carlos Eduardo Pinheiro,Sistemas de Informação,10:50,11:40,LINF
+sabado,Estágio Supervisionado I,Carlos Eduardo Pinheiro,Sistemas de Informação,11:40,12:30,LINF
+sabado,Estágio Supervisionado I,Carlos Eduardo Pinheiro,Sistemas de Informação,13:30,14:20,LINF
+sabado,Estágio Supervisionado I,Carlos Eduardo Pinheiro,Sistemas de Informação,14:20,15:10,LINF
+sabado,Estágio Supervisionado II,Fabrício Faro,Sistemas de Informação,07:30,08:20,0
+sabado,Estágio Supervisionado II,Fabrício Faro,Sistemas de Informação,08:20,09:10,0
+sabado,Estágio Supervisionado II,Fabrício Faro,Sistemas de Informação,09:10,10:00,0
+sabado,Estágio Supervisionado II,Fabrício Faro,Sistemas de Informação,10:00,10:50,0
+sabado,Tirocínio Docente,Eltamara Conceição,PPGMSB,13:30,14:20,PÓS
+sabado,Tirocínio Docente,Eltamara Conceição,PPGMSB,14:20,15:10,PÓS
+sabado,Tirocínio Docente,Eltamara Conceição,PPGMSB,15:10,16:00,PÓS
+sabado,Tirocínio Docente,Eltamara Conceição,PPGMSB,16:00,16:50,PÓS
+sabado,Tirocínio Docente,Eltamara Conceição,PPGMSB,16:50,17:40,PÓS
+sabado,Tirocínio Docente,Maria Dolores Orge,PPGMSB,13:30,14:20,SALA 09
+sabado,Tirocínio Docente,Maria Dolores Orge,PPGMSB,14:20,15:10,SALA 09
+sabado,Tirocínio Docente,Maria Dolores Orge,PPGMSB,15:10,16:00,SALA 09
+sabado,Tirocínio Docente,Maria Dolores Orge,PPGMSB,16:00,16:50,SALA 09
+sabado,Tirocínio Docente,Maria Dolores Orge,PPGMSB,16:50,17:40,SALA 09
