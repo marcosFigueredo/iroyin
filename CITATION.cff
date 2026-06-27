@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+type: software
+title: "IROYIN — Institutional Information Display System"
+abstract: >
+  IROYIN is an open-source web application for institutions (universities,
+  departments, research centers) to display real-time information on public
+  screens — class schedules, news from RSS feeds, open research calls, and
+  weather — managed through a browser-based admin panel.
+authors:
+  - family-names: Figueredo
+    given-names: Marcos
+    email: marcos.b.figueredo@gmail.com
+    orcid: "https://orcid.org/0000-0002-8193-5419"
+version: "1.0.0"
+date-released: "2026-06-27"
+license: MIT
+repository-code: "https://github.com/marcosFigueredo/iroyin"
+doi: 10.5281/zenodo.20970621
+url: "https://github.com/marcosFigueredo/iroyin"
+keywords:
+  - kiosk
+  - institutional display
+  - university
+  - information system
+  - Laravel
+  - open-source
+  - digital signage
+  - research calls
+  - RSS
