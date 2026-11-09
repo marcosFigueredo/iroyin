@@ -94,7 +94,44 @@
                 </a>
                 @endif
 
+                @if(auth()->user()->isDepartamento() || (auth()->user()->isGestor() && auth()->user()->escopoDepartamentoId()))
+                <div class="nav-label">Departamento</div>
+                <a href="{{ route('admin.unidades.index') }}"
+                   class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('admin.unidades.*') ? 'active' : '' }}">
+                    <i class="bi bi-mortarboard"></i> Cursos e unidades
+                </a>
+                <a href="{{ route('admin.departamento-config.edit') }}"
+                   class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('admin.departamento-config.*') ? 'active' : '' }}">
+                    <i class="bi bi-palette"></i> Aparência e tempos
+                </a>
+                @endif
+                @if(auth()->user()->isDepartamento())
+                <a href="{{ route('admin.users.index') }}"
+                   class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                    <i class="bi bi-people-fill"></i> Secretários
+                </a>
+                @endif
+
                 @if(auth()->user()->isAdmin())
+                <div class="nav-label">Universidade</div>
+                <a href="{{ route('admin.campi.index') }}"
+                   class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('admin.campi.*') ? 'active' : '' }}">
+                    <i class="bi bi-geo-alt"></i> Campi
+                </a>
+                <a href="{{ route('admin.departamentos.index') }}"
+                   class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('admin.departamentos.*') ? 'active' : '' }}">
+                    <i class="bi bi-diagram-3"></i> Departamentos
+                </a>
+                <form method="POST" action="{{ route('admin.operar-como') }}" class="px-2 mt-2">
+                    @csrf
+                    <label class="small text-muted" for="operar-como">Operar como</label>
+                    <select id="operar-como" name="departamento_id" class="form-select form-select-sm" onchange="this.form.submit()">
+                        <option value="">Nenhum</option>
+                        @foreach(\App\Models\Departamento::orderBy('slug')->get() as $opcaoDep)
+                            <option value="{{ $opcaoDep->id }}" @selected(auth()->user()->escopoDepartamentoId() === $opcaoDep->id)>{{ strtoupper($opcaoDep->slug) }}</option>
+                        @endforeach
+                    </select>
+                </form>
                 <div class="nav-label">Sistema</div>
                 <a href="{{ route('admin.feeds.index') }}"
                    class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('admin.feeds.*') ? 'active' : '' }}">

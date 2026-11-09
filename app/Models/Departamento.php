@@ -15,6 +15,8 @@ class Departamento extends Model
         'forgot-password', 'reset-password', 'verify-email', 'confirm-password', 'password', 'email',
     ];
 
+    public const TEMAS = ['azul', 'verde', 'vermelho', 'escuro', 'roxo'];
+
     protected $fillable = [
         'campus_id', 'sigla', 'nome', 'slug', 'ativo', 'tema', 'duracao_horarios', 'duracao_noticia',
     ];
@@ -33,6 +35,11 @@ class Departamento extends Model
     public function unidades(): HasMany
     {
         return $this->hasMany(Unidade::class);
+    }
+
+    public function usuarios(): HasMany
+    {
+        return $this->hasMany(User::class);
     }
 
     public static function gerarSlug(string $sigla, ?int $numeroCampus): string

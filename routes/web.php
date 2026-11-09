@@ -12,7 +12,11 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AcessivelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SetupController;
+use App\Http\Controllers\Admin\CampusController;
+use App\Http\Controllers\Admin\DepartamentoConfigController;
+use App\Http\Controllers\Admin\DepartamentoController;
 use App\Http\Controllers\Admin\OperarComoController;
+use App\Http\Controllers\Admin\UnidadeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -63,7 +67,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'perfil:gestor'])->g
     Route::resource('noticias', NoticiaController::class)->except(['show']);
     Route::post('noticias/buscar-feed',  [NoticiaController::class, 'buscarFeed']) ->name('noticias.buscar-feed');
     Route::post('noticias/buscar-todos', [NoticiaController::class, 'buscarTodos'])->name('noticias.buscar-todos');
-    Route::resource('users', UserController::class)->except(['show']);
+    Route::resource('campi', CampusController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('departamentos', DepartamentoController::class)->only(['index', 'store', 'update', 'destroy']);
     Route::resource('feeds', FeedController::class)->except(['show', 'create', 'edit']);
     Route::post('feeds/{feed}/toggle', [FeedController::class, 'toggle'])->name('feeds.toggle');
 
@@ -72,6 +77,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'perfil:gestor'])->g
 
     Route::get('configuracoes',  [ConfiguracaoController::class, 'edit'])  ->name('configuracoes.edit');
     Route::put('configuracoes',  [ConfiguracaoController::class, 'update'])->name('configuracoes.update');
+});
+
+// Administração do departamento
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'perfil:gestor,departamento'])->group(function () {
+    Route::resource('users', UserController::class)->except(['show']);
+    Route::resource('unidades', UnidadeController::class)->except(['show', 'create']);
+    Route::get('departamento-config', [DepartamentoConfigController::class, 'edit'])->name('departamento-config.edit');
+    Route::put('departamento-config', [DepartamentoConfigController::class, 'update'])->name('departamento-config.update');
 });
 
 require __DIR__.'/auth.php';

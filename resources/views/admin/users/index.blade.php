@@ -31,10 +31,11 @@
                         </td>
                         <td class="text-muted">{{ $user->email }}</td>
                         <td>
-                            @if($user->role === 'admin')
-                                <span class="badge" style="background-color:#1a3369;">Admin</span>
-                            @else
-                                <span class="badge bg-secondary">Editor</span>
+                            <span class="badge" style="background-color:#1a3369;">{{ \App\Models\User::NOMES_PERFIS[$user->role] ?? $user->role }}</span>
+                            @if($user->unidade)
+                                <span class="small text-muted ms-1">{{ $user->unidade->nome }}</span>
+                            @elseif($user->departamento)
+                                <span class="small text-muted ms-1">{{ strtoupper($user->departamento->slug) }}</span>
                             @endif
                         </td>
                         <td>

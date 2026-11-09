@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Unidade extends Model
 {
@@ -16,6 +17,16 @@ class Unidade extends Model
     public function departamento(): BelongsTo
     {
         return $this->belongsTo(Departamento::class);
+    }
+
+    public function usuarios(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function podeExcluir(): bool
+    {
+        return ! $this->usuarios()->exists();
     }
 
     public function temHorarios(): bool
