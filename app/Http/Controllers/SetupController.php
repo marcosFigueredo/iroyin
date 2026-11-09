@@ -35,7 +35,7 @@ class SetupController extends Controller
             'name'     => $data['name'],
             'email'    => $data['email'],
             'password' => Hash::make($data['password']),
-            'role'     => 'admin',
+            'role'     => 'gestor',
             'active'   => true,
         ]);
 

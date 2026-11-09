@@ -10,11 +10,11 @@ class AccessControlTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_editor_can_access_news_index(): void
+    public function test_gestor_can_access_news_index(): void
     {
-        $editor = User::factory()->create();
+        $gestor = User::factory()->admin()->create();
 
-        $this->actingAs($editor)
+        $this->actingAs($gestor)
             ->get('/admin/noticias')
             ->assertStatus(200);
     }

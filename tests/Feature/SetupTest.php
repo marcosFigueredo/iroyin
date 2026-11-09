@@ -38,7 +38,7 @@ class SetupTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'email' => 'admin@test.com',
-            'role'  => 'admin',
+            'role'  => 'gestor',
         ]);
 
         $response->assertRedirect(route('admin.instituicao.edit'));

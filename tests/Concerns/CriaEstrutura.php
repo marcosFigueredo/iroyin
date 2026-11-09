@@ -4,7 +4,9 @@ namespace Tests\Concerns;
 
 use App\Models\Campus;
 use App\Models\Departamento;
+use App\Models\Semestre;
 use App\Models\Unidade;
+use App\Models\User;
 
 trait CriaEstrutura
 {
@@ -23,6 +25,24 @@ trait CriaEstrutura
             'sigla'     => strtoupper($m[1] ?? $slug),
             'nome'      => 'Departamento '.strtoupper($slug),
             'slug'      => $slug,
+        ]);
+    }
+
+    protected function criaSemestreVigente(): Semestre
+    {
+        return Semestre::create([
+            'nome'   => '2027.1',
+            'inicio' => now()->subMonth()->toDateString(),
+            'fim'    => now()->addMonth()->toDateString(),
+        ]);
+    }
+
+    protected function criaUsuario(string $role, ?Departamento $d = null, ?Unidade $u = null): User
+    {
+        return User::factory()->create([
+            'role'            => $role,
+            'departamento_id' => $d?->id,
+            'unidade_id'      => $u?->id,
         ]);
     }
 

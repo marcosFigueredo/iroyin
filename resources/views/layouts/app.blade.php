@@ -64,7 +64,7 @@
                 </div>
                 <div style="min-width:0;">
                     <div class="fw-semibold text-truncate" style="font-size:13px;color:#1a3369;">{{ auth()->user()->name }}</div>
-                    <div class="text-muted" style="font-size:11px;">{{ auth()->user()->role === 'admin' ? 'Administrador' : 'Editor' }}</div>
+                    <div class="text-muted" style="font-size:11px;">{{ \App\Models\User::NOMES_PERFIS[auth()->user()->role] ?? '' }}</div>
                 </div>
             </div>
 
@@ -77,10 +77,13 @@
                 </a>
 
                 <div class="nav-label">Conteúdo</div>
+                @unless(auth()->user()->isReitoria())
                 <a href="{{ route('admin.semestres.index') }}"
                    class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('admin.semestres.*') ? 'active' : '' }}">
                     <i class="bi bi-calendar3"></i> Horários
                 </a>
+                @endunless
+                @if(auth()->user()->isGestor())
                 <a href="{{ route('admin.noticias.index') }}"
                    class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('admin.noticias.*') ? 'active' : '' }}">
                     <i class="bi bi-newspaper"></i> Notícias
@@ -89,6 +92,7 @@
                    class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('admin.editais.*', 'admin.agencias.*') ? 'active' : '' }}">
                     <i class="bi bi-megaphone"></i> Editais
                 </a>
+                @endif
 
                 @if(auth()->user()->isAdmin())
                 <div class="nav-label">Sistema</div>

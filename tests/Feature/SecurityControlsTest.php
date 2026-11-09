@@ -14,12 +14,12 @@ class SecurityControlsTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_editor_can_manage_content_but_cannot_access_admin_configuration(): void
+    public function test_secretaria_cannot_access_common_content_or_users(): void
     {
-        $editor = User::factory()->create(['role' => 'editor']);
+        $secretaria = User::factory()->create(['role' => 'unidade']);
 
-        $this->actingAs($editor)->get('/admin/noticias')->assertOk();
-        $this->actingAs($editor)->get('/admin/users')->assertForbidden();
+        $this->actingAs($secretaria)->get('/admin/noticias')->assertForbidden();
+        $this->actingAs($secretaria)->get('/admin/users')->assertForbidden();
     }
 
     public function test_admin_cannot_create_an_unsupported_super_admin_role(): void

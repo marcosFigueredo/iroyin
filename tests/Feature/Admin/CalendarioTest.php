@@ -14,7 +14,7 @@ class CalendarioTest extends TestCase
 
     private function gestor(): User
     {
-        return User::factory()->create(['role' => 'admin', 'active' => true]);
+        return User::factory()->create(['role' => 'gestor', 'active' => true]);
     }
 
     private function semestre(string $nome = '2027.1'): Semestre

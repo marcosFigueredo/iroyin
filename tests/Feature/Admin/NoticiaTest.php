@@ -13,7 +13,7 @@ class NoticiaTest extends TestCase
 
     public function test_editor_can_view_noticias_index(): void
     {
-        $editor = User::factory()->create();
+        $editor = User::factory()->admin()->create();
 
         $this->actingAs($editor)
             ->get('/admin/noticias')
@@ -22,7 +22,7 @@ class NoticiaTest extends TestCase
 
     public function test_editor_can_create_noticia(): void
     {
-        $editor = User::factory()->create();
+        $editor = User::factory()->admin()->create();
 
         $this->actingAs($editor)->post('/admin/noticias', [
             'titulo' => 'Nova notícia de teste',
@@ -53,7 +53,7 @@ class NoticiaTest extends TestCase
 
     public function test_noticia_requires_titulo_and_dates(): void
     {
-        $editor = User::factory()->create();
+        $editor = User::factory()->admin()->create();
 
         $this->actingAs($editor)
             ->post('/admin/noticias', [])

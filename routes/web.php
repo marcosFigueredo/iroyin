@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AcessivelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SetupController;
+use App\Http\Controllers\Admin\OperarComoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -40,13 +41,7 @@ Route::middleware('auth')->group(function () {
 
 // Conteúdo — editores e admins
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
-    Route::resource('editais', EditalController::class)->except(['show', 'create', 'edit']);
-    Route::post('editais/{edital}/toggle', [EditalController::class, 'toggle'])->name('editais.toggle');
-    Route::resource('agencias', AgenciaController::class)->only(['store', 'update', 'destroy']);
-    Route::resource('noticias', NoticiaController::class)->except(['show']);
-    Route::post('noticias/buscar-feed',  [NoticiaController::class, 'buscarFeed']) ->name('noticias.buscar-feed');
-    Route::post('noticias/buscar-todos', [NoticiaController::class, 'buscarTodos'])->name('noticias.buscar-todos');
-    Route::resource('semestres', SemestreController::class)->except(['show','create','edit','update']);
+    Route::get('semestres', [SemestreController::class, 'index'])->name('semestres.index');
     Route::prefix('semestres/{semestre}')->name('semestres.')->group(function () {
         Route::get('horarios',                [HorarioController::class, 'index'])   ->name('horarios.index');
         Route::get('horarios/create',         [HorarioController::class, 'create'])  ->name('horarios.create');
@@ -59,7 +54,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 });
 
 // Configuração — somente admins
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'perfil:gestor'])->group(function () {
+    Route::post('operar-como', OperarComoController::class)->name('operar-como');
+    Route::resource('semestres', SemestreController::class)->only(['store', 'destroy']);
+    Route::resource('editais', EditalController::class)->except(['show', 'create', 'edit']);
+    Route::post('editais/{edital}/toggle', [EditalController::class, 'toggle'])->name('editais.toggle');
+    Route::resource('agencias', AgenciaController::class)->only(['store', 'update', 'destroy']);
+    Route::resource('noticias', NoticiaController::class)->except(['show']);
+    Route::post('noticias/buscar-feed',  [NoticiaController::class, 'buscarFeed']) ->name('noticias.buscar-feed');
+    Route::post('noticias/buscar-todos', [NoticiaController::class, 'buscarTodos'])->name('noticias.buscar-todos');
     Route::resource('users', UserController::class)->except(['show']);
     Route::resource('feeds', FeedController::class)->except(['show', 'create', 'edit']);
     Route::post('feeds/{feed}/toggle', [FeedController::class, 'toggle'])->name('feeds.toggle');
