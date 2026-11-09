@@ -65,7 +65,7 @@ class Informe extends Model
             'formato'   => $this->formato,
             'titulo'    => $this->titulo,
             'texto'     => $this->texto,
-            'imagem'    => $this->imagem,
+            'imagem'    => $this->formato === 'imagem' ? $this->imagem : null,
             'urgencia'  => $this->urgencia,
             'origem'    => $this->origem(),
             'escopo'    => $this->escopo(),

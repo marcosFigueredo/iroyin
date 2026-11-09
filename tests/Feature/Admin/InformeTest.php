@@ -81,7 +81,11 @@ class InformeTest extends TestCase
 
     private function pngFalso(string $nome): UploadedFile
     {
-        return UploadedFile::fake()->createWithContent($nome, base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='));
+        // Arquivo real: o fake do Laravel deduz o tipo pelo nome, não pelo conteúdo.
+        $caminho = tempnam(sys_get_temp_dir(), 'png');
+        file_put_contents($caminho, base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='));
+
+        return new UploadedFile($caminho, $nome, null, null, true);
     }
 
     public function test_arquivo_php_disfarcado_de_imagem_e_recusado(): void
@@ -103,6 +107,27 @@ class InformeTest extends TestCase
             ->post(route('admin.informes.store'), $this->dados(['formato' => 'imagem', 'imagem' => $this->pngFalso('x.exe')]));
 
         $this->assertStringEndsWith('.png', Informe::firstOrFail()->imagem);
+    }
+
+    public function test_secretaria_nao_anexa_imagem_em_informe_de_texto(): void
+    {
+        $d = $this->criaDepartamento();
+
+        $this->actingAs($this->criaUsuario('unidade', $d, $this->criaCurso($d)))
+            ->post(route('admin.informes.store'), $this->dados(['imagem' => UploadedFile::fake()->image('a.png')]));
+
+        $this->assertNull(Informe::firstOrFail()->imagem);
+    }
+
+    public function test_trocar_para_texto_remove_a_imagem(): void
+    {
+        $d = $this->criaDepartamento();
+        $informe = $this->criaInforme($d, ['formato' => 'imagem', 'imagem' => 'noticias/imagens/a.png']);
+
+        $this->actingAs($this->criaUsuario('departamento', $d))
+            ->put(route('admin.informes.update', $informe), $this->dados());
+
+        $this->assertNull($informe->fresh()->imagem);
     }
 
     public function test_svg_e_recusado(): void

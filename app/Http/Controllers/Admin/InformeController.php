@@ -42,7 +42,7 @@ class InformeController extends Controller
         $data = $this->validar($request);
         $usuario = $request->user();
 
-        if ($request->hasFile('imagem')) {
+        if ($data['formato'] === 'imagem' && $request->hasFile('imagem')) {
             $data['imagem'] = ImagemUpload::salvar($request->file('imagem'));
         }
 
@@ -65,7 +65,10 @@ class InformeController extends Controller
         $item = $this->buscar($request, $informe);
         $data = $this->validar($request, $item);
 
-        if ($request->hasFile('imagem')) {
+        if ($data['formato'] !== 'imagem') {
+            ImagemUpload::apagar($item->imagem);
+            $data['imagem'] = null;
+        } elseif ($request->hasFile('imagem')) {
             ImagemUpload::apagar($item->imagem);
             $data['imagem'] = ImagemUpload::salvar($request->file('imagem'));
         }
