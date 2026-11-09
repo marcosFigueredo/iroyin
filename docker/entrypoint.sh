@@ -1,8 +1,15 @@
 #!/bin/sh
 set -e
 
-echo "[IROYIN] Generating app key..."
-php artisan key:generate --force
+if [ ! -f .env ]; then
+    echo "[IROYIN] .env não encontrado no container — criando a partir de .env.docker..."
+    cp .env.docker .env
+fi
+
+if [ -z "$APP_KEY" ]; then
+    echo "[IROYIN] APP_KEY vazia no ambiente do container — gerando em runtime..."
+    export APP_KEY=$(php artisan key:generate --show)
+fi
 
 echo "[IROYIN] Running migrations..."
 php artisan migrate --force

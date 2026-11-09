@@ -391,9 +391,10 @@ All endpoints are public (no authentication required) and consumed by the kiosk 
 
 ```bash
 php artisan test
+npm run test:e2e
 ```
 
-All 23 tests should pass on a fresh install. Tests cover authentication, setup wizard, middleware behavior, and profile management.
+All 69 PHP tests and 5 browser tests should pass on a fresh install. Tests cover authentication, setup wizard, middleware behavior, access control, public API endpoints, admin CRUD operations, controlled empty states, offline recovery, CSRF, and login rate limiting. See [`docs/testing-e2-e3.md`](docs/testing-e2-e3.md) for the Chromium and conventional LAMP procedures.
 
 ---
 
@@ -449,7 +450,7 @@ MIT — see [LICENSE](LICENSE).
 
 If you use IROYIN in academic work, please cite:
 
-> Figueredo, M. (2026). IROYIN: An open-source institutional information display system for universities and research departments. *SoftwareX*. [https://doi.org/10.5281/zenodo.20970621](https://doi.org/10.5281/zenodo.20970621)
+> Figueredo, M. (2026). IROYIN: Lessons in Open-Source Digital Signage for Resource-Constrained Universities. *IEEE Software*. [https://doi.org/10.5281/zenodo.20970621](https://doi.org/10.5281/zenodo.20970621)
 
 ---
 

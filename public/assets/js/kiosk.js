@@ -7,6 +7,30 @@ let _newsItems   = [];
 let _editaisItems = [];
 let _currentHalf = 0;   // 0 = primeira metade, 1 = segunda metade
 
+// API mínima usada pelo monitor de conectividade. Manter o controle dos
+// timers aqui evita que outro script precise acessar variáveis `let` globais.
+function pauseKioskCycle() {
+    clearTimeout(_cycleTimer);
+    clearTimeout(_newsTimer);
+    _cycleTimer = null;
+    _newsTimer  = null;
+}
+
+function resumeKioskCycle() {
+    pauseKioskCycle();
+    if (window.isBoaNoite) {
+        _newsOnlyLoop();
+        return;
+    }
+
+    _currentHalf = 0;
+    _showSchedules();
+    _runCycle();
+}
+
+window.pauseKioskCycle  = pauseKioskCycle;
+window.resumeKioskCycle = resumeKioskCycle;
+
 // ── Visibilidade ─────────────────────────────────────────────────────────────
 
 function _showSchedules() {

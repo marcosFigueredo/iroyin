@@ -1,0 +1,17 @@
+services:
+  # Teto de recursos agregados equivalente a um Raspberry Pi 4 (2GB RAM / 4 núcleos),
+  # dividido entre os três serviços do stack — soma ≈ 1.97GB / 4 cpus.
+  # Uso: docker compose -f docker-compose.yml -f docker-compose.pi4.yml up -d
+  app:
+    mem_limit: 1200m
+    mem_reservation: 1200m
+    cpus: 2.5
+
+  db:
+    mem_limit: 640m
+    mem_reservation: 640m
+    cpus: 1.0
+
+  nginx:
+    mem_limit: 128m
+    cpus: 0.5

@@ -401,11 +401,11 @@ body {
   text-transform: uppercase;
 }
 
-/* QR Code de acessibilidade — canto inferior esquerdo, sempre visível */
+/* QR Code de acessibilidade — acima à direita da barra de data/clima */
 .acessivel-qr-corner {
   position: fixed;
-  bottom: 14px;
-  left: 14px;
+  bottom: 64px;
+  right: 14px;
   z-index: 500;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 8px;

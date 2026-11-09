@@ -22,9 +22,15 @@
 /public/build
 /public/hot
 /public/storage
+/playwright-report
+/test-results
 /storage/*.key
 /storage/pail
 /vendor
 Homestead.json
 Homestead.yaml
 Thumbs.db
+/.env_local
+/.superpowers
+/database/seeders/data
+/database/iroyin-local.sqlite

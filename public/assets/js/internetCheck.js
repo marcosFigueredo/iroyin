@@ -8,8 +8,9 @@ function setOffline(offline) {
         _offlineAtivo = true;
         overlay.style.display = 'flex';
         // pausa o ciclo de notícias enquanto estiver offline
-        clearTimeout(window._cycleTimer);
-        clearTimeout(window._newsTimer);
+        if (typeof window.pauseKioskCycle === 'function') {
+            window.pauseKioskCycle();
+        }
         const ns = document.getElementById('news-section');
         const nb = document.getElementById('news-banner');
         if (ns) ns.style.display = 'none';
@@ -20,9 +21,8 @@ function setOffline(offline) {
         _offlineAtivo = false;
         overlay.style.display = 'none';
         // retoma o ciclo ao reconectar (se não estiver em boa noite)
-        if (!window.isBoaNoite && typeof _showSchedules === 'function') {
-            _showSchedules();
-            _startCycle();
+        if (typeof window.resumeKioskCycle === 'function') {
+            window.resumeKioskCycle();
         }
     }
 }
