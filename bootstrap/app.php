@@ -12,6 +12,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->web(append: [\App\Http\Middleware\ExigirTrocaSenha::class]);
         $middleware->alias([
             'admin'        => \App\Http\Middleware\AdminMiddleware::class,
             'perfil'       => \App\Http\Middleware\PerfilMiddleware::class,

@@ -27,6 +27,7 @@ class User extends Authenticatable
         'active',
         'departamento_id',
         'unidade_id',
+        'trocar_senha',
     ];
 
     /**
@@ -50,6 +51,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'active' => 'boolean',
+            'trocar_senha' => 'boolean',
         ];
     }
 

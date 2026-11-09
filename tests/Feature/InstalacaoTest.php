@@ -12,6 +12,55 @@ class InstalacaoTest extends TestCase
 {
     use RefreshDatabase;
 
+    private const SENHA = 'senha-inicial-de-teste';
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $_ENV['GESTOR_SENHA_INICIAL'] = $_SERVER['GESTOR_SENHA_INICIAL'] = self::SENHA;
+    }
+
+    protected function tearDown(): void
+    {
+        unset($_ENV['GESTOR_SENHA_INICIAL'], $_SERVER['GESTOR_SENHA_INICIAL']);
+        parent::tearDown();
+    }
+
+    public function test_instalacao_exige_a_senha_inicial(): void
+    {
+        unset($_ENV['GESTOR_SENHA_INICIAL'], $_SERVER['GESTOR_SENHA_INICIAL']);
+
+        $this->expectException(\RuntimeException::class);
+        (new InstalacaoUnebSeeder)->run();
+    }
+
+    public function test_primeiro_acesso_obriga_a_troca_da_senha(): void
+    {
+        $this->seed(InstalacaoUnebSeeder::class);
+
+        $this->actingAs(User::first())->get('/admin/users')->assertRedirect(route('profile.edit'));
+        $this->actingAs(User::first())->get(route('profile.edit'))->assertOk();
+    }
+
+    public function test_depois_de_trocar_a_senha_o_painel_libera(): void
+    {
+        $this->seed(InstalacaoUnebSeeder::class);
+        $gestor = User::first();
+
+        $this->actingAs($gestor)->put(route('password.update'), [
+            'current_password' => self::SENHA,
+            'password' => 'uma-senha-bem-nova', 'password_confirmation' => 'uma-senha-bem-nova',
+        ])->assertSessionHasNoErrors();
+
+        $this->assertFalse($gestor->fresh()->trocar_senha);
+        $this->actingAs($gestor->fresh())->get('/admin/users')->assertOk();
+    }
+
+    public function test_usuario_comum_nao_e_obrigado_a_trocar(): void
+    {
+        $this->actingAs(User::factory()->admin()->create())->get('/admin/users')->assertOk();
+    }
+
     public function test_instalacao_cria_apenas_o_gestor_e_os_departamentos(): void
     {
         $this->seed(InstalacaoUnebSeeder::class);
@@ -25,7 +74,7 @@ class InstalacaoTest extends TestCase
     {
         $this->seed(InstalacaoUnebSeeder::class);
 
-        $this->post('/login', ['email' => 'gestor', 'password' => 'iroyn@2027'])->assertRedirect('/dashboard');
+        $this->post('/login', ['email' => 'gestor', 'password' => self::SENHA])->assertRedirect('/dashboard');
 
         $this->assertAuthenticated();
     }
@@ -38,7 +87,7 @@ class InstalacaoTest extends TestCase
         $this->seed(InstalacaoUnebSeeder::class);
 
         $this->assertSame(1, User::count());
-        $this->post('/login', ['email' => 'gestor', 'password' => 'iroyn@2027']);
+        $this->post('/login', ['email' => 'gestor', 'password' => self::SENHA]);
         $this->assertGuest();
     }
 
@@ -55,7 +104,6 @@ class InstalacaoTest extends TestCase
     {
         $this->seed(InstalacaoUnebSeeder::class);
 
-        $this->actingAs(User::first())->get('/dashboard')->assertSee(route('profile.edit'), false);
-        $this->actingAs(User::first())->get(route('profile.edit'))->assertOk();
+        $this->actingAs(User::factory()->admin()->create())->get('/dashboard')->assertSee(route('profile.edit'), false);
     }
 }
