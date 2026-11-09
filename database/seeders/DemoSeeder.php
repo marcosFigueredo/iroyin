@@ -2,13 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Models\Campus;
 use App\Models\Configuracao;
+use App\Models\Departamento;
 use App\Models\Instituicao;
 use App\Models\Noticia;
 use App\Models\Semestre;
 use App\Models\Horario;
+use App\Models\Unidade;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -21,11 +25,14 @@ use Illuminate\Support\Facades\Hash;
  */
 class DemoSeeder extends Seeder
 {
+    private Departamento $departamento;
+
     public function run(): void
     {
         $this->seedAdmin();
         $this->seedInstituicao();
         $this->seedConfiguracao();
+        $this->seedEstrutura();
         $this->seedSemestre();
         $this->seedNoticias();
     }
@@ -39,7 +46,7 @@ class DemoSeeder extends Seeder
             [
                 'name'     => 'Administrador Demo',
                 'password' => Hash::make('demo@2026'),
-                'role'     => 'admin',
+                'role'     => 'gestor',
                 'active'   => true,
             ]
         );
@@ -55,7 +62,6 @@ class DemoSeeder extends Seeder
             Instituicao::create([
                 'nome'         => 'Instituto de Tecnologia e Inovação',
                 'sigla'        => 'ITI',
-                'departamento' => 'Departamento de Sistemas de Informação',
                 'cidade'       => 'Cidade Exemplo',
                 'estado'       => 'EX',
                 'texto_banner' => 'NOTÍCIAS',
@@ -70,14 +76,27 @@ class DemoSeeder extends Seeder
         $cfg = Configuracao::first();
 
         if (! $cfg) {
-            Configuracao::create([
-                'cidade_clima'     => '',
-                'weather_api_key'  => '',
-                'duracao_horarios' => 120,
-                'duracao_noticia'  => 30,
-                'tema'             => 'azul',
-            ]);
+            Configuracao::create(['weather_api_key' => '']);
         }
+    }
+
+    // ── Fictional campus and department, served at /demo ──────────────────────
+
+    private function seedEstrutura(): void
+    {
+        $campus = Campus::firstOrCreate(['nome' => 'Campus Demo'], ['cidade' => 'Salvador', 'estado' => 'BA']);
+
+        $this->departamento = Departamento::firstOrCreate(['slug' => 'demo'], [
+            'campus_id' => $campus->id, 'sigla' => 'DEMO', 'nome' => 'Departamento de Demonstração',
+        ]);
+    }
+
+    private function curso(string $nome): int
+    {
+        return Unidade::firstOrCreate(
+            ['departamento_id' => $this->departamento->id, 'nome' => $nome],
+            ['tipo' => 'curso'],
+        )->id;
     }
 
     // ── Semester + schedules for every day of the week ────────────────────────
@@ -117,7 +136,8 @@ class DemoSeeder extends Seeder
 
         foreach ($dias as $dia) {
             foreach ($grades as $h) {
-                Horario::create(array_merge($h, [
+                Horario::create(array_merge(Arr::except($h, 'curso'), [
+                    'unidade_id'  => $this->curso($h['curso']),
                     'semestre_id' => $semestre->id,
                     'dia_semana'  => $dia,
                 ]));
@@ -132,7 +152,8 @@ class DemoSeeder extends Seeder
         ];
 
         foreach ($sabado as $h) {
-            Horario::create(array_merge($h, [
+            Horario::create(array_merge(Arr::except($h, 'curso'), [
+                    'unidade_id'  => $this->curso($h['curso']),
                 'semestre_id' => $semestre->id,
                 'dia_semana'  => 'sabado',
             ]));
