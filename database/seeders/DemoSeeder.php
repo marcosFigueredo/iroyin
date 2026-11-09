@@ -29,6 +29,11 @@ class DemoSeeder extends Seeder
 
     public function run(): void
     {
+        // A conta de demonstração tem senha conhecida: nunca em produção.
+        if (app()->isProduction()) {
+            throw new \RuntimeException('Os dados de demonstração não podem ser carregados em produção.');
+        }
+
         $this->seedAdmin();
         $this->seedInstituicao();
         $this->seedConfiguracao();

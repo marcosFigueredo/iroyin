@@ -58,6 +58,14 @@ class SeedersTest extends TestCase
         (new TesteDcetSeeder)->run();
     }
 
+    public function test_demo_nao_roda_em_producao(): void
+    {
+        $this->app->detectEnvironment(fn () => 'production');
+
+        $this->expectException(\RuntimeException::class);
+        (new DemoSeeder)->run();
+    }
+
     public function test_dados_de_teste_criam_um_usuario_de_cada_perfil(): void
     {
         $this->seed(TesteDcetSeeder::class);
