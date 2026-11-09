@@ -47,7 +47,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::post('noticias/buscar-feed',  [NoticiaController::class, 'buscarFeed']) ->name('noticias.buscar-feed');
     Route::post('noticias/buscar-todos', [NoticiaController::class, 'buscarTodos'])->name('noticias.buscar-todos');
     Route::resource('semestres', SemestreController::class)->except(['show','create','edit','update']);
-    Route::post('semestres/{semestre}/ativar', [SemestreController::class, 'ativar'])->name('semestres.ativar');
     Route::prefix('semestres/{semestre}')->name('semestres.')->group(function () {
         Route::get('horarios',                [HorarioController::class, 'index'])   ->name('horarios.index');
         Route::get('horarios/create',         [HorarioController::class, 'create'])  ->name('horarios.create');

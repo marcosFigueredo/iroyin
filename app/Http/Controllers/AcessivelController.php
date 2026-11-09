@@ -25,7 +25,7 @@ class AcessivelController extends Controller
         $diaKey  = self::DIAS[now()->dayOfWeek];
         $diaNome = self::DIAS_NOMES[$diaKey];
 
-        $semestre = Semestre::where('ativo', true)->first();
+        $semestre = Semestre::vigente();
 
         $aulas = collect();
         if ($semestre) {

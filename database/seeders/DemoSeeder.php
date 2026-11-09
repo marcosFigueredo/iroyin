@@ -85,13 +85,9 @@ class DemoSeeder extends Seeder
     private function seedSemestre(): void
     {
         $semestre = Semestre::firstOrCreate(
-            ['nome' => '2026.1'],
-            ['ativo' => true]
+            ['nome' => now()->year.'.1'],
+            ['inicio' => now()->subMonth()->toDateString(), 'fim' => now()->addMonths(3)->toDateString()]
         );
-
-        if (! $semestre->ativo) {
-            $semestre->update(['ativo' => true]);
-        }
 
         if (Horario::where('semestre_id', $semestre->id)->exists()) {
             return;

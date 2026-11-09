@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">Horários — {{ $semestre->nome }}{{ $semestre->ativo ? ' (ativo no painel)' : '' }}</x-slot>
+    <x-slot name="header">Horários — {{ $semestre->nome }}{{ $semestre->estaVigente() ? ' (vigente)' : '' }}</x-slot>
 
     <div class="d-flex flex-wrap gap-2 mb-4">
         <a href="{{ route('admin.semestres.index') }}" class="btn btn-outline-secondary btn-sm">

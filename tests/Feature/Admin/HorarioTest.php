@@ -15,7 +15,7 @@ class HorarioTest extends TestCase
 
     private function semestre(): Semestre
     {
-        return Semestre::create(['nome' => '2026.1', 'ativo' => true]);
+        return Semestre::create(['nome' => '2026.1', 'inicio' => now()->subMonth(), 'fim' => now()->addMonth()]);
     }
 
     public function test_admin_can_create_semestre(): void
@@ -23,7 +23,7 @@ class HorarioTest extends TestCase
         $admin = User::factory()->admin()->create();
 
         $this->actingAs($admin)
-            ->post('/admin/semestres', ['nome' => '2026.2'])
+            ->post('/admin/semestres', ['nome' => '2026.2', 'inicio' => '2030-08-01', 'fim' => '2030-12-20'])
             ->assertRedirect();
 
         $this->assertDatabaseHas('semestres', ['nome' => '2026.2']);

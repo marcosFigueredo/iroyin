@@ -42,7 +42,7 @@ class HorariosApiTest extends TestCase
         ];
         $hoje = $diasMap[now()->dayOfWeek];
 
-        $semestre = Semestre::create(['nome' => '2026.1', 'ativo' => true]);
+        $semestre = Semestre::create(['nome' => '2026.1', 'inicio' => now()->subMonth(), 'fim' => now()->addMonth()]);
 
         Horario::create([
             'semestre_id' => $semestre->id,
@@ -66,7 +66,7 @@ class HorariosApiTest extends TestCase
 
     public function test_horarios_ignores_inactive_semesters(): void
     {
-        $semestre = Semestre::create(['nome' => '2025.2', 'ativo' => false]);
+        $semestre = Semestre::create(['nome' => '2025.2', 'inicio' => now()->subYear(), 'fim' => now()->subMonths(6)]);
 
         Horario::create([
             'semestre_id' => $semestre->id,
@@ -91,7 +91,7 @@ class HorariosApiTest extends TestCase
         ];
         $hoje = $diasMap[now()->dayOfWeek];
 
-        $semestre = Semestre::create(['nome' => '2026.1', 'ativo' => true]);
+        $semestre = Semestre::create(['nome' => '2026.1', 'inicio' => now()->subMonth(), 'fim' => now()->addMonth()]);
 
         Horario::create([
             'semestre_id' => $semestre->id,

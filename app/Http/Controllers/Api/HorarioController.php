@@ -14,7 +14,7 @@ class HorarioController extends Controller
         $dias = ['domingo','segunda','terca','quarta','quinta','sexta','sabado'];
         $dia  = $dias[now()->dayOfWeek];
 
-        $semestre = Semestre::where('ativo', true)->first();
+        $semestre = Semestre::vigente();
 
         if (!$semestre) {
             return response()->json(['aulas' => [], 'dia' => $dia, 'semestre' => null]);
