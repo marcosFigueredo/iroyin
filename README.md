@@ -371,19 +371,42 @@ New users are created by the admin with a temporary password. There is no public
 
 ---
 
+## Multiple Departments
+
+One installation serves many departments. Each one has its own monitor address, built from its acronym and campus number:
+
+| Address | Shows |
+|---|---|
+| `/` | List of active departments |
+| `/{slug}` | Monitor: the department's classes, its notices, rectorate notices, news and open calls |
+| `/{slug}/acessivel` | Mobile page: classes and notices in full, with no time limit |
+
+| Profile (`role`) | Can |
+|---|---|
+| `gestor` | Campuses, departments, calendar, feeds, common news and open calls |
+| `reitoria` | Publish notices shown on every monitor |
+| `departamento` | Courses, units, secretaries, theme and timing of its department; publish notices |
+| `unidade` | Its own course data and schedules; publish text notices |
+
+To load the UNEB campuses and departments: `php artisan db:seed --class=UnebSeeder`.
+
+For local test data (never in production): `php artisan db:seed --class=TesteDcetSeeder`.
+
+---
+
 ## API Endpoints
 
 All endpoints are public (no authentication required) and consumed by the kiosk display.
 
 | Endpoint | Method | Description |
 | --- | --- | --- |
-| `/api/config` | GET | Institution settings and display configuration |
-| `/api/horarios` | GET | Today's class schedule (active semester) |
-| `/api/noticias` | GET | Active news items (within date range) |
-| `/api/editais` | GET | Active open calls ordered by deadline |
-| `/api/clima` | GET | Current weather proxied from OpenWeatherMap |
+| `/api/{slug}/config` | GET | Institution settings and display configuration |
+| `/api/{slug}/horarios` | GET | Today's class schedule (active semester) |
+| `/api/{slug}/noticias` | GET | Active news items (within date range) |
+| `/api/{slug}/editais` | GET | Active open calls ordered by deadline |
+| `/api/{slug}/clima` | GET | Current weather proxied from OpenWeatherMap |
 
-`/api/clima` returns HTTP 204 if no API key or city is configured — the weather widget hides itself automatically.
+`/api/{slug}/clima` returns HTTP 204 if no API key or city is configured — the weather widget hides itself automatically.
 
 ---
 
@@ -403,7 +426,7 @@ All 69 PHP tests and 5 browser tests should pass on a fresh install. Tests cover
 ### Kiosk shows blank screen or spinner
 
 - Check that the web server is running and `APP_URL` in `.env` matches the actual URL
-- Open browser console — if `/api/config` returns a 500 error, check `storage/logs/laravel.log`
+- Open browser console — if `/api/{slug}/config` returns a 500 error, check `storage/logs/laravel.log`
 - Make sure `php artisan storage:link` was run
 
 ### Schedule is empty
@@ -420,7 +443,7 @@ All 69 PHP tests and 5 browser tests should pass on a fresh install. Tests cover
 
 - Add a valid OpenWeatherMap API key in `/admin/configuracoes`
 - The city name must match OpenWeatherMap's naming (e.g., `Salvador,BR`)
-- Check `/api/clima` directly — if it returns 204, the key or city is not configured
+- Check `/api/{slug}/clima` directly — if it returns 204, the key or city is not configured
 
 ### `/setup` keeps redirecting even after creating the admin
 

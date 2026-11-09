@@ -7,6 +7,32 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- **Multiple departments** in one installation: institution → campus → department → course, laboratory or research center
+- **Monitor per department** at `/{slug}`; the root page lists the active departments
+- **Four profiles**: central manager, rectorate, department office and unit secretariat, each limited to its own scope
+- **Notices** with urgency levels, live preview and a discreet pulse for urgent messages
+- **Display criteria**: reading time based on text length, priority order and rotation; messages are never cut short
+- **Academic calendar**: the current semester comes from start and end dates
+- **Mobile page** at `/{slug}/acessivel` with notices in full and no time limit
+- Optional `UnebSeeder` with the UNEB campuses and departments
+
+### Changed
+
+- Public API moved to `/api/{slug}/...`
+- `public/index.html` renamed to `public/monitor.html`
+- Schedules belong to a registered course
+
+### Security
+
+- Dependencies updated; `composer audit` reports no advisories
+- Demo data refuses to run in production
+
+---
+
 ## [1.0.0] — 2026-06-27
 
 ### Added
