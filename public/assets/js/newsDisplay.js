@@ -41,6 +41,11 @@ function renderNewsItem(item, duration) {
 
     // Imagem
     if (item.imagem) {
+        // Imagem que ainda não foi guardada não pode aparecer quebrada sem rede.
+        img.onerror = function () {
+            img.style.display = 'none';
+            noImg.style.display = 'flex';
+        };
         img.src = '/' + item.imagem;
         img.style.display = 'block';
         noImg.style.display = 'none';

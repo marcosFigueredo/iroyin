@@ -35,11 +35,7 @@ window.kioskApi = function (recurso) {
     return '/api/' + window.KIOSK_SLUG + '/' + recurso + '?_=' + Date.now();
 };
 
-window._configReady = fetch(window.kioskApi('config'))
-    .then(function (r) {
-        if (!r.ok) throw new Error('config indisponível');
-        return r.json();
-    })
+window._configReady = window.Dados.buscar('config')
     .then(function (cfg) {
         window.KIOSK_CONFIG = cfg;
 

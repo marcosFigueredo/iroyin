@@ -156,8 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
         hideBoaNoite();
         document.getElementById('horarios').style.display = 'block';
 
-        fetch(window.kioskApi('horarios'))
-            .then(r => r.json())
+        window.Dados.buscar('horarios')
             .then(data => {
                 const turno = detectTurno(now);
                 updateTurnoLabel(turno ? turno.key : null);

@@ -1,16 +1,16 @@
 window._configReady.then(function () {
+    var bloco = document.querySelector('.info-weather');
+    var icone = document.getElementById('weather-icon');
+
+    // O ícone vem de fora: sem rede, some em vez de aparecer quebrado.
+    icone.onerror = function () { icone.style.visibility = 'hidden'; };
+    icone.onload  = function () { icone.style.visibility = 'visible'; };
+
     function updateWeather() {
-        fetch(window.kioskApi('clima'))
-            .then(function (r) {
-                if (r.status === 204) {
-                    var weatherEl = document.querySelector('.info-weather');
-                    if (weatherEl) weatherEl.style.display = 'none';
-                    return null;
-                }
-                return r.json();
-            })
+        window.Dados.buscar('clima')
             .then(function (data) {
-                if (!data || data.erro) return;
+                bloco.style.visibility = data ? 'visible' : 'hidden';
+                if (!data) return;
 
                 document.getElementById('weather-temp').textContent     = data.temp + '°C';
                 document.getElementById('weather-city').textContent     = data.cidade;
@@ -19,7 +19,11 @@ window._configReady.then(function () {
                 document.getElementById('weather-humidity').textContent = data.umidade + '%';
                 document.getElementById('weather-wind').textContent     = data.vento + ' m/s';
             })
-            .catch(function (err) { console.error('Erro ao obter dados do clima:', err); });
+            .catch(function (err) {
+                // Sem dado novo nem guardado: melhor ocultar do que mostrar vazio.
+                bloco.style.visibility = 'hidden';
+                console.error('Erro ao obter dados do clima:', err);
+            });
     }
 
     setInterval(updateWeather, 600000);

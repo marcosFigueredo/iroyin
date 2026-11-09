@@ -3,6 +3,9 @@ import { expect, test } from '@playwright/test';
 
 const monitorHtml = readFileSync('public/monitor.html', 'utf8');
 
+// Os testes daqui simulam a rede pela página; o cache real não pode interferir.
+test.use({ serviceWorkers: 'block' });
+
 const aula = {
     disciplina: 'Teste de Software',
     professor: 'Prof. E2',
@@ -85,6 +88,32 @@ async function prepareKiosk(page, scenario, counters = {}) {
         const request = route.request();
         const url = new URL(request.url());
 
+        if (scenario.semCdn && (url.pathname.endsWith('/anime.min.js') || url.pathname.endsWith('/qrcode.min.js'))) {
+            return route.fulfill({ contentType: 'application/javascript', body: '' });
+        }
+
+        if (url.pathname.endsWith('/anime.min.js')) {
+            return route.fulfill({
+                contentType: 'application/javascript',
+                body: `window.anime={
+                    set:function(){},
+                    stagger:function(){return 0;},
+                    timeline:function(options){
+                        var timeline={add:function(){return timeline;}};
+                        setTimeout(function(){if(options.complete)options.complete();},0);
+                        return timeline;
+                    }
+                };`,
+            });
+        }
+
+        if (url.pathname.endsWith('/qrcode.min.js')) {
+            return route.fulfill({
+                contentType: 'application/javascript',
+                body: 'window.QRCode=function(element){element.dataset.qrcode="rendered";};',
+            });
+        }
+
         if (url.origin === 'http://127.0.0.1:4173') {
             // O banco do teste é vazio: o monitor é servido direto do arquivo.
             if (url.pathname === '/dcet2') {
@@ -134,32 +163,6 @@ async function prepareKiosk(page, scenario, counters = {}) {
             return route.continue();
         }
 
-        if (scenario.semCdn && (url.pathname.endsWith('/anime.min.js') || url.pathname.endsWith('/qrcode.min.js'))) {
-            return route.fulfill({ contentType: 'application/javascript', body: '' });
-        }
-
-        if (url.pathname.endsWith('/anime.min.js')) {
-            return route.fulfill({
-                contentType: 'application/javascript',
-                body: `window.anime={
-                    set:function(){},
-                    stagger:function(){return 0;},
-                    timeline:function(options){
-                        var timeline={add:function(){return timeline;}};
-                        setTimeout(function(){if(options.complete)options.complete();},0);
-                        return timeline;
-                    }
-                };`,
-            });
-        }
-
-        if (url.pathname.endsWith('/qrcode.min.js')) {
-            return route.fulfill({
-                contentType: 'application/javascript',
-                body: 'window.QRCode=function(element){element.dataset.qrcode="rendered";};',
-            });
-        }
-
         return route.fulfill({
             status: 200,
             contentType: request.resourceType() === 'script'
@@ -187,7 +190,7 @@ test('tudo vazio mantém uma tela informativa, sem clima e sem área em branco',
     await expect(page.locator('#horarios')).toBeVisible();
     await expect(page.locator('#news-section')).toBeHidden();
     await expect(page.locator('#editais-section')).toBeHidden();
-    await expect(page.locator('#offline-overlay')).toBeHidden();
+    await expect(page.locator('#offline-aviso')).toBeHidden();
 
     await page.waitForTimeout(700);
     await expect(page.getByText('Não há aulas no momento.')).toBeVisible();
@@ -222,7 +225,7 @@ test('sem aulas, a mensagem vazia aparece e o ciclo de conteúdo continua', asyn
     await expect(page.getByText(noticia.titulo)).toBeVisible({ timeout: 3_000 });
 });
 
-test('perda e retorno da rede exibem o overlay e retomam o ciclo', async ({ context, page }) => {
+test('sem rede o painel segue rodando com um aviso discreto', async ({ context, page }) => {
     const counters = {};
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
@@ -234,15 +237,15 @@ test('perda e retorno da rede exibem o overlay e retomam o ciclo', async ({ cont
     await expect(page.getByText('Teste de Software')).toBeVisible();
 
     await context.setOffline(true);
-    await expect(page.locator('#offline-overlay')).toBeVisible();
-    await expect(page.getByText('Estamos sem conexão')).toBeVisible();
+    await expect(page.locator('#offline-aviso')).toBeVisible();
+    await expect(page.locator('#offline-aviso')).toContainText('Sem conexão');
+    await expect(page.getByText('Teste de Software')).toBeVisible();
 
-    const requestsBeforeRecovery = counters.noticias || 0;
     await context.setOffline(false);
+    await page.evaluate(() => window.dispatchEvent(new Event('online')));
 
-    await expect(page.locator('#offline-overlay')).toBeHidden();
+    await expect(page.locator('#offline-aviso')).toBeHidden();
     await expect(page.locator('#horarios')).toBeVisible();
-    await expect.poll(() => counters.noticias || 0).toBeGreaterThan(requestsBeforeRecovery);
     expect(errors).toEqual([]);
 });
 
@@ -299,7 +302,7 @@ test('departamento desativado mantém a tela com fallback', async ({ page }) => 
     await page.goto('/dcet2');
 
     await expect(page.locator('#horarios')).toBeVisible();
-    await expect(page.locator('#offline-overlay')).toBeHidden();
+    await expect(page.locator('#offline-aviso')).toBeHidden();
     await page.waitForTimeout(500);
     expect(errors).toEqual([]);
 });
@@ -341,8 +344,7 @@ test('queda de rede com busca pendente não duplica o ciclo', async ({ page }) =
             window.chamadas += 1;
             return original.apply(this, args);
         };
-        window.pauseKioskCycle();
-        window.resumeKioskCycle();
+        window.dispatchEvent(new Event('kioskResumeMode'));
     });
 
     await page.waitForTimeout(3000);

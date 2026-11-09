@@ -2,8 +2,7 @@
 // Expõe: renderEdital(item, duration), fetchEditais(callback)
 
 function fetchEditais(callback) {
-    fetch(window.kioskApi('editais'))
-        .then(function (r) { return r.json(); })
+    window.Dados.buscar('editais')
         .then(function (data) { callback(data.editais || []); })
         .catch(function () { callback([]); });
 }

@@ -3,7 +3,6 @@ let _config = { duracao_horarios: 120, duracao_noticia: 30, tema: 'azul', logo_u
 
 let _cycleTimer = null;
 let _newsTimer  = null;
-let _pausado    = false;
 let _emHorarios = false;
 let _geracao    = 0;     // invalida buscas e animações de um ciclo já encerrado
 let _itens      = [];
@@ -41,28 +40,6 @@ function _limparTimers() {
     _newsTimer  = null;
 }
 
-// API mínima usada pelo monitor de conectividade.
-function pauseKioskCycle() {
-    _pausado = true;
-    _emHorarios = false;
-    _limparTimers();
-}
-
-function resumeKioskCycle() {
-    _pausado = false;
-    _limparTimers();
-    if (window.isBoaNoite) {
-        _newsOnlyLoop();
-        return;
-    }
-
-    _showSchedules();
-    _runCycle();
-}
-
-window.pauseKioskCycle  = pauseKioskCycle;
-window.resumeKioskCycle = resumeKioskCycle;
-
 // ── Visibilidade ─────────────────────────────────────────────────────────────
 
 function _esconderMensagens() {
@@ -87,8 +64,7 @@ function _hideSchedules() {
 // ── Busca de conteúdo ─────────────────────────────────────────────────────────
 
 function _buscar(recurso, campo, tipo) {
-    return fetch(window.kioskApi(recurso))
-        .then(function (r) { return r.ok ? r.json() : {}; })
+    return window.Dados.buscar(recurso)
         .then(function (data) {
             return (data[campo] || []).map(function (item) {
                 return Object.assign({}, item, { tipo: tipo });
@@ -180,11 +156,11 @@ function _showBlock(items, onDone) {
 // ── Ciclo normal: horários → banner → mensagens → horários ────────────────────
 
 function _runCycle() {
-    if (window.isBoaNoite || _pausado) return;
+    if (window.isBoaNoite) return;
 
     var geracao = _geracao;
     _buscarTudo().then(function (itens) {
-        if (geracao !== _geracao || window.isBoaNoite || _pausado) return;
+        if (geracao !== _geracao || window.isBoaNoite) return;
         _itens = itens;
         _showSchedules();
 
@@ -201,7 +177,7 @@ function _runCycle() {
 function verificarUrgentes() {
     var geracao = _geracao;
     return _buscarInformes().then(function (informes) {
-        if (geracao !== _geracao || !_emHorarios || _pausado || window.isBoaNoite) return;
+        if (geracao !== _geracao || !_emHorarios || window.isBoaNoite) return;
 
         var novos = informes.filter(function (i) {
             return i.urgencia === 'urgente' && !_urgentesVistos.has(i.id);
@@ -219,11 +195,11 @@ window.verificarUrgentes = verificarUrgentes;
 // ── Modo sem aulas: loop contínuo de mensagens ────────────────────────────────
 
 function _newsOnlyLoop() {
-    if (!window.isBoaNoite || _pausado) return;
+    if (!window.isBoaNoite) return;
 
     var geracao = _geracao;
     _buscarTudo().then(function (itens) {
-        if (geracao !== _geracao || !window.isBoaNoite || _pausado) return;
+        if (geracao !== _geracao || !window.isBoaNoite) return;
 
         if (itens.length === 0) {
             document.getElementById('boa-noite').style.display = 'flex';

@@ -64,4 +64,13 @@ class InformesApiTest extends TestCase
     {
         $this->getJson('/api/nada/informes')->assertNotFound();
     }
+
+    public function test_informe_envia_o_fim_para_sair_da_tela_sem_rede(): void
+    {
+        $d = $this->criaDepartamento('dcet1');
+        $informe = $this->criaInforme($d);
+
+        $this->getJson('/api/dcet1/informes')
+            ->assertJsonFragment(['fim' => $informe->fim->toISOString()]);
+    }
 }

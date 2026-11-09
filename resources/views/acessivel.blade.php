@@ -407,7 +407,7 @@
         aplicarFonte();
 
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/acessivel-sw.js');
+            navigator.serviceWorker.register('/iroyin-sw.js');
         }
 
         // ── Leitura em voz alta (Web Speech API) ─────────────────────────────

@@ -117,4 +117,24 @@ class HorariosApiTest extends TestCase
                 ],
             ]);
     }
+
+    public function test_horarios_enviam_a_semana_para_funcionar_sem_rede(): void
+    {
+        $semestre = $this->criaSemestreVigente();
+        $outro = $this->criaCurso($this->criaDepartamento('dcet1'));
+
+        foreach ([['segunda', 'Cálculo', $this->curso], ['terca', 'Redes', $this->curso], ['terca', 'De outro departamento', $outro]] as [$dia, $disciplina, $curso]) {
+            Horario::create([
+                'semestre_id' => $semestre->id, 'dia_semana' => $dia, 'disciplina' => $disciplina,
+                'professor' => 'P', 'unidade_id' => $curso->id, 'inicio' => '08:00', 'fim' => '09:40', 'sala' => 'L1',
+            ]);
+        }
+
+        $json = $this->getJson('/api/dcet2/horarios')->assertOk()->json();
+
+        $this->assertSame(['Cálculo'], array_column($json['aulas'], 'disciplina'));
+        $this->assertSame(['Cálculo'], array_column($json['semana']['segunda'], 'disciplina'));
+        $this->assertSame(['Redes'], array_column($json['semana']['terca'], 'disciplina'));
+        $this->assertSame($semestre->fim->toDateString(), $json['semestre_fim']);
+    }
 }

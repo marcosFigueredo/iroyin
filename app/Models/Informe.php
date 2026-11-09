@@ -70,6 +70,7 @@ class Informe extends Model
             'origem'    => $this->origem(),
             'escopo'    => $this->escopo(),
             'criado_em' => $this->created_at?->toISOString(),
+            'fim'       => $this->fim?->toISOString(),
         ];
     }
 }

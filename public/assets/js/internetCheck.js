@@ -1,34 +1,17 @@
-let _offlineAtivo = false;
-
+// Sem rede o painel segue com os dados guardados; aqui só se avisa de onde eles vêm.
 function setOffline(offline) {
-    const overlay = document.getElementById('offline-overlay');
-    if (!overlay) return;
+    const aviso = document.getElementById('offline-aviso');
+    if (!aviso) return;
 
-    if (offline && !_offlineAtivo) {
-        _offlineAtivo = true;
-        overlay.style.display = 'flex';
-        // pausa o ciclo de notícias enquanto estiver offline
-        if (typeof window.pauseKioskCycle === 'function') {
-            window.pauseKioskCycle();
-        }
-        const ns = document.getElementById('news-section');
-        const nb = document.getElementById('news-banner');
-        if (ns) ns.style.display = 'none';
-        if (nb) nb.style.display = 'none';
-    }
-
-    if (!offline && _offlineAtivo) {
-        _offlineAtivo = false;
-        overlay.style.display = 'none';
-        // retoma o ciclo ao reconectar (se não estiver em boa noite)
-        if (typeof window.resumeKioskCycle === 'function') {
-            window.resumeKioskCycle();
-        }
-    }
+    if (offline) aviso.textContent = window.Dados.textoAviso();
+    aviso.style.display = offline ? 'block' : 'none';
 }
 
 function testServerConnection() {
-    fetch('/ping.txt', { cache: 'no-store' })
+    const opcoes = { cache: 'no-store' };
+    if (AbortSignal.timeout) opcoes.signal = AbortSignal.timeout(8000);
+
+    fetch('/ping.txt', opcoes)
         .then(r => setOffline(!r.ok))
         .catch(() => setOffline(true));
 }

@@ -21,25 +21,28 @@ class HorarioController extends Controller
             return response()->json(['aulas' => [], 'dia' => $dia, 'semestre' => null]);
         }
 
-        $aulas = Horario::with('unidade')
+        // A semana inteira deixa o monitor correto nos dias em que ficar sem rede.
+        $semana = Horario::with('unidade')
             ->where('semestre_id', $semestre->id)
-            ->where('dia_semana', $dia)
             ->whereHas('unidade', fn ($q) => $q->where('departamento_id', $departamento->id))
             ->orderBy('inicio')
             ->get()
-            ->map(fn (Horario $h) => [
+            ->groupBy('dia_semana')
+            ->map(fn ($aulas) => $aulas->map(fn (Horario $h) => [
                 'disciplina' => $h->disciplina,
                 'professor'  => $h->professor,
                 'curso'      => $h->curso,
                 'inicio'     => $h->inicio,
                 'fim'        => $h->fim,
                 'sala'       => $h->sala,
-            ]);
+            ])->values());
 
         return response()->json([
-            'semestre' => $semestre->nome,
-            'dia'      => $dia,
-            'aulas'    => $aulas,
+            'semestre'     => $semestre->nome,
+            'semestre_fim' => $semestre->fim->toDateString(),
+            'dia'          => $dia,
+            'aulas'        => $semana->get($dia, collect()),
+            'semana'       => $semana,
         ]);
     }
 }
