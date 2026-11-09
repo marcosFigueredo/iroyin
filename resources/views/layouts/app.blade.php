@@ -77,6 +77,12 @@
                 </a>
 
                 <div class="nav-label">Conteúdo</div>
+                @if(! auth()->user()->isGestor() || auth()->user()->escopoDepartamentoId())
+                <a href="{{ route('admin.informes.index') }}"
+                   class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('admin.informes.*') ? 'active' : '' }}">
+                    <i class="bi bi-chat-square-text"></i> Informes
+                </a>
+                @endif
                 @unless(auth()->user()->isReitoria())
                 <a href="{{ route('admin.semestres.index') }}"
                    class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('admin.semestres.*') ? 'active' : '' }}">

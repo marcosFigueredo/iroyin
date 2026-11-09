@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Departamento;
 use App\Models\Informe;
+use App\Models\Instituicao;
 use App\Support\ImagemUpload;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -121,6 +122,7 @@ class InformeController extends Controller
 
         return [
             'podeImagem' => ! $usuario->isUnidade(),
+            'logoUrl'    => ($logo = Instituicao::current()->logo_url) ? asset($logo) : asset('images/logoUneb.png'),
             'tema'       => $departamento?->tema ?? 'azul',
             'cabecalho'  => $departamento
                 ? mb_strtoupper($departamento->slug.' · '.$departamento->nome)

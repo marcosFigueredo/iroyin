@@ -1,0 +1,118 @@
+/* Quadro de informe: usado no monitor e na pré-visualização do painel.
+   Tamanhos em cqw para sair igual em qualquer largura de tela. */
+.informe-tela {
+  --informe-fundo: #1a2f4e;
+  --informe-destaque: #4d7fa8;
+  --informe-secundaria: #7eb8d4;
+  container-type: inline-size;
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+.informe-logo {
+  width: 24%;
+  flex: none;
+  box-sizing: border-box;
+  padding: 2.5cqw;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.informe-logo img { max-width: 100%; max-height: 100%; }
+
+.informe-imagem {
+  width: 55%;
+  flex: none;
+  background: #0a1520;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #cfe0f0;
+  font-size: 2cqw;
+}
+
+.informe-imagem img { width: 100%; height: 100%; object-fit: cover; }
+
+.informe-corpo {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 3cqw 4cqw;
+  background: var(--informe-fundo);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.6cqw;
+}
+
+.informe-selo {
+  align-self: flex-start;
+  padding: .4cqw 1.2cqw;
+  border-radius: 99px;
+  background: var(--informe-destaque);
+  font-size: 1.6cqw;
+  font-weight: 700;
+  letter-spacing: .05em;
+}
+
+.informe-titulo { font-size: 4.4cqw; font-weight: 700; line-height: 1.12; overflow-wrap: anywhere; }
+.informe-texto  { font-size: 2.9cqw; line-height: 1.3; overflow-wrap: anywhere; }
+.informe-origem { font-size: 1.8cqw; color: var(--informe-secundaria); }
+
+.informe-tela.importante .informe-selo { background: #e6b800; color: #222; }
+
+.informe-tela.urgente .informe-corpo  { background: #7a120d; }
+.informe-tela.urgente .informe-selo   { background: #fff; color: #b3261e; }
+.informe-tela.urgente .informe-origem { color: #ffd9d6; }
+
+.informe-tela.urgente::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: .45cqw solid #ff1744;
+  animation: informe-pulsa 2.6s ease-in-out infinite;
+}
+
+@keyframes informe-pulsa {
+  0%, 100% { opacity: .35; box-shadow: inset 0 0 0 0 rgba(255, 23, 68, 0); }
+  50%      { opacity: .9;  box-shadow: inset 0 0 1.4cqw .2cqw rgba(255, 23, 68, .4); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .informe-tela.urgente::after { animation: none; opacity: .9; }
+}
+
+/* Miniatura do monitor no painel */
+.informe-previa {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: #000;
+  border: 10px solid #222;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.informe-previa-topo, .informe-previa-base {
+  background: var(--informe-cabecalho, #1a2f4e);
+  color: #fff;
+  flex: none;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+.informe-previa-topo { text-align: center; font-weight: 700; font-size: 2.4cqw; padding: 1.1cqw; }
+.informe-previa-base { height: 4cqw; }
+.informe-previa-tela { flex: 1; min-height: 0; }
