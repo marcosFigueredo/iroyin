@@ -114,6 +114,22 @@ class CadastrosTest extends TestCase
         $this->assertNotNull($curso->fresh());
     }
 
+    public function test_excluir_curso_com_horarios_e_bloqueado(): void
+    {
+        $d = $this->criaDepartamento();
+        $curso = $this->criaCurso($d);
+        \App\Models\Horario::create([
+            'semestre_id' => $this->criaSemestreVigente()->id, 'unidade_id' => $curso->id, 'dia_semana' => 'segunda',
+            'disciplina' => 'A', 'professor' => 'P', 'inicio' => '08:00', 'fim' => '09:00',
+        ]);
+
+        $this->actingAs($this->criaUsuario('departamento', $d))
+            ->delete(route('admin.unidades.destroy', $curso))
+            ->assertSessionHas('error');
+
+        $this->assertNotNull($curso->fresh());
+    }
+
     public function test_departamento_nao_cria_usuario_gestor(): void
     {
         $this->actingAs($this->criaUsuario('departamento', $this->criaDepartamento()))

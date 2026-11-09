@@ -42,9 +42,12 @@
 
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Curso</label>
-                                <input type="text" name="curso" class="form-control @error('curso') is-invalid @enderror"
-                                       value="{{ old('curso', $horario->curso) }}" required>
-                                @error('curso') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                <select name="unidade_id" class="form-select @error('unidade_id') is-invalid @enderror" required>
+                                    @foreach($cursos as $curso)
+                                        <option value="{{ $curso->id }}" @selected(old('unidade_id', $horario->unidade_id) == $curso->id)>{{ $curso->nome }}</option>
+                                    @endforeach
+                                </select>
+                                @error('unidade_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <div class="col-md-6">

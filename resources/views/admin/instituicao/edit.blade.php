@@ -37,17 +37,6 @@
                             @error('sigla') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Departamento / Unidade</label>
-                            <input type="text" name="departamento"
-                                   class="form-control @error('departamento') is-invalid @enderror"
-                                   value="{{ old('departamento', $inst->departamento) }}"
-                                   placeholder="Ex: DEPARTAMENTO DE COMPUTAÇÃO"
-                                   required maxlength="255">
-                            <div class="form-text">Exibido como título na tela de aulas do painel.</div>
-                            @error('departamento') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-
                         <div class="row g-3 mb-3">
                             <div class="col-sm-7">
                                 <label class="form-label fw-semibold">Cidade</label>

@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Edital;
+use App\Models\Departamento;
 use Illuminate\Http\JsonResponse;
 
 class EditalController extends Controller
 {
-    public function index(): JsonResponse
+    public function index(Departamento $departamento): JsonResponse
     {
         $editais = Edital::with('agencia')
             ->ativos()

@@ -4,17 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Configuracao;
+use App\Models\Departamento;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class ClimaController extends Controller
 {
-    public function index(): JsonResponse
+    public function index(Departamento $departamento): JsonResponse
     {
         $cfg    = Configuracao::current();
         $apiKey = $cfg->weather_api_key;
-        $city   = $cfg->cidade_clima;
+        $city   = $departamento->campus->cidadeClima();
 
         if (!$apiKey || !$city) {
             return response()->json(['erro' => 'clima_nao_configurado'], 204);

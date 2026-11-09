@@ -24,9 +24,14 @@ class Unidade extends Model
         return $this->hasMany(User::class);
     }
 
+    public function horarios(): HasMany
+    {
+        return $this->hasMany(Horario::class);
+    }
+
     public function podeExcluir(): bool
     {
-        return ! $this->usuarios()->exists();
+        return ! $this->usuarios()->exists() && ! $this->horarios()->exists();
     }
 
     public function temHorarios(): bool

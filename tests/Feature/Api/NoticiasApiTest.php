@@ -4,21 +4,32 @@ namespace Tests\Feature\Api;
 
 use App\Models\Noticia;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Concerns\CriaEstrutura;
 use Tests\TestCase;
 
 class NoticiasApiTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, CriaEstrutura;
+
+    protected \App\Models\Departamento $departamento;
+    protected \App\Models\Unidade $curso;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->departamento = $this->criaDepartamento('dcet2');
+        $this->curso = $this->criaCurso($this->departamento);
+    }
 
     public function test_noticias_returns_200(): void
     {
-        $this->getJson('/api/noticias')
+        $this->getJson('/api/dcet2/noticias')
             ->assertStatus(200);
     }
 
     public function test_noticias_returns_empty_when_no_news(): void
     {
-        $this->getJson('/api/noticias')
+        $this->getJson('/api/dcet2/noticias')
             ->assertJson(['noticias' => []]);
     }
 
@@ -31,7 +42,7 @@ class NoticiasApiTest extends TestCase
             'fim'    => now()->addDays(7),
         ]);
 
-        $this->getJson('/api/noticias')
+        $this->getJson('/api/dcet2/noticias')
             ->assertJsonFragment(['titulo' => 'Notícia Ativa']);
     }
 
@@ -44,7 +55,7 @@ class NoticiasApiTest extends TestCase
             'fim'    => now()->subDay(),
         ]);
 
-        $this->getJson('/api/noticias')
+        $this->getJson('/api/dcet2/noticias')
             ->assertJson(['noticias' => []]);
     }
 
@@ -57,7 +68,7 @@ class NoticiasApiTest extends TestCase
             'fim'    => now()->addDays(7),
         ]);
 
-        $this->getJson('/api/noticias')
+        $this->getJson('/api/dcet2/noticias')
             ->assertJson(['noticias' => []]);
     }
 
@@ -71,7 +82,7 @@ class NoticiasApiTest extends TestCase
             'fim'    => now()->addDays(7),
         ]);
 
-        $this->getJson('/api/noticias')
+        $this->getJson('/api/dcet2/noticias')
             ->assertJsonStructure([
                 'noticias' => [
                     '*' => ['titulo', 'fonte', 'link', 'imagem'],

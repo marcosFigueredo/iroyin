@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
 // Conteúdo — editores e admins
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::get('semestres', [SemestreController::class, 'index'])->name('semestres.index');
-    Route::prefix('semestres/{semestre}')->name('semestres.')->group(function () {
+    Route::prefix('semestres/{semestre}')->name('semestres.')->middleware('perfil:gestor,departamento,unidade')->group(function () {
         Route::get('horarios',                [HorarioController::class, 'index'])   ->name('horarios.index');
         Route::get('horarios/create',         [HorarioController::class, 'create'])  ->name('horarios.create');
         Route::post('horarios',               [HorarioController::class, 'store'])   ->name('horarios.store');

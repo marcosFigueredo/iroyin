@@ -3,35 +3,38 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Configuracao;
+use App\Models\Departamento;
 use App\Models\Instituicao;
 use Illuminate\Http\JsonResponse;
 
 class ConfigController extends Controller
 {
-    public function index(): JsonResponse
+    public function index(Departamento $departamento): JsonResponse
     {
-        $inst = Instituicao::current();
-        $cfg  = Configuracao::current();
+        $inst   = Instituicao::current();
+        $campus = $departamento->campus;
 
         return response()->json([
-            // identidade da instituição
+            // identidade
             'nome'         => $inst->nome,
             'sigla'        => $inst->sigla,
-            'departamento' => $inst->departamento,
-            'cidade'       => $inst->cidade,
-            'estado'       => $inst->estado,
+            'departamento' => $departamento->nome,
+            'slug'         => $departamento->slug,
+            'cidade'       => $campus->cidade,
+            'estado'       => $campus->estado,
             'texto_banner' => $inst->texto_banner,
+            'logo_url'     => $inst->logo_url ? asset($inst->logo_url) : asset('images/logoUneb.png'),
+            'cabecalho'    => mb_strtoupper("{$departamento->slug} · {$departamento->nome} · {$campus->cidade}"),
 
             // ciclo de exibição
-            'duracao_horarios' => $cfg->duracao_horarios,
-            'duracao_noticia'  => $cfg->duracao_noticia,
+            'duracao_horarios' => $departamento->duracao_horarios,
+            'duracao_noticia'  => $departamento->duracao_noticia,
 
             // tema visual
-            'tema' => $cfg->tema,
+            'tema' => $departamento->tema,
 
-            // URL do PWA acessível (usado pelo kiosk para gerar o QR code)
-            'url_acessivel' => url('/acessivel'),
+            // versão do celular (usada pelo QR code do monitor)
+            'url_acessivel' => url("/{$departamento->slug}/acessivel"),
         ]);
     }
 }

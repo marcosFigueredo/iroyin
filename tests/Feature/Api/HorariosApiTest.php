@@ -6,15 +6,21 @@ use App\Models\Horario;
 use App\Models\Semestre;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
+use Tests\Concerns\CriaEstrutura;
 use Tests\TestCase;
 
 class HorariosApiTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, CriaEstrutura;
+
+    protected \App\Models\Departamento $departamento;
+    protected \App\Models\Unidade $curso;
 
     protected function setUp(): void
     {
         parent::setUp();
+        $this->departamento = $this->criaDepartamento('dcet2');
+        $this->curso = $this->criaCurso($this->departamento);
 
         // Evita falhas dependentes do calendário (a aplicação não cadastra
         // aulas aos domingos).
@@ -23,13 +29,13 @@ class HorariosApiTest extends TestCase
 
     public function test_horarios_returns_200(): void
     {
-        $this->getJson('/api/horarios')
+        $this->getJson('/api/dcet2/horarios')
             ->assertStatus(200);
     }
 
     public function test_horarios_returns_empty_when_no_active_semester(): void
     {
-        $this->getJson('/api/horarios')
+        $this->getJson('/api/dcet2/horarios')
             ->assertStatus(200)
             ->assertJson(['aulas' => []]);
     }
@@ -49,13 +55,13 @@ class HorariosApiTest extends TestCase
             'dia_semana' => $hoje,
             'disciplina' => 'Cálculo I',
             'professor' => 'Prof. Teste',
-            'curso' => 'Engenharia',
+            'unidade_id' => $this->curso->id,
             'inicio' => '08:00',
             'fim' => '09:40',
             'sala' => 'LAB 01',
         ]);
 
-        $response = $this->getJson('/api/horarios');
+        $response = $this->getJson('/api/dcet2/horarios');
 
         $response->assertStatus(200);
 
@@ -73,13 +79,13 @@ class HorariosApiTest extends TestCase
             'dia_semana' => 'segunda',
             'disciplina' => 'Disciplina Inativa',
             'professor' => 'Prof. Inativo',
-            'curso' => 'Curso',
+            'unidade_id' => $this->curso->id,
             'inicio' => '08:00',
             'fim' => '09:40',
             'sala' => null,
         ]);
 
-        $this->getJson('/api/horarios')
+        $this->getJson('/api/dcet2/horarios')
             ->assertJson(['aulas' => []]);
     }
 
@@ -98,13 +104,13 @@ class HorariosApiTest extends TestCase
             'dia_semana' => $hoje,
             'disciplina' => 'Redes',
             'professor' => 'Prof. A',
-            'curso' => 'CC',
+            'unidade_id' => $this->curso->id,
             'inicio' => '10:00',
             'fim' => '11:40',
             'sala' => 'LAB 02',
         ]);
 
-        $this->getJson('/api/horarios')
+        $this->getJson('/api/dcet2/horarios')
             ->assertJsonStructure([
                 'aulas' => [
                     '*' => ['disciplina', 'professor', 'curso', 'inicio', 'fim', 'sala'],

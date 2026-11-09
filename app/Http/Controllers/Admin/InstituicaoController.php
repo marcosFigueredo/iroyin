@@ -23,7 +23,6 @@ class InstituicaoController extends Controller
         $data = $request->validate([
             'nome'         => ['required', 'string', 'max:255'],
             'sigla'        => ['required', 'string', 'max:20'],
-            'departamento' => ['required', 'string', 'max:255'],
             'cidade'       => ['required', 'string', 'max:100'],
             'estado'       => ['required', 'string', 'max:100'],
             'texto_banner' => ['required', 'string', 'max:100'],

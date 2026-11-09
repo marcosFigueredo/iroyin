@@ -4,30 +4,27 @@ namespace Tests\Feature\Api;
 
 use App\Models\Configuracao;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Concerns\CriaEstrutura;
 use Tests\TestCase;
 
 class ClimaApiTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, CriaEstrutura;
+
+    protected \App\Models\Departamento $departamento;
+    protected \App\Models\Unidade $curso;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->departamento = $this->criaDepartamento('dcet2');
+        $this->curso = $this->criaCurso($this->departamento);
+    }
 
     public function test_clima_returns_204_when_no_api_key_configured(): void
     {
         // Empty DB — Configuracao::current() returns defaults with empty api key
-        $this->get('/api/clima')
-            ->assertStatus(204);
-    }
-
-    public function test_clima_returns_204_when_no_city_configured(): void
-    {
-        Configuracao::create([
-            'weather_api_key'  => 'some-key',
-            'cidade_clima'     => '',
-            'duracao_horarios' => 120,
-            'duracao_noticia'  => 30,
-            'tema'             => 'azul',
-        ]);
-
-        $this->get('/api/clima')
+        $this->get('/api/dcet2/clima')
             ->assertStatus(204);
     }
 
@@ -38,11 +35,11 @@ class ClimaApiTest extends TestCase
             ->assertStatus(200);
 
         // Config API must work without weather key
-        $this->getJson('/api/config')
+        $this->getJson('/api/dcet2/config')
             ->assertStatus(200);
 
         // Horarios API must work without weather key
-        $this->getJson('/api/horarios')
+        $this->getJson('/api/dcet2/horarios')
             ->assertStatus(200);
     }
 }

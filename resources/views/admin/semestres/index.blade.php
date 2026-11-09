@@ -3,6 +3,7 @@
 
     <div class="row g-4">
 
+        @if(auth()->user()->isGestor())
         {{-- Formulário novo semestre --}}
         <div class="col-lg-4">
             <div class="card border-0 shadow-sm">
@@ -39,8 +40,10 @@
             </div>
         </div>
 
+        @endif
+
         {{-- Lista de semestres --}}
-        <div class="col-lg-8">
+        <div class="col-lg-{{ auth()->user()->isGestor() ? 8 : 12 }}">
             <div class="card border-0 shadow-sm">
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0">
@@ -71,7 +74,7 @@
                                        class="btn btn-sm btn-outline-secondary me-1">
                                         <i class="bi bi-list-ul"></i> Horários
                                     </a>
-                                    @if(!$semestre->estaVigente())
+                                    @if(auth()->user()->isGestor() && !$semestre->estaVigente())
                                     <form method="POST" action="{{ route('admin.semestres.destroy', $semestre) }}"
                                           class="d-inline"
                                           onsubmit="return confirm('Excluir semestre {{ $semestre->nome }} e todos os horários?')">

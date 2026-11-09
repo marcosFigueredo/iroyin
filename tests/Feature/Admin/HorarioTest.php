@@ -7,11 +7,22 @@ use App\Models\Horario;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Tests\Concerns\CriaEstrutura;
 use Tests\TestCase;
 
 class HorarioTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, CriaEstrutura;
+
+    protected \App\Models\Departamento $departamento;
+    protected \App\Models\Unidade $curso;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->departamento = $this->criaDepartamento('dcet2');
+        $this->curso = $this->criaCurso($this->departamento);
+    }
 
     private function semestre(): Semestre
     {
@@ -39,7 +50,7 @@ class HorarioTest extends TestCase
                 'dia_semana'  => 'segunda',
                 'disciplina'  => 'Cálculo I',
                 'professor'   => 'Prof. Teste',
-                'curso'       => 'Engenharia',
+                'unidade_id' => $this->curso->id,
                 'inicio'      => '08:00',
                 'fim'         => '09:40',
                 'sala'        => 'LAB 01',
@@ -58,7 +69,7 @@ class HorarioTest extends TestCase
             'dia_semana'  => 'terca',
             'disciplina'  => 'Álgebra',
             'professor'   => 'Prof. X',
-            'curso'       => 'Matemática',
+            'unidade_id' => $this->curso->id,
             'inicio'      => '10:00',
             'fim'         => '11:40',
         ]);
@@ -81,7 +92,10 @@ class HorarioTest extends TestCase
 
         $arquivo = UploadedFile::fake()->createWithContent('horarios.csv', $csv);
 
+        $this->criaCurso($this->departamento, 'Engenharia');
+
         $this->actingAs($admin)
+            ->withSession(['operar_departamento_id' => $this->departamento->id])
             ->post("/admin/semestres/{$semestre->id}/horarios/importar", [
                 'csv' => $arquivo,
             ])
@@ -100,6 +114,7 @@ class HorarioTest extends TestCase
         $arquivo = UploadedFile::fake()->createWithContent('invalido.csv', $csv);
 
         $this->actingAs($admin)
+            ->withSession(['operar_departamento_id' => $this->departamento->id])
             ->post("/admin/semestres/{$semestre->id}/horarios/importar", [
                 'csv' => $arquivo,
             ])

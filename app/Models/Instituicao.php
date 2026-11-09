@@ -11,7 +11,6 @@ class Instituicao extends Model
     protected $fillable = [
         'nome',
         'sigla',
-        'departamento',
         'cidade',
         'estado',
         'texto_banner',
@@ -26,7 +25,6 @@ class Instituicao extends Model
             $inst = static::create([
                 'nome'         => '',
                 'sigla'        => 'IROYIN',
-                'departamento' => '',
                 'cidade'       => '',
                 'estado'       => '',
                 'texto_banner' => 'NOTÍCIAS',
