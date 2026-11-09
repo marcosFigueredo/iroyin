@@ -8,8 +8,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Horários">
-    <link rel="manifest" href="/acessivel-manifest.json">
-    <title>Horários de Aulas</title>
+    <link rel="manifest" href="{{ route('acessivel.manifest', $departamento) }}">
+    <title>Horários e informes · {{ strtoupper($departamento->slug) }}</title>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -158,6 +158,31 @@
             margin: 0 auto;
         }
 
+        /* Informes */
+        .informes { margin-bottom: 2rem; scroll-margin-top: 160px; }
+        .informes h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--azul);
+            border-bottom: 2px solid var(--azul);
+            padding-bottom: 0.35rem;
+            margin-bottom: 0.75rem;
+        }
+        .informe {
+            background: var(--fundo-aula);
+            border-left: 5px solid var(--azul);
+            border-radius: 6px;
+            padding: 0.85rem 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .informe.urgente    { border-left-color: #b3261e; }
+        .informe.importante { border-left-color: #b98f00; }
+        .informe h3   { font-size: 1.1rem; overflow-wrap: anywhere; }
+        .informe p    { overflow-wrap: anywhere; }
+        .informe img  { max-width: 100%; height: auto; border-radius: 4px; margin-top: 0.5rem; }
+        .informe-nivel  { display: block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; }
+        .informe-origem { color: var(--secundario); font-size: 0.9rem; margin-top: 0.35rem; }
+
         /* Turno */
         .turno {
             margin-bottom: 2rem;
@@ -239,7 +264,7 @@
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
     <header role="banner">
-        <h1>Horários de Aulas</h1>
+        <h1>Horários e informes · {{ strtoupper($departamento->slug) }}</h1>
         <p>
             {{ $diaNome }}
             @if($semestre)
@@ -276,6 +301,25 @@
     @endif
 
     <main id="conteudo" role="main">
+
+        @if($informes->isNotEmpty())
+            <section class="informes" aria-labelledby="titulo-informes">
+                <h2 id="titulo-informes">Informes</h2>
+                @foreach($informes as $informe)
+                    <article class="informe {{ $informe->urgencia }}">
+                        @if($informe->urgencia !== 'normal')
+                            <span class="informe-nivel">{{ mb_strtoupper($informe->urgencia) }}</span>
+                        @endif
+                        <h3>{{ $informe->titulo }}</h3>
+                        @if($informe->texto)<p>{{ $informe->texto }}</p>@endif
+                        @if($informe->formato === 'imagem' && $informe->imagem)
+                            <img src="/{{ $informe->imagem }}" alt="Imagem do informe: {{ $informe->titulo }}">
+                        @endif
+                        <p class="informe-origem">{{ $informe->origem() }}</p>
+                    </article>
+                @endforeach
+            </section>
+        @endif
 
         @if($totalAulas === 0)
             <div class="sem-aulas" role="status">
@@ -361,6 +405,10 @@
         });
 
         aplicarFonte();
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/acessivel-sw.js');
+        }
 
         // ── Leitura em voz alta (Web Speech API) ─────────────────────────────
         var btnOuvir = document.getElementById('btn-ouvir');
@@ -461,10 +509,6 @@
         }
 
         // ── Service Worker ────────────────────────────────────────────────────
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/acessivel-sw.js');
-        }
-
     })();
     </script>
 </body>

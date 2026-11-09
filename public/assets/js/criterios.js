@@ -78,9 +78,5 @@
         limiteBloco: limiteBloco,
     };
 
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = api;
-    } else {
-        raiz.Criterios = api;
-    }
+    raiz.Criterios = api;
 })(typeof window !== 'undefined' ? window : globalThis);

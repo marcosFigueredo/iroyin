@@ -29,7 +29,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/acessivel', [AcessivelController::class, 'index'])->name('acessivel');
+Route::redirect('/acessivel', '/');
+Route::get('/{departamento:slug}/acessivel', [AcessivelController::class, 'index'])->name('acessivel');
+Route::get('/{departamento:slug}/acessivel/manifest.json', [AcessivelController::class, 'manifest'])->name('acessivel.manifest');
 
 // Wizard de primeira configuração — acessível somente sem usuários cadastrados
 Route::get('/setup',  [SetupController::class, 'index'])->name('setup.index');

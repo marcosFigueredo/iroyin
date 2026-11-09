@@ -1,9 +1,6 @@
-const CACHE = 'iroyin-acessivel-v1';
+const CACHE = 'iroyin-acessivel-v2';
 
-self.addEventListener('install', e => {
-    e.waitUntil(
-        caches.open(CACHE).then(c => c.add('/acessivel'))
-    );
+self.addEventListener('install', () => {
     self.skipWaiting();
 });
 
@@ -21,7 +18,8 @@ self.addEventListener('fetch', e => {
     e.respondWith(
         fetch(e.request)
             .then(res => {
-                caches.open(CACHE).then(c => c.put(e.request, res.clone()));
+                const copia = res.clone();
+                caches.open(CACHE).then(c => c.put(e.request, copia));
                 return res;
             })
             .catch(() => caches.match(e.request))

@@ -1,8 +1,10 @@
 const test = require('node:test');
 const assert = require('node:assert');
+// O projeto usa "type": "module"; o script clássico registra a API em globalThis.
+require('../../public/assets/js/criterios.js');
 const {
     tempoLeitura, prioridade, montarBloco, selecionarUrgentes, limiteBloco, chaveItem, duracaoItem,
-} = require('../../public/assets/js/criterios.js');
+} = globalThis.Criterios;
 
 const palavras = (n) => Array(n).fill('palavra').join(' ');
 const informe = (id, extra = {}) => ({ tipo: 'informe', id, titulo: 'Título', texto: 'Texto', urgencia: 'normal', escopo: 'departamento', ...extra });
