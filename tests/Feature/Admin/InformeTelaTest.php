@@ -66,6 +66,20 @@ class InformeTelaTest extends TestCase
             ->assertSee('&lt;script&gt;alert(1)&lt;/script&gt;', false);
     }
 
+    public function test_gestor_ve_o_menu_de_informes_sem_escolher_departamento(): void
+    {
+        $this->actingAs($this->criaUsuario('gestor'))->get('/dashboard')
+            ->assertOk()
+            ->assertSee(route('admin.informes.index'), false);
+    }
+
+    public function test_tela_de_noticia_aponta_para_informes(): void
+    {
+        $this->actingAs($this->criaUsuario('gestor'))->get(route('admin.noticias.create'))
+            ->assertOk()
+            ->assertSee(route('admin.informes.create'), false);
+    }
+
     public function test_tela_de_edicao_abre(): void
     {
         $d = $this->criaDepartamento();
