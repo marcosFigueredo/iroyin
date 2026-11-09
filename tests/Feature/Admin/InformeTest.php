@@ -79,13 +79,28 @@ class InformeTest extends TestCase
         $this->assertStringEndsWith('.png', Informe::first()->imagem);
     }
 
+    private function pngFalso(string $nome): UploadedFile
+    {
+        return UploadedFile::fake()->createWithContent($nome, base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='));
+    }
+
+    public function test_arquivo_php_disfarcado_de_imagem_e_recusado(): void
+    {
+        $d = $this->criaDepartamento();
+
+        $this->actingAs($this->criaUsuario('departamento', $d))
+            ->post(route('admin.informes.store'), $this->dados(['formato' => 'imagem', 'imagem' => $this->pngFalso('x.php')]))
+            ->assertSessionHasErrors('imagem');
+
+        $this->assertSame(0, Informe::count());
+    }
+
     public function test_arquivo_salvo_usa_extensao_real_do_conteudo(): void
     {
         $d = $this->criaDepartamento();
-        $falso = UploadedFile::fake()->createWithContent('x.php', base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='));
 
         $this->actingAs($this->criaUsuario('departamento', $d))
-            ->post(route('admin.informes.store'), $this->dados(['formato' => 'imagem', 'imagem' => $falso]));
+            ->post(route('admin.informes.store'), $this->dados(['formato' => 'imagem', 'imagem' => $this->pngFalso('x.exe')]));
 
         $this->assertStringEndsWith('.png', Informe::firstOrFail()->imagem);
     }
