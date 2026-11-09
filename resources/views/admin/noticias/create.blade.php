@@ -1,12 +1,6 @@
 <x-app-layout>
     <x-slot name="header">Nova Notícia</x-slot>
 
-    <div class="alert alert-info small">
-        Para publicar um aviso com o logo da universidade e texto curto, use
-        <a href="{{ route('admin.informes.create') }}">Novo informe</a>.
-        Esta tela é para notícias e chamadas das agências.
-    </div>
-
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="card border-0 shadow-sm">

@@ -89,10 +89,10 @@
                                         @csrf
 
                                         <div class="form-floating mb-3">
-                                            <input type="email" class="form-control" name="email" id="email"
+                                            <input type="text" class="form-control" name="email" id="email"
                                                    value="{{ old('email') }}" placeholder="seu@email.com"
                                                    required autofocus autocomplete="username">
-                                            <label for="email">E-mail</label>
+                                            <label for="email">Usuário ou e-mail</label>
                                         </div>
 
                                         <div class="form-floating mb-3">

@@ -73,11 +73,19 @@ class InformeTelaTest extends TestCase
             ->assertSee(route('admin.informes.index'), false);
     }
 
-    public function test_tela_de_noticia_aponta_para_informes(): void
+    public function test_cadastro_manual_tem_botoes_de_noticia_e_informe(): void
     {
-        $this->actingAs($this->criaUsuario('gestor'))->get(route('admin.noticias.create'))
+        $this->actingAs($this->criaUsuario('gestor'))->get(route('admin.noticias.index'))
             ->assertOk()
+            ->assertSee(route('admin.noticias.create'), false)
             ->assertSee(route('admin.informes.create'), false);
+    }
+
+    public function test_gestor_abre_novo_informe_sem_escolher_departamento(): void
+    {
+        $this->actingAs($this->criaUsuario('gestor'))->get(route('admin.informes.create'))
+            ->assertOk()
+            ->assertSee('REITORIA');
     }
 
     public function test_tela_de_edicao_abre(): void

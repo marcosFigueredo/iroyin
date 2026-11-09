@@ -115,9 +115,14 @@
                     <i class="bi bi-pencil-square me-1"></i> Cadastrar Manualmente
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('admin.noticias.create') }}" class="btn btn-outline-primary w-100">
-                        <i class="bi bi-plus-circle me-1"></i> Nova Notícia
-                    </a>
+                    <div class="d-grid gap-2 d-sm-flex">
+                        <a href="{{ route('admin.noticias.create') }}" class="btn btn-outline-primary flex-fill">
+                            <i class="bi bi-newspaper me-1"></i> Notícia
+                        </a>
+                        <a href="{{ route('admin.informes.create') }}" class="btn btn-outline-primary flex-fill">
+                            <i class="bi bi-chat-square-text me-1"></i> Informe
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

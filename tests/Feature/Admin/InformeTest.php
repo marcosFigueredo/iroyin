@@ -204,16 +204,33 @@ class InformeTest extends TestCase
             ->delete(route('admin.informes.destroy', $geral))->assertNotFound();
     }
 
-    public function test_gestor_sem_departamento_nao_altera_informe_da_reitoria(): void
+    public function test_gestor_sem_departamento_publica_informe_geral(): void
+    {
+        $this->actingAs($this->criaUsuario('gestor'))
+            ->post(route('admin.informes.store'), $this->dados())
+            ->assertSessionHasNoErrors();
+
+        $this->assertNull(Informe::firstOrFail()->departamento_id);
+    }
+
+    public function test_gestor_sem_departamento_edita_informe_geral(): void
     {
         $geral = $this->criaInforme(null);
         $gestor = $this->criaUsuario('gestor');
 
-        $this->actingAs($gestor)->get(route('admin.informes.edit', $geral))->assertRedirect(route('admin.departamentos.index'));
-        $this->actingAs($gestor)->put(route('admin.informes.update', $geral), $this->dados(['titulo' => 'Alterado']))->assertRedirect(route('admin.departamentos.index'));
-        $this->actingAs($gestor)->delete(route('admin.informes.destroy', $geral))->assertRedirect(route('admin.departamentos.index'));
+        $this->actingAs($gestor)->get(route('admin.informes.edit', $geral))->assertOk();
+        $this->actingAs($gestor)->put(route('admin.informes.update', $geral), $this->dados(['titulo' => 'Alterado']));
 
-        $this->assertSame('Informe', $geral->fresh()->titulo);
+        $this->assertSame('Alterado', $geral->fresh()->titulo);
+    }
+
+    public function test_gestor_sem_departamento_nao_ve_informe_de_departamento(): void
+    {
+        $alheio = $this->criaInforme($this->criaDepartamento());
+
+        $this->actingAs($this->criaUsuario('gestor'))
+            ->get(route('admin.informes.edit', $alheio))
+            ->assertNotFound();
     }
 
     public function test_urgente_com_mais_de_7_dias_e_recusado(): void

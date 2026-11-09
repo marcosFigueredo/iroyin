@@ -16,10 +16,6 @@ class InformeController extends Controller
 {
     public function index(Request $request)
     {
-        if ($this->semEscopo($request)) {
-            return $this->pedirDepartamento();
-        }
-
         return view('admin.informes.index', [
             'informes' => $this->visiveis($request)->with(['departamento', 'unidade'])->latest()->paginate(30),
         ]);
@@ -27,19 +23,11 @@ class InformeController extends Controller
 
     public function create(Request $request)
     {
-        if ($this->semEscopo($request)) {
-            return $this->pedirDepartamento();
-        }
-
         return view('admin.informes.create', ['informe' => new Informe(['urgencia' => 'normal', 'formato' => 'texto'])] + $this->contexto($request));
     }
 
     public function store(Request $request)
     {
-        if ($this->semEscopo($request)) {
-            return $this->pedirDepartamento();
-        }
-
         $data = $this->validar($request);
         $usuario = $request->user();
 
@@ -49,7 +37,7 @@ class InformeController extends Controller
 
         Informe::create($data + [
             'user_id'         => $usuario->id,
-            'departamento_id' => $usuario->isReitoria() ? null : $usuario->escopoDepartamentoId(),
+            'departamento_id' => $this->publicaGeral($request) ? null : $usuario->escopoDepartamentoId(),
             'unidade_id'      => $usuario->isUnidade() ? $usuario->unidade_id : null,
         ]);
 
@@ -58,19 +46,11 @@ class InformeController extends Controller
 
     public function edit(Request $request, int $informe)
     {
-        if ($this->semEscopo($request)) {
-            return $this->pedirDepartamento();
-        }
-
         return view('admin.informes.edit', ['informe' => $this->buscar($request, $informe)] + $this->contexto($request));
     }
 
     public function update(Request $request, int $informe)
     {
-        if ($this->semEscopo($request)) {
-            return $this->pedirDepartamento();
-        }
-
         $item = $this->buscar($request, $informe);
         $data = $this->validar($request, $item);
 
@@ -89,10 +69,6 @@ class InformeController extends Controller
 
     public function destroy(Request $request, int $informe)
     {
-        if ($this->semEscopo($request)) {
-            return $this->pedirDepartamento();
-        }
-
         $item = $this->buscar($request, $informe);
         ImagemUpload::apagar($item->imagem);
         $item->delete();
@@ -100,15 +76,12 @@ class InformeController extends Controller
         return back()->with('success', 'Informe removido.');
     }
 
-    private function semEscopo(Request $request): bool
+    /** Reitoria e gestor sem departamento escolhido tratam dos informes gerais. */
+    private function publicaGeral(Request $request): bool
     {
-        return $request->user()->isGestor() && ! $request->user()->escopoDepartamentoId();
-    }
+        $usuario = $request->user();
 
-    private function pedirDepartamento()
-    {
-        return redirect()->route('admin.departamentos.index')
-            ->with('error', 'Escolha um departamento em "Operar como" para continuar.');
+        return $usuario->isReitoria() || ($usuario->isGestor() && ! $usuario->escopoDepartamentoId());
     }
 
     private function visiveis(Request $request): Builder
@@ -116,7 +89,7 @@ class InformeController extends Controller
         $usuario = $request->user();
 
         return match (true) {
-            $usuario->isReitoria() => Informe::whereNull('departamento_id'),
+            $this->publicaGeral($request) => Informe::whereNull('departamento_id'),
             $usuario->isUnidade()  => Informe::where('unidade_id', $usuario->unidade_id),
             default                => Informe::where('departamento_id', $usuario->escopoDepartamentoId()),
         };
@@ -140,7 +113,7 @@ class InformeController extends Controller
                 ? mb_strtoupper($departamento->slug.' · '.$departamento->nome)
                 : 'REITORIA',
             'origem'     => match (true) {
-                $usuario->isReitoria() => 'Reitoria',
+                $this->publicaGeral($request) => 'Reitoria',
                 $usuario->isUnidade()  => $usuario->unidade->nome.' · '.mb_strtoupper($departamento->slug),
                 default                => mb_strtoupper($departamento->slug),
             },
