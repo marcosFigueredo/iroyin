@@ -177,7 +177,6 @@ class MonitorDepartamentoTest extends TestCase
                 'csv' => UploadedFile::fake()->createWithContent('h.csv', $csv),
             ])->assertSessionHas('error');
 
-        $this->assertDatabaseHas('horarios', ['disciplina' => 'Cálculo']);
-        $this->assertDatabaseMissing('horarios', ['disciplina' => 'Física']);
+        $this->assertSame(0, Horario::count());
     }
 }

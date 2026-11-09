@@ -104,8 +104,9 @@
                         </div>
                         <div class="alert alert-warning small mb-0">
                             <i class="bi bi-exclamation-triangle me-1"></i>
-                            Os registros serão <strong>adicionados</strong> aos existentes, não substituídos.
-                            Para substituir, exclua as aulas do dia antes de importar.
+                            O sistema confere o arquivo inteiro antes de salvar: se faltar algum dado, nada é salvo
+                            e você vê quais linhas corrigir. As aulas são <strong>adicionadas</strong> às existentes
+                            (aulas idênticas são ignoradas) e o arquivo é descartado.
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -8,10 +8,13 @@ use App\Models\Semestre;
 use App\Models\Unidade;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class HorarioController extends Controller
 {
+    private const COLUNAS_CSV = ['dia', 'disciplina', 'professor', 'curso', 'inicio', 'fim', 'sala'];
+
     public function index(Request $request, Semestre $semestre)
     {
         $ordem = array_flip(Horario::diasOrdem());
@@ -81,57 +84,115 @@ class HorarioController extends Controller
             return back()->with('error', 'Escolha um departamento em "Operar como" antes de importar.');
         }
 
-        $conteudo = file_get_contents($request->file('csv')->getRealPath());
-        // Remove BOM UTF-8 que o Excel adiciona
-        $conteudo = preg_replace('/^\xEF\xBB\xBF/', '', $conteudo);
+        // O arquivo só é lido aqui: o PHP o descarta ao terminar a requisição.
+        $linhas = $this->lerCsv(file_get_contents($request->file('csv')->getRealPath()));
+        $cabecalho = array_map(fn ($c) => strtolower(trim($c)), $linhas[0] ?? []);
 
-        $linhas = array_map('str_getcsv', explode("\n", trim($conteudo)));
-        $cabecalho = array_map('strtolower', array_map('trim', $linhas[0]));
-
-        $campos = ['dia','disciplina','professor','curso','inicio','fim','sala'];
-        $faltando = array_diff($campos, $cabecalho);
+        $faltando = array_diff(self::COLUNAS_CSV, $cabecalho);
         if ($faltando) {
-            return back()->with('error', 'CSV inválido. Colunas faltando: ' . implode(', ', $faltando));
+            return back()->with('error', 'CSV inválido. Colunas faltando: '.implode(', ', $faltando).'. Nada foi salvo.');
         }
 
-        $cursos      = $this->cursos($request)->get()->keyBy(fn (Unidade $u) => mb_strtolower($u->nome));
-        $diasValidos = Horario::diasOrdem();
-        $importados  = 0;
-        $erros       = [];
+        $cursos = $this->cursos($request)->get()->keyBy(fn (Unidade $u) => mb_strtolower($u->nome));
+        $aulas  = [];
+        $erros  = [];
 
         foreach (array_slice($linhas, 1) as $i => $linha) {
-            if (count($linha) < count($cabecalho)) continue;
-            $row = array_combine($cabecalho, array_map('trim', $linha));
+            $numero = $i + 2;
 
-            $dia = strtolower($row['dia'] ?? '');
-            if (! in_array($dia, $diasValidos)) {
-                $erros[] = "Linha " . ($i + 2) . ": dia '$dia' inválido.";
+            if (count($linha) !== count($cabecalho)) {
+                $erros[] = "Linha $numero: número de colunas diferente do cabeçalho.";
                 continue;
             }
 
-            $curso = $usuario->isUnidade() ? $usuario->unidade : $cursos->get(mb_strtolower($row['curso']));
-            if (! $curso) {
-                $erros[] = "Linha " . ($i + 2) . ": curso '{$row['curso']}' não cadastrado.";
+            $row  = array_combine($cabecalho, array_map('trim', $linha));
+            $erro = $this->erroDaLinha($row, $cursos);
+
+            if ($erro) {
+                $erros[] = "Linha $numero: $erro.";
                 continue;
             }
 
-            $semestre->horarios()->create([
-                'unidade_id'  => $curso->id,
-                'dia_semana'  => $dia,
+            $aulas[] = [
+                'semestre_id' => $semestre->id,
+                'unidade_id'  => $cursos->get(mb_strtolower($row['curso']))->id,
+                'dia_semana'  => strtolower($row['dia']),
                 'disciplina'  => $row['disciplina'],
                 'professor'   => $row['professor'],
-                'inicio'      => $row['inicio'],
-                'fim'         => $row['fim'],
+                'inicio'      => substr($row['inicio'], 0, 5),
+                'fim'         => substr($row['fim'], 0, 5),
                 'sala'        => $row['sala'],
-            ]);
-            $importados++;
+            ];
         }
 
-        $msg = "$importados aula(s) importada(s) com sucesso.";
-        if ($erros) $msg .= ' Erros: ' . implode(' | ', $erros);
+        if ($erros) {
+            return back()->with('error', 'Nada foi salvo. Corrija o arquivo: '.implode(' | ', array_slice($erros, 0, 20)));
+        }
+
+        if (! $aulas) {
+            return back()->with('error', 'O arquivo não tem nenhuma aula. Nada foi salvo.');
+        }
+
+        DB::transaction(function () use ($aulas) {
+            foreach ($aulas as $aula) {
+                Horario::firstOrCreate($aula);
+            }
+        });
 
         return redirect()->route('admin.semestres.horarios.index', $semestre)
-            ->with($erros ? 'error' : 'success', $msg);
+            ->with('success', count($aulas).' aula(s) importada(s) com sucesso.');
+    }
+
+    /** @return array<int, array<int, string>> */
+    private function lerCsv(string $conteudo): array
+    {
+        // Remove o BOM que o Excel adiciona e aceita arquivos salvos em Latin-1.
+        $conteudo = preg_replace('/^\xEF\xBB\xBF/', '', $conteudo);
+        if (! mb_check_encoding($conteudo, 'UTF-8')) {
+            $conteudo = mb_convert_encoding($conteudo, 'UTF-8', 'ISO-8859-1');
+        }
+
+        $brutas = array_values(array_filter(
+            preg_split('/\r\n|\r|\n/', trim($conteudo)),
+            fn ($l) => trim($l) !== ''
+        ));
+
+        // O Excel em português separa as colunas com ponto e vírgula.
+        $separador = str_contains($brutas[0] ?? '', ';') && ! str_contains($brutas[0] ?? '', ',') ? ';' : ',';
+
+        return array_map(fn ($l) => str_getcsv($l, $separador, '"', ''), $brutas);
+    }
+
+    private function erroDaLinha(array $row, $cursos): ?string
+    {
+        $vazios = array_filter(self::COLUNAS_CSV, fn ($c) => $row[$c] === '');
+        if ($vazios) {
+            return 'faltam os dados de '.implode(', ', $vazios);
+        }
+
+        if (! in_array(strtolower($row['dia']), Horario::diasOrdem(), true)) {
+            return "dia '{$row['dia']}' inválido";
+        }
+
+        if (! $cursos->has(mb_strtolower($row['curso']))) {
+            return "curso '{$row['curso']}' não cadastrado ou fora do seu acesso";
+        }
+
+        foreach (['inicio', 'fim'] as $campo) {
+            if (! preg_match('/^([01]\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/', $row[$campo])) {
+                return "horário de $campo '{$row[$campo]}' inválido (use HH:MM)";
+            }
+        }
+
+        if (substr($row['fim'], 0, 5) <= substr($row['inicio'], 0, 5)) {
+            return 'o fim deve ser depois do início';
+        }
+
+        if (mb_strlen($row['sala']) > 20 || mb_strlen($row['disciplina']) > 255 || mb_strlen($row['professor']) > 255) {
+            return 'texto maior que o permitido (sala até 20 caracteres)';
+        }
+
+        return null;
     }
 
     private function exigirCurso(Request $request): void
