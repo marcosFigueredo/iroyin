@@ -1,29 +1,59 @@
-let SCHEDULE_DURATION  = 2 * 60 * 1000;  // padrão: 2 min (sobrescrito pela config)
-let NEWS_ITEM_DURATION = 30 * 1000;       // padrão: 30s  (sobrescrito pela config)
+let SCHEDULE_DURATION = 2 * 60 * 1000;   // padrão: 2 min (sobrescrito pela config)
+let _config = { duracao_horarios: 120, duracao_noticia: 30, tema: 'azul', logo_url: '' };
 
-let _cycleTimer  = null;
-let _newsTimer   = null;
-let _newsItems   = [];
-let _editaisItems = [];
-let _currentHalf = 0;   // 0 = primeira metade, 1 = segunda metade
+let _cycleTimer = null;
+let _newsTimer  = null;
+let _pausado    = false;
+let _emHorarios = false;
+let _itens      = [];
 
-// API mínima usada pelo monitor de conectividade. Manter o controle dos
-// timers aqui evita que outro script precise acessar variáveis `let` globais.
-function pauseKioskCycle() {
+const CHAVE_ULTIMA_VEZ      = 'iroyin_ultima_vez';
+const INTERVALO_URGENTES_MS = 60 * 1000;
+const _urgentesVistos = new Set();
+const _ultimaVez      = _lerUltimaVez();
+
+// ── Memória do rodízio (sobrevive ao recarregamento a cada 4 h) ───────────────
+
+function _lerUltimaVez() {
+    try {
+        return JSON.parse(localStorage.getItem(CHAVE_ULTIMA_VEZ)) || {};
+    } catch (e) {
+        return {};
+    }
+}
+
+function _registrarExibicao(item) {
+    _ultimaVez[Criterios.chaveItem(item)] = Date.now();
+    if (item.urgencia === 'urgente') _urgentesVistos.add(item.id);
+    try {
+        localStorage.setItem(CHAVE_ULTIMA_VEZ, JSON.stringify(_ultimaVez));
+    } catch (e) { /* sem armazenamento: o rodízio vale até recarregar */ }
+}
+
+// ── Controle de timers ────────────────────────────────────────────────────────
+
+function _limparTimers() {
     clearTimeout(_cycleTimer);
     clearTimeout(_newsTimer);
     _cycleTimer = null;
     _newsTimer  = null;
 }
 
+// API mínima usada pelo monitor de conectividade.
+function pauseKioskCycle() {
+    _pausado = true;
+    _emHorarios = false;
+    _limparTimers();
+}
+
 function resumeKioskCycle() {
-    pauseKioskCycle();
+    _pausado = false;
+    _limparTimers();
     if (window.isBoaNoite) {
         _newsOnlyLoop();
         return;
     }
 
-    _currentHalf = 0;
     _showSchedules();
     _runCycle();
 }
@@ -33,154 +63,149 @@ window.resumeKioskCycle = resumeKioskCycle;
 
 // ── Visibilidade ─────────────────────────────────────────────────────────────
 
-function _showSchedules() {
-    if (window.isBoaNoite) return;
-    document.getElementById('horarios').style.display     = 'block';
-    document.getElementById('news-section').style.display = 'none';
-    document.getElementById('news-banner').style.display  = 'none';
+function _esconderMensagens() {
+    document.getElementById('news-section').style.display    = 'none';
+    document.getElementById('informe-section').style.display = 'none';
     hideEditaisSection();
 }
 
+function _showSchedules() {
+    if (window.isBoaNoite) return;
+    _esconderMensagens();
+    document.getElementById('news-banner').style.display = 'none';
+    document.getElementById('horarios').style.display    = 'block';
+    _emHorarios = true;
+}
+
 function _hideSchedules() {
+    _emHorarios = false;
     document.getElementById('horarios').style.display = 'none';
 }
 
-// ── Fetch ─────────────────────────────────────────────────────────────────────
+// ── Busca de conteúdo ─────────────────────────────────────────────────────────
 
-function _fetchNoticias(callback) {
-    fetch('/api/noticias?_=' + Date.now())
-        .then(function (r) { return r.json(); })
-        .then(function (data) { callback(data.noticias || []); })
-        .catch(function () { callback([]); });
+function _buscar(recurso, campo, tipo) {
+    return fetch(window.kioskApi(recurso))
+        .then(function (r) { return r.ok ? r.json() : {}; })
+        .then(function (data) {
+            return (data[campo] || []).map(function (item) {
+                return Object.assign({}, item, { tipo: tipo });
+            });
+        })
+        .catch(function () { return []; });
 }
 
-// ── Divide itens em duas metades ──────────────────────────────────────────────
-
-function _getHalf(items, half) {
-    if (!items || items.length === 0) return [];
-    var mid = Math.ceil(items.length / 2);
-    return half === 0 ? items.slice(0, mid) : items.slice(mid);
+function _buscarInformes() {
+    return _buscar('informes', 'informes', 'informe');
 }
 
-// ── Toca uma sequência de notícias e chama onDone ao terminar ─────────────────
+function _buscarTudo() {
+    return Promise.all([
+        _buscarInformes(),
+        _buscar('noticias', 'noticias', 'noticia'),
+        new Promise(function (resolve) { fetchEditais(resolve); }),
+    ]).then(function (partes) {
+        var editais = partes[2].map(function (e) { return Object.assign({}, e, { tipo: 'edital' }); });
+        return partes[0].concat(partes[1], editais);
+    });
+}
+
+// ── Exibição de mensagens ─────────────────────────────────────────────────────
+
+function _mostrarItem(item, duracaoMs) {
+    _esconderMensagens();
+
+    if (item.tipo === 'informe') {
+        var area = document.getElementById('informe-section');
+        renderInforme(area, item, _config.logo_url);
+        aplicarTemaInforme(area.firstChild, _config.tema);
+        area.style.display = 'block';
+    } else if (item.tipo === 'edital') {
+        renderEdital(item, duracaoMs);
+    } else {
+        renderNewsItem(item, duracaoMs);
+        document.getElementById('news-section').style.display = 'flex';
+    }
+}
 
 function _playItems(items, idx, onDone) {
     if (idx >= items.length) {
-        document.getElementById('news-section').style.display = 'none';
+        _esconderMensagens();
         onDone();
         return;
     }
-    renderNewsItem(items[idx], NEWS_ITEM_DURATION);
-    _newsTimer = setTimeout(function () { _playItems(items, idx + 1, onDone); }, NEWS_ITEM_DURATION);
+
+    var duracaoMs = Criterios.duracaoItem(items[idx], _config.duracao_noticia) * 1000;
+    _mostrarItem(items[idx], duracaoMs);
+    _registrarExibicao(items[idx]);
+    _newsTimer = setTimeout(function () { _playItems(items, idx + 1, onDone); }, duracaoMs);
 }
 
-// ── Exibe bloco de notícias (banner + sequência) ──────────────────────────────
-
 function _showBlock(items, onDone) {
-    if (!items || items.length === 0) { onDone(); return; }
+    if (items.length === 0) { onDone(); return; }
     _hideSchedules();
     showNewsBanner(function () {
         hideNewsBanner();
-        document.getElementById('news-section').style.display = 'flex';
         _playItems(items, 0, onDone);
     });
 }
 
-// ── Exibe bloco de editais (um edital por vez) ────────────────────────────────
-
-function _playEditais(items, idx, onDone) {
-    if (idx >= items.length) {
-        hideEditaisSection();
-        onDone();
-        return;
-    }
-    renderEdital(items[idx], NEWS_ITEM_DURATION);
-    _newsTimer = setTimeout(function () { _playEditais(items, idx + 1, onDone); }, NEWS_ITEM_DURATION);
-}
-
-function _showEditaisBlock(onDone) {
-    if (!_editaisItems || _editaisItems.length === 0) { onDone(); return; }
-    _hideSchedules();
-    _playEditais(_editaisItems, 0, onDone);
-}
-
-// ── Ciclo normal: horários → metade A → editais → horários → metade B ─────────
+// ── Ciclo normal: horários → banner → mensagens → horários ────────────────────
 
 function _runCycle() {
-    if (window.isBoaNoite) return;
+    if (window.isBoaNoite || _pausado) return;
 
-    if (_currentHalf === 0) {
-        // Refresca notícias e editais a cada ciclo completo
-        _fetchNoticias(function (noticias) {
-            _newsItems = noticias;
-            fetchEditais(function (editais) {
-                _editaisItems = editais;
-                _scheduleStep();
-            });
-        });
-    } else {
-        _scheduleStep();
-    }
+    _buscarTudo().then(function (itens) {
+        if (window.isBoaNoite || _pausado) return;
+        _itens = itens;
+        _showSchedules();
+
+        _cycleTimer = setTimeout(function () {
+            if (window.isBoaNoite) return;
+            var bloco = Criterios.montarBloco(_itens, _ultimaVez, Criterios.limiteBloco(_config), _config.duracao_noticia);
+            _showBlock(bloco, _runCycle);
+        }, SCHEDULE_DURATION);
+    });
 }
 
-function _scheduleStep() {
-    if (window.isBoaNoite) return;
+// ── Urgentes: interrompem o quadro de horários ────────────────────────────────
 
-    var halfItems = _getHalf(_newsItems, _currentHalf);
+function verificarUrgentes() {
+    return _buscarInformes().then(function (informes) {
+        if (!_emHorarios || _pausado || window.isBoaNoite) return;
 
-    if (halfItems.length === 0 && _editaisItems.length === 0) {
-        _currentHalf = _currentHalf === 0 ? 1 : 0;
-        _cycleTimer  = setTimeout(_runCycle, 500);
-        return;
-    }
-
-    _showSchedules();
-
-    _cycleTimer = setTimeout(function () {
-        if (window.isBoaNoite) return;
-
-        _showBlock(halfItems, function () {
-            // Após notícias → editais (se existirem) → próximo meio-ciclo
-            _showEditaisBlock(function () {
-                _currentHalf = _currentHalf === 0 ? 1 : 0;
-                _runCycle();
-            });
+        var novos = informes.filter(function (i) {
+            return i.urgencia === 'urgente' && !_urgentesVistos.has(i.id);
         });
-    }, SCHEDULE_DURATION);
+        if (novos.length === 0) return;
+
+        _limparTimers();
+        _hideSchedules();
+        _playItems(Criterios.selecionarUrgentes(novos), 0, _runCycle);
+    });
 }
 
-// ── Modo sem aulas: loop contínuo de notícias + editais ───────────────────────
+window.verificarUrgentes = verificarUrgentes;
+
+// ── Modo sem aulas: loop contínuo de mensagens ────────────────────────────────
 
 function _newsOnlyLoop() {
-    if (!window.isBoaNoite) return;
+    if (!window.isBoaNoite || _pausado) return;
 
-    _fetchNoticias(function (noticias) {
-        fetchEditais(function (editais) {
-            _editaisItems = editais;
+    _buscarTudo().then(function (itens) {
+        if (!window.isBoaNoite || _pausado) return;
 
-            if ((!noticias || noticias.length === 0) && editais.length === 0) {
-                document.getElementById('boa-noite').style.display = 'flex';
-                _cycleTimer = setTimeout(_newsOnlyLoop, 60 * 1000);
-                return;
-            }
+        if (itens.length === 0) {
+            document.getElementById('boa-noite').style.display = 'flex';
+            _cycleTimer = setTimeout(_newsOnlyLoop, 60 * 1000);
+            return;
+        }
 
-            document.getElementById('boa-noite').style.display = 'none';
-
-            if (noticias && noticias.length > 0) {
-                showNewsBanner(function () {
-                    hideNewsBanner();
-                    document.getElementById('news-section').style.display = 'flex';
-                    _playItems(noticias, 0, function () {
-                        _showEditaisBlock(function () {
-                            _newsOnlyLoop();
-                        });
-                    });
-                });
-            } else {
-                _showEditaisBlock(function () {
-                    _newsOnlyLoop();
-                });
-            }
+        document.getElementById('boa-noite').style.display = 'none';
+        var bloco = Criterios.montarBloco(itens, _ultimaVez, Infinity, _config.duracao_noticia);
+        showNewsBanner(function () {
+            hideNewsBanner();
+            _playItems(bloco, 0, _newsOnlyLoop);
         });
     });
 }
@@ -188,20 +213,16 @@ function _newsOnlyLoop() {
 // ── Eventos de Boa Noite / retomada ──────────────────────────────────────────
 
 window.addEventListener('kioskBoaNoite', function () {
-    clearTimeout(_cycleTimer);
-    clearTimeout(_newsTimer);
-    document.getElementById('news-section').style.display = 'none';
-    document.getElementById('news-banner').style.display  = 'none';
-    hideEditaisSection();
+    _limparTimers();
+    _emHorarios = false;
+    _esconderMensagens();
+    document.getElementById('news-banner').style.display = 'none';
     _newsOnlyLoop();
 });
 
 window.addEventListener('kioskResumeMode', function () {
-    clearTimeout(_cycleTimer);
-    clearTimeout(_newsTimer);
-    document.getElementById('news-section').style.display = 'none';
-    hideEditaisSection();
-    _currentHalf = 0;
+    _limparTimers();
+    _esconderMensagens();
     _showSchedules();
     _runCycle();
 });
@@ -210,11 +231,12 @@ window.addEventListener('kioskResumeMode', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
     window._configReady.then(function (cfg) {
-        if (cfg.duracao_horarios) SCHEDULE_DURATION  = cfg.duracao_horarios * 1000;
-        if (cfg.duracao_noticia)  NEWS_ITEM_DURATION = cfg.duracao_noticia  * 1000;
+        _config = Object.assign(_config, cfg);
+        if (cfg.duracao_horarios) SCHEDULE_DURATION = cfg.duracao_horarios * 1000;
 
         window.isBoaNoite = false;
         _showSchedules();
         _runCycle();
+        setInterval(verificarUrgentes, INTERVALO_URGENTES_MS);
     });
 });

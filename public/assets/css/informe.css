@@ -92,6 +92,16 @@
   .informe-tela.urgente::after { animation: none; opacity: .9; }
 }
 
+/* Área do informe no monitor, entre o cabeçalho e o rodapé */
+.informe-section {
+  position: fixed;
+  top: 65px;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  z-index: 400;
+}
+
 /* Miniatura do monitor no painel */
 .informe-previa {
   aspect-ratio: 16 / 9;

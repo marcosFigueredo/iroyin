@@ -18,10 +18,15 @@ use App\Http\Controllers\Admin\DepartamentoController;
 use App\Http\Controllers\Admin\InformeController;
 use App\Http\Controllers\Admin\OperarComoController;
 use App\Http\Controllers\Admin\UnidadeController;
+use App\Models\Departamento;
+use App\Models\Instituicao;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return response()->file(public_path('index.html'));
+    return view('departamentos', [
+        'departamentos' => Departamento::with('campus')->where('ativo', true)->orderBy('slug')->get(),
+        'inst'          => Instituicao::current(),
+    ]);
 });
 
 Route::get('/acessivel', [AcessivelController::class, 'index'])->name('acessivel');
@@ -94,3 +99,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'perfil:gestor,reito
 });
 
 require __DIR__.'/auth.php';
+
+// Monitor de cada departamento. Deve ser a última rota, para não capturar as do sistema.
+Route::get('/{departamento:slug}', fn (Departamento $departamento) => response()->file(public_path('monitor.html')))
+    ->where('departamento', '[a-z0-9-]+')
+    ->name('monitor');

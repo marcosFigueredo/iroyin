@@ -29,13 +29,22 @@ function _applyTema(nome) {
 
 // Carrega a configuração da instituição antes de inicializar o kiosk.
 // Todos os outros scripts aguardam window._configReady antes de iniciar.
-window._configReady = fetch('/api/config?_=' + Date.now())
-    .then(function (r) { return r.json(); })
+window.KIOSK_SLUG = location.pathname.split('/').filter(Boolean)[0] || '';
+
+window.kioskApi = function (recurso) {
+    return '/api/' + window.KIOSK_SLUG + '/' + recurso + '?_=' + Date.now();
+};
+
+window._configReady = fetch(window.kioskApi('config'))
+    .then(function (r) {
+        if (!r.ok) throw new Error('config indisponível');
+        return r.json();
+    })
     .then(function (cfg) {
         window.KIOSK_CONFIG = cfg;
 
         var header = document.getElementById('tipoInformacao');
-        if (header) header.textContent = cfg.departamento || '';
+        if (header) header.textContent = cfg.cabecalho || cfg.departamento || '';
 
         var muted = document.querySelector('.muted-text');
         if (muted) muted.textContent = cfg.texto_banner || '';

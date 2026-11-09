@@ -1,4 +1,7 @@
+import { readFileSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
+
+const monitorHtml = readFileSync('public/monitor.html', 'utf8');
 
 const aula = {
     disciplina: 'Teste de Software',
@@ -47,6 +50,7 @@ function state(overrides = {}) {
         aulas: [aula],
         noticias: [noticia],
         editais: [edital],
+        informes: [],
         clima: {
             temp: 27,
             cidade: 'Salvador',
@@ -82,23 +86,35 @@ async function prepareKiosk(page, scenario, counters = {}) {
         const url = new URL(request.url());
 
         if (url.origin === 'http://127.0.0.1:4173') {
-            if (url.pathname === '/api/config') {
+            // O banco do teste é vazio: o monitor é servido direto do arquivo.
+            if (url.pathname === '/dcet2') {
+                return route.fulfill({ contentType: 'text/html', body: monitorHtml });
+            }
+            if (url.pathname === '/api/dcet2/informes') {
+                return scenario.departamentoInativo
+                    ? route.fulfill({ status: 404, json: { message: 'Not found' } })
+                    : route.fulfill({ json: { informes: scenario.informes } });
+            }
+            if (scenario.departamentoInativo && url.pathname.startsWith('/api/dcet2/')) {
+                return route.fulfill({ status: 404, json: { message: 'Not found' } });
+            }
+            if (url.pathname === '/api/dcet2/config') {
                 counters.config = (counters.config || 0) + 1;
                 return route.fulfill({ json: scenario.config });
             }
-            if (url.pathname === '/api/horarios') {
+            if (url.pathname === '/api/dcet2/horarios') {
                 counters.horarios = (counters.horarios || 0) + 1;
                 return route.fulfill({ json: { aulas: scenario.aulas } });
             }
-            if (url.pathname === '/api/noticias') {
+            if (url.pathname === '/api/dcet2/noticias') {
                 counters.noticias = (counters.noticias || 0) + 1;
                 return route.fulfill({ json: { noticias: scenario.noticias } });
             }
-            if (url.pathname === '/api/editais') {
+            if (url.pathname === '/api/dcet2/editais') {
                 counters.editais = (counters.editais || 0) + 1;
                 return route.fulfill({ json: { editais: scenario.editais } });
             }
-            if (url.pathname === '/api/clima') {
+            if (url.pathname === '/api/dcet2/clima') {
                 counters.clima = (counters.clima || 0) + 1;
                 return scenario.clima === null
                     ? route.fulfill({ status: 204, body: '' })
@@ -154,7 +170,7 @@ test('tudo vazio mantém uma tela informativa, sem clima e sem área em branco',
         editais: [],
         clima: null,
     }));
-    await page.goto('/');
+    await page.goto('/dcet2');
 
     await expect(page.getByText('Não há aulas no momento.')).toBeVisible();
     await expect(page.locator('.info-weather')).toBeHidden();
@@ -170,7 +186,7 @@ test('tudo vazio mantém uma tela informativa, sem clima e sem área em branco',
 
 test('sem notícias, aulas e editais continuam sendo exibidos', async ({ page }) => {
     await prepareKiosk(page, state({ noticias: [] }));
-    await page.goto('/');
+    await page.goto('/dcet2');
 
     await expect(page.getByText('Teste de Software')).toBeVisible();
     await expect(page.getByText(edital.titulo)).toBeVisible();
@@ -179,7 +195,7 @@ test('sem notícias, aulas e editais continuam sendo exibidos', async ({ page })
 
 test('sem editais, aulas e notícias continuam sendo exibidas', async ({ page }) => {
     await prepareKiosk(page, state({ editais: [] }));
-    await page.goto('/');
+    await page.goto('/dcet2');
 
     await expect(page.getByText('Teste de Software')).toBeVisible();
     await expect(page.getByText(noticia.titulo)).toBeVisible();
@@ -190,7 +206,7 @@ test('sem aulas, a mensagem vazia aparece e o ciclo de conteúdo continua', asyn
     const scenario = state({ aulas: [] });
     scenario.config.duracao_horarios = 1;
     await prepareKiosk(page, scenario);
-    await page.goto('/');
+    await page.goto('/dcet2');
 
     await expect(page.getByText('Não há aulas no momento.')).toBeVisible();
     await expect(page.getByText(noticia.titulo)).toBeVisible({ timeout: 3_000 });
@@ -204,7 +220,7 @@ test('perda e retorno da rede exibem o overlay e retomam o ciclo', async ({ cont
     const scenario = state();
     scenario.config.duracao_horarios = 5;
     await prepareKiosk(page, scenario, counters);
-    await page.goto('/');
+    await page.goto('/dcet2');
     await expect(page.getByText('Teste de Software')).toBeVisible();
 
     await context.setOffline(true);
@@ -218,4 +234,72 @@ test('perda e retorno da rede exibem o overlay e retomam o ciclo', async ({ cont
     await expect(page.locator('#horarios')).toBeVisible();
     await expect.poll(() => counters.noticias || 0).toBeGreaterThan(requestsBeforeRecovery);
     expect(errors).toEqual([]);
+});
+
+const urgente = {
+    id: 7,
+    formato: 'texto',
+    titulo: 'Aula de hoje cancelada',
+    texto: 'Sem aula no período da noite.',
+    imagem: null,
+    urgencia: 'urgente',
+    origem: 'Secretaria · DCET2',
+    escopo: 'departamento',
+    criado_em: '2026-07-20T11:00:00Z',
+};
+
+test('urgente interrompe os horários e pulsa', async ({ page }) => {
+    const scenario = state();
+    scenario.config.duracao_horarios = 30;
+    await prepareKiosk(page, scenario);
+    await page.goto('/dcet2');
+    await expect(page.getByText('Teste de Software')).toBeVisible();
+
+    scenario.informes = [urgente];
+    await page.evaluate(() => window.verificarUrgentes());
+
+    const tela = page.locator('#informe-section .informe-tela.urgente');
+    await expect(tela).toBeVisible();
+    await expect(page.locator('#horarios')).toBeHidden();
+    await expect(tela.getByText('Aula de hoje cancelada')).toBeVisible();
+
+    const animacao = await tela.evaluate((el) => getComputedStyle(el, '::after').animationName);
+    expect(animacao).toBe('informe-pulsa');
+});
+
+test('título com HTML aparece como texto no monitor', async ({ page }) => {
+    const scenario = state();
+    scenario.config.duracao_horarios = 30;
+    await prepareKiosk(page, scenario);
+    await page.goto('/dcet2');
+    await expect(page.getByText('Teste de Software')).toBeVisible();
+
+    scenario.informes = [{ ...urgente, titulo: '<img src=x onerror="window.invadido=1">' }];
+    await page.evaluate(() => window.verificarUrgentes());
+
+    await expect(page.locator('.informe-titulo')).toHaveText('<img src=x onerror="window.invadido=1">');
+    expect(await page.evaluate(() => window.invadido)).toBeUndefined();
+});
+
+test('departamento desativado mantém a tela com fallback', async ({ page }) => {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+
+    await prepareKiosk(page, state({ departamentoInativo: true }));
+    await page.goto('/dcet2');
+
+    await expect(page.locator('#horarios')).toBeVisible();
+    await expect(page.locator('#offline-overlay')).toBeHidden();
+    await page.waitForTimeout(500);
+    expect(errors).toEqual([]);
+});
+
+test('sem mensagens os horários continuam', async ({ page }) => {
+    await prepareKiosk(page, state({ noticias: [], editais: [], informes: [] }));
+    await page.goto('/dcet2');
+
+    await expect(page.getByText('Teste de Software')).toBeVisible();
+    await page.waitForTimeout(700);
+    await expect(page.locator('#horarios')).toBeVisible();
+    await expect(page.locator('#news-banner')).toBeHidden();
 });

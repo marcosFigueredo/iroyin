@@ -341,7 +341,7 @@ New users are created by the admin with a temporary password. There is no public
 │   ├── migrations/
 │   └── seeders/DatabaseSeeder.php
 ├── public/
-│   ├── index.html              # Kiosk display (no auth required)
+│   ├── monitor.html            # Kiosk display, served at /{slug} (no auth required)
 │   └── assets/
 │       ├── css/style.css
 │       └── js/

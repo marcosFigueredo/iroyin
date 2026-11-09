@@ -4,6 +4,7 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
+        "test:js": "node --test tests/js/criterios.test.cjs",
         "dev": "vite",
         "test:e2e": "playwright test",
         "test:e2e:headed": "playwright test --headed"

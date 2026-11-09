@@ -27,7 +27,7 @@ class KioskFailureModesTest extends TestCase
 
         // O HTML público é entregue como BinaryFileResponse; o conteúdo e o
         // estado visual correspondente são validados no teste Playwright.
-        $this->get('/')->assertOk();
+        $this->get('/dcet2')->assertOk();
 
         $this->getJson('/api/dcet2/horarios')
             ->assertOk()

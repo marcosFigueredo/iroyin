@@ -13,7 +13,7 @@ class NoticiaController extends Controller
     {
         $noticias = Noticia::ativas()
             ->orderByDesc('inicio')
-            ->get(['titulo', 'fonte', 'link', 'imagem', 'inicio', 'fim']);
+            ->get(['id', 'titulo', 'fonte', 'link', 'imagem', 'inicio', 'fim']);
 
         return response()->json([
             'gerado'   => now()->toISOString(),

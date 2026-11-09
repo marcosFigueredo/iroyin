@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
         hideBoaNoite();
         document.getElementById('horarios').style.display = 'block';
 
-        fetch('/api/horarios')
+        fetch(window.kioskApi('horarios'))
             .then(r => r.json())
             .then(data => {
                 const turno = detectTurno(now);

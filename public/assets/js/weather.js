@@ -1,6 +1,6 @@
 window._configReady.then(function () {
     function updateWeather() {
-        fetch('/api/clima?_=' + Date.now())
+        fetch(window.kioskApi('clima'))
             .then(function (r) {
                 if (r.status === 204) {
                     var weatherEl = document.querySelector('.info-weather');
