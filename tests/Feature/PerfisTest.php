@@ -31,6 +31,21 @@ class PerfisTest extends TestCase
         }
     }
 
+    public function test_gabinete_sem_departamento_nao_acessa_nada(): void
+    {
+        $sem = $this->criaUsuario('departamento');
+
+        $this->actingAs($sem)->get('/admin/users')->assertForbidden();
+        $this->actingAs($sem)->get('/admin/informes')->assertForbidden();
+    }
+
+    public function test_secretaria_sem_unidade_nao_acessa_nada(): void
+    {
+        $this->actingAs($this->criaUsuario('unidade', $this->criaDepartamento()))
+            ->get('/admin/informes')
+            ->assertForbidden();
+    }
+
     public function test_gestor_acessa_conteudo_comum(): void
     {
         $this->actingAs($this->criaUsuario('gestor'))->get('/admin/noticias')->assertOk();

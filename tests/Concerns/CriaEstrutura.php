@@ -46,6 +46,19 @@ trait CriaEstrutura
         ]);
     }
 
+    protected function criaInforme(?Departamento $d, array $extra = []): \App\Models\Informe
+    {
+        return \App\Models\Informe::create(array_merge([
+            'departamento_id' => $d?->id,
+            'formato'         => 'texto',
+            'titulo'          => 'Informe',
+            'texto'           => 'Texto do informe',
+            'urgencia'        => 'normal',
+            'inicio'          => now()->subHour(),
+            'fim'             => now()->addDay(),
+        ], $extra));
+    }
+
     protected function criaCurso(Departamento $d, string $nome = 'Sistemas de Informação'): Unidade
     {
         return Unidade::create(['departamento_id' => $d->id, 'tipo' => 'curso', 'nome' => $nome]);

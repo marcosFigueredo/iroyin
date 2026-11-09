@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Feed;
 use App\Models\Noticia;
+use App\Support\ImagemUpload;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -318,9 +319,6 @@ class NoticiaController extends Controller
 
     private function salvarImagem(UploadedFile $file): string
     {
-        $nome = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME))
-              . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('noticias/imagens'), $nome);
-        return 'noticias/imagens/' . $nome;
+        return ImagemUpload::salvar($file);
     }
 }

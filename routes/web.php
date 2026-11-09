@@ -15,6 +15,7 @@ use App\Http\Controllers\SetupController;
 use App\Http\Controllers\Admin\CampusController;
 use App\Http\Controllers\Admin\DepartamentoConfigController;
 use App\Http\Controllers\Admin\DepartamentoController;
+use App\Http\Controllers\Admin\InformeController;
 use App\Http\Controllers\Admin\OperarComoController;
 use App\Http\Controllers\Admin\UnidadeController;
 use Illuminate\Support\Facades\Route;
@@ -85,6 +86,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'perfil:gestor,depar
     Route::resource('unidades', UnidadeController::class)->except(['show', 'create']);
     Route::get('departamento-config', [DepartamentoConfigController::class, 'edit'])->name('departamento-config.edit');
     Route::put('departamento-config', [DepartamentoConfigController::class, 'update'])->name('departamento-config.update');
+});
+
+// Informes — Reitoria, gabinetes e secretarias
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'perfil:gestor,reitoria,departamento,unidade'])->group(function () {
+    Route::resource('informes', InformeController::class)->except(['show']);
 });
 
 require __DIR__.'/auth.php';
