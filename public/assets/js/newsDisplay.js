@@ -60,7 +60,7 @@ function renderNewsItem(item, duration) {
     const qrWrap = document.getElementById('news-qr-wrap');
     const qrDiv  = document.getElementById('news-qr');
     qrDiv.innerHTML = '';
-    if (item.link) {
+    if (item.link && window.QRCode) {
         qrWrap.style.display = 'block';
         new QRCode(qrDiv, {
             text:       item.link,

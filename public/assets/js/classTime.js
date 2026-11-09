@@ -57,6 +57,13 @@ document.addEventListener("DOMContentLoaded", function () {
         return `<i class="fa-solid fa-chalkboard-user"></i> ${sala}`;
     }
 
+    // Campos digitados por usuários nunca podem virar HTML.
+    function esc(valor) {
+        const n = document.createElement('span');
+        n.textContent = valor === null || valor === undefined ? '' : valor;
+        return n.innerHTML.replace(/"/g, '&quot;');
+    }
+
     function renderTable(aulas, now) {
         const tableBody = document.getElementById('table-horario');
         tableBody.innerHTML = '';
@@ -87,9 +94,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 tr.style.fontWeight      = '700';
             }
 
-            tr.innerHTML = `<td>${row.disciplina}</td><td>${row.professor}</td>`
-                         + `<td>${row.curso}</td><td class="col-inicio">${ini}</td>`
-                         + `<td class="col-fim">${fim}</td><td class="col-sala">${iconSala(sala)}</td>`;
+            tr.innerHTML = `<td>${esc(row.disciplina)}</td><td>${esc(row.professor)}</td>`
+                         + `<td>${esc(row.curso)}</td><td class="col-inicio">${esc(ini)}</td>`
+                         + `<td class="col-fim">${esc(fim)}</td><td class="col-sala">${iconSala(esc(sala))}</td>`;
 
             if (cor) {
                 // aplica a cor do texto nos <td> (CSS do tema seria sobrescrito pela herança)

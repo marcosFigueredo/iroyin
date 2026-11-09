@@ -57,7 +57,7 @@ function renderEdital(item, duration) {
     // QR Code
     var qrDiv = document.getElementById('editais-qr');
     qrDiv.innerHTML = '';
-    if (item.link) {
+    if (item.link && window.QRCode) {
         new QRCode(qrDiv, {
             text:       item.link,
             width:      160,

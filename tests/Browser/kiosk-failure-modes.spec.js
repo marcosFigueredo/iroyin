@@ -88,6 +88,9 @@ async function prepareKiosk(page, scenario, counters = {}) {
         if (url.origin === 'http://127.0.0.1:4173') {
             // O banco do teste é vazio: o monitor é servido direto do arquivo.
             if (url.pathname === '/dcet2') {
+                if (scenario.monitorIndisponivel) {
+                    return route.fulfill({ status: 500, contentType: 'text/html', body: 'erro' });
+                }
                 return route.fulfill({ contentType: 'text/html', body: monitorHtml });
             }
             if (url.pathname === '/api/dcet2/informes') {
@@ -108,6 +111,9 @@ async function prepareKiosk(page, scenario, counters = {}) {
             }
             if (url.pathname === '/api/dcet2/noticias') {
                 counters.noticias = (counters.noticias || 0) + 1;
+                if (scenario.atrasoNoticias) {
+                    await new Promise((resolve) => setTimeout(resolve, scenario.atrasoNoticias));
+                }
                 return route.fulfill({ json: { noticias: scenario.noticias } });
             }
             if (url.pathname === '/api/dcet2/editais') {
@@ -126,6 +132,10 @@ async function prepareKiosk(page, scenario, counters = {}) {
             }
 
             return route.continue();
+        }
+
+        if (scenario.semCdn && (url.pathname.endsWith('/anime.min.js') || url.pathname.endsWith('/qrcode.min.js'))) {
+            return route.fulfill({ contentType: 'application/javascript', body: '' });
         }
 
         if (url.pathname.endsWith('/anime.min.js')) {
@@ -302,4 +312,62 @@ test('sem mensagens os horários continuam', async ({ page }) => {
     await page.waitForTimeout(700);
     await expect(page.locator('#horarios')).toBeVisible();
     await expect(page.locator('#news-banner')).toBeHidden();
+});
+
+test('HTML digitado em horários aparece como texto', async ({ page }) => {
+    const carga = '<img src=x onerror="window.invadido=1">';
+    await prepareKiosk(page, state({
+        aulas: [{ ...aula, disciplina: carga, professor: carga, curso: carga, sala: carga }],
+        noticias: [],
+        editais: [],
+    }));
+    await page.goto('/dcet2');
+
+    await expect(page.locator('#table-horario td').first()).toHaveText(carga);
+    expect(await page.evaluate(() => window.invadido)).toBeUndefined();
+});
+
+test('queda de rede com busca pendente não duplica o ciclo', async ({ page }) => {
+    const scenario = state({ editais: [], atrasoNoticias: 500 });
+    scenario.config.duracao_horarios = 1;
+    await prepareKiosk(page, scenario);
+    await page.goto('/dcet2');
+    await expect(page.getByText('Teste de Software')).toBeVisible();
+
+    await page.evaluate(() => {
+        window.chamadas = 0;
+        const original = window.renderNewsItem;
+        window.renderNewsItem = function (...args) {
+            window.chamadas += 1;
+            return original.apply(this, args);
+        };
+        window.pauseKioskCycle();
+        window.resumeKioskCycle();
+    });
+
+    await page.waitForTimeout(3000);
+    expect(await page.evaluate(() => window.chamadas)).toBe(1);
+});
+
+test('sem as bibliotecas externas o ciclo continua', async ({ page }) => {
+    const scenario = state({ editais: [], semCdn: true });
+    await prepareKiosk(page, scenario);
+    await page.goto('/dcet2');
+
+    await expect(page.locator('#tipoInformacao')).toHaveText(scenario.config.departamento);
+    await expect(page.getByText(noticia.titulo)).toBeVisible();
+});
+
+test('não recarrega quando o servidor responde com erro', async ({ page }) => {
+    const scenario = state({ noticias: [], editais: [] });
+    await prepareKiosk(page, scenario);
+    await page.goto('/dcet2');
+    await expect(page.getByText('Teste de Software')).toBeVisible();
+
+    await page.evaluate(() => { window.mesmaPagina = true; });
+    scenario.monitorIndisponivel = true;
+    await page.evaluate(() => window.recarregarSeDisponivel());
+    await page.waitForTimeout(300);
+
+    expect(await page.evaluate(() => window.mesmaPagina)).toBe(true);
 });

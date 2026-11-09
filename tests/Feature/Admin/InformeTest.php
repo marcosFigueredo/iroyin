@@ -204,6 +204,18 @@ class InformeTest extends TestCase
             ->delete(route('admin.informes.destroy', $geral))->assertNotFound();
     }
 
+    public function test_gestor_sem_departamento_nao_altera_informe_da_reitoria(): void
+    {
+        $geral = $this->criaInforme(null);
+        $gestor = $this->criaUsuario('gestor');
+
+        $this->actingAs($gestor)->get(route('admin.informes.edit', $geral))->assertRedirect(route('admin.departamentos.index'));
+        $this->actingAs($gestor)->put(route('admin.informes.update', $geral), $this->dados(['titulo' => 'Alterado']))->assertRedirect(route('admin.departamentos.index'));
+        $this->actingAs($gestor)->delete(route('admin.informes.destroy', $geral))->assertRedirect(route('admin.departamentos.index'));
+
+        $this->assertSame('Informe', $geral->fresh()->titulo);
+    }
+
     public function test_urgente_com_mais_de_7_dias_e_recusado(): void
     {
         $d = $this->criaDepartamento();

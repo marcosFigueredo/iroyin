@@ -39,6 +39,11 @@ class UnidadeController extends Controller
     public function update(Request $request, int $unidade)
     {
         $item = $this->buscar($request, $unidade);
+
+        if ($item->horarios()->exists() && $request->input('tipo') !== 'curso') {
+            return back()->withInput()->withErrors(['tipo' => 'Este curso tem horários cadastrados e não pode mudar de tipo.']);
+        }
+
         $item->update($this->validar($request, $item->departamento_id, $item) + ['ativo' => $request->boolean('ativo')]);
 
         return redirect()->route('admin.unidades.index')->with('success', 'Cadastro atualizado.');

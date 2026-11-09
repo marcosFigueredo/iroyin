@@ -58,11 +58,19 @@ class InformeController extends Controller
 
     public function edit(Request $request, int $informe)
     {
+        if ($this->semEscopo($request)) {
+            return $this->pedirDepartamento();
+        }
+
         return view('admin.informes.edit', ['informe' => $this->buscar($request, $informe)] + $this->contexto($request));
     }
 
     public function update(Request $request, int $informe)
     {
+        if ($this->semEscopo($request)) {
+            return $this->pedirDepartamento();
+        }
+
         $item = $this->buscar($request, $informe);
         $data = $this->validar($request, $item);
 
@@ -81,6 +89,10 @@ class InformeController extends Controller
 
     public function destroy(Request $request, int $informe)
     {
+        if ($this->semEscopo($request)) {
+            return $this->pedirDepartamento();
+        }
+
         $item = $this->buscar($request, $informe);
         ImagemUpload::apagar($item->imagem);
         $item->delete();

@@ -70,14 +70,25 @@
                                     @endif
                                 </td>
                                 <td class="text-end">
+                                    @if(auth()->user()->isGestor())
+                                    <details class="d-inline-block text-start me-1">
+                                        <summary class="btn btn-sm btn-outline-secondary">Datas</summary>
+                                        <form method="POST" action="{{ route('admin.semestres.update', $semestre) }}" class="mt-2 d-flex gap-1">
+                                            @csrf @method('PUT')
+                                            <input type="date" name="inicio" class="form-control form-control-sm" value="{{ $semestre->inicio?->toDateString() }}" required aria-label="Início">
+                                            <input type="date" name="fim" class="form-control form-control-sm" value="{{ $semestre->fim?->toDateString() }}" required aria-label="Fim">
+                                            <button class="btn btn-sm text-white" style="background-color:#1a3369;">Salvar</button>
+                                        </form>
+                                    </details>
+                                    @endif
                                     <a href="{{ route('admin.semestres.horarios.index', $semestre) }}"
                                        class="btn btn-sm btn-outline-secondary me-1">
                                         <i class="bi bi-list-ul"></i> Horários
                                     </a>
-                                    @if(auth()->user()->isGestor() && !$semestre->estaVigente())
+                                    @if(auth()->user()->isGestor() && !$semestre->estaVigente() && $semestre->horarios_count === 0)
                                     <form method="POST" action="{{ route('admin.semestres.destroy', $semestre) }}"
                                           class="d-inline"
-                                          onsubmit="return confirm('Excluir semestre {{ $semestre->nome }} e todos os horários?')">
+                                          onsubmit="return confirm('Excluir semestre {{ $semestre->nome }}?')">
                                         @csrf @method('DELETE')
                                         <button class="btn btn-sm btn-outline-danger">
                                             <i class="bi bi-trash"></i>

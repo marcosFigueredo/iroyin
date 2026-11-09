@@ -52,7 +52,7 @@ window._configReady = fetch(window.kioskApi('config'))
         _applyTema(cfg.tema || 'azul');
 
         // QR code fixo de acessibilidade
-        if (cfg.url_acessivel) {
+        if (cfg.url_acessivel && window.QRCode) {
             var qrEl = document.getElementById('acessivel-qr');
             if (qrEl) {
                 new QRCode(qrEl, { text: cfg.url_acessivel, width: 78, height: 78 });

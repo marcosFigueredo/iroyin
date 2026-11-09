@@ -68,7 +68,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 // Configuração — somente admins
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'perfil:gestor'])->group(function () {
     Route::post('operar-como', OperarComoController::class)->name('operar-como');
-    Route::resource('semestres', SemestreController::class)->only(['store', 'destroy']);
+    Route::resource('semestres', SemestreController::class)->only(['store', 'update', 'destroy']);
     Route::resource('editais', EditalController::class)->except(['show', 'create', 'edit']);
     Route::post('editais/{edital}/toggle', [EditalController::class, 'toggle'])->name('editais.toggle');
     Route::resource('agencias', AgenciaController::class)->only(['store', 'update', 'destroy']);

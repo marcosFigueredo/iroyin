@@ -5,6 +5,7 @@ let _cycleTimer = null;
 let _newsTimer  = null;
 let _pausado    = false;
 let _emHorarios = false;
+let _geracao    = 0;     // invalida buscas e animações de um ciclo já encerrado
 let _itens      = [];
 
 const CHAVE_ULTIMA_VEZ      = 'iroyin_ultima_vez';
@@ -33,6 +34,7 @@ function _registrarExibicao(item) {
 // ── Controle de timers ────────────────────────────────────────────────────────
 
 function _limparTimers() {
+    _geracao++;
     clearTimeout(_cycleTimer);
     clearTimeout(_newsTimer);
     _cycleTimer = null;
@@ -136,18 +138,43 @@ function _playItems(items, idx, onDone) {
     }
 
     var duracaoMs = Criterios.duracaoItem(items[idx], _config.duracao_noticia) * 1000;
-    _mostrarItem(items[idx], duracaoMs);
-    _registrarExibicao(items[idx]);
+
+    try {
+        _mostrarItem(items[idx], duracaoMs);
+        _registrarExibicao(items[idx]);
+    } catch (e) {
+        // Um item com problema não pode parar o monitor.
+        console.error('Erro ao exibir mensagem:', e);
+        duracaoMs = 1000;
+    }
+
     _newsTimer = setTimeout(function () { _playItems(items, idx + 1, onDone); }, duracaoMs);
+}
+
+// O banner depende de biblioteca externa: se falhar, segue direto para as mensagens.
+function _comBanner(aoTerminar) {
+    var geracao = _geracao;
+    var concluido = false;
+
+    function concluir() {
+        if (concluido || geracao !== _geracao) return;
+        concluido = true;
+        hideNewsBanner();
+        aoTerminar();
+    }
+
+    try {
+        showNewsBanner(concluir);
+    } catch (e) {
+        console.error('Erro no banner:', e);
+        concluir();
+    }
 }
 
 function _showBlock(items, onDone) {
     if (items.length === 0) { onDone(); return; }
     _hideSchedules();
-    showNewsBanner(function () {
-        hideNewsBanner();
-        _playItems(items, 0, onDone);
-    });
+    _comBanner(function () { _playItems(items, 0, onDone); });
 }
 
 // ── Ciclo normal: horários → banner → mensagens → horários ────────────────────
@@ -155,8 +182,9 @@ function _showBlock(items, onDone) {
 function _runCycle() {
     if (window.isBoaNoite || _pausado) return;
 
+    var geracao = _geracao;
     _buscarTudo().then(function (itens) {
-        if (window.isBoaNoite || _pausado) return;
+        if (geracao !== _geracao || window.isBoaNoite || _pausado) return;
         _itens = itens;
         _showSchedules();
 
@@ -171,8 +199,9 @@ function _runCycle() {
 // ── Urgentes: interrompem o quadro de horários ────────────────────────────────
 
 function verificarUrgentes() {
+    var geracao = _geracao;
     return _buscarInformes().then(function (informes) {
-        if (!_emHorarios || _pausado || window.isBoaNoite) return;
+        if (geracao !== _geracao || !_emHorarios || _pausado || window.isBoaNoite) return;
 
         var novos = informes.filter(function (i) {
             return i.urgencia === 'urgente' && !_urgentesVistos.has(i.id);
@@ -192,8 +221,9 @@ window.verificarUrgentes = verificarUrgentes;
 function _newsOnlyLoop() {
     if (!window.isBoaNoite || _pausado) return;
 
+    var geracao = _geracao;
     _buscarTudo().then(function (itens) {
-        if (!window.isBoaNoite || _pausado) return;
+        if (geracao !== _geracao || !window.isBoaNoite || _pausado) return;
 
         if (itens.length === 0) {
             document.getElementById('boa-noite').style.display = 'flex';
@@ -203,10 +233,7 @@ function _newsOnlyLoop() {
 
         document.getElementById('boa-noite').style.display = 'none';
         var bloco = Criterios.montarBloco(itens, _ultimaVez, Infinity, _config.duracao_noticia);
-        showNewsBanner(function () {
-            hideNewsBanner();
-            _playItems(bloco, 0, _newsOnlyLoop);
-        });
+        _comBanner(function () { _playItems(bloco, 0, _newsOnlyLoop); });
     });
 }
 
