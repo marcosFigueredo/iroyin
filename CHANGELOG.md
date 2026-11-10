@@ -9,6 +9,10 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+---
+
+## [2.0.0] — 2026-11-10
+
 ### Added
 
 - **Multiple departments** in one installation: institution → campus → department → course, laboratory or research center
@@ -19,6 +23,9 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - **Academic calendar**: the current semester comes from start and end dates
 - **Mobile page** at `/{slug}/acessivel` with notices in full and no time limit
 - Optional `UnebSeeder` with the UNEB campuses and departments
+- **Offline monitor**: data and media are cached on the device, so the panel keeps running when the network drops
+- **Quick actions** for creating news and notices, and an initial setup for the central manager
+- **Schedule import** validates the whole CSV before saving anything
 
 ### Changed
 
@@ -26,10 +33,17 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `public/index.html` renamed to `public/monitor.html`
 - Schedules belong to a registered course
 
+### Fixed
+
+- Time zone, monitor rotation cycle, HTML in schedules and semester handling
+- Central manager can reach notices from the menu
+
 ### Security
 
 - Dependencies updated; `composer audit` reports no advisories
 - Demo data refuses to run in production
+- Initial password comes from the environment, not the code, and must be changed on first login
+- Image uploads disguised with a fake extension are rejected
 
 ---
 
